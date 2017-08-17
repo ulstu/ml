@@ -2,12 +2,12 @@
 	<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch" >
 		<arg name="world_file"  default="$(find my_pkg)/worlds/lab_wg.world"/>
 	</include>
+<!--
 	<include file="$(find turtlebot_gazebo)/launch/amcl_demo.launch">
 		<arg name="map_file" value="/home/fist/my_new_map.yaml" />  
 	</include>
-	<include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
-<!--
-	<include file="$(find turtlebot_gazebo)/launch/gmapping_demo.launch" />
-	<node name="my_pkg" pkg="my_pkg" type="turtlebot.py" output="screen" />
 -->
+	<include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+	<include file="$(find turtlebot_gazebo)/launch/gmapping_demo.launch" />
+	<node name="my_pkg" pkg="my_pkg" type="map_listener.py" output="screen" />
 </launch>
