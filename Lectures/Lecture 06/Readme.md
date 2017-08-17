@@ -2,7 +2,7 @@
 cd ~/  
 mkdir sources  
 cd sources  
-git clone git@github.com:ulstu/  robotics_ml.git  
+git clone https://github.com/ulstu/robotics_ml.git  
 cd robotics_ml/Lectures/Lecture\ 06/  
 cp my_pkg ~/catkin_ws/src  
 cd ~/catkin_ws  
