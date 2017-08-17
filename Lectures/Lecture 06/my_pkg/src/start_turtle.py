@@ -10,7 +10,7 @@ class GoForward():
     	rospy.loginfo("To stop Turtle CTRL + C")
 
         rospy.on_shutdown(self.shutdown)
-        self.cmd_vel = rospy.Publisher('/turtle1/cmd_vel', Twist, queue_size=10)
+        self.cmd_vel = rospy.Publisher('cmd_vel_mux/input/navi', Twist, queue_size=10)
      
         r = rospy.Rate(1)
         i = 1
