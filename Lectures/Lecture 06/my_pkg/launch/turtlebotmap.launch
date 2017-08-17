@@ -1,0 +1,28 @@
+<launch>
+	<!--
+	<arg name="map_file" value="/home/fist/tutorial.yaml" />  
+	-->
+
+	<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch" >
+		<arg name="world_file"  default="$(find fist_robotics_labs)/worlds/lab_wg.world"/>
+	</include>
+	<include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+
+	<arg name="world_file"  default="$(find my_pkg)/worlds/lab_wg.world"/>
+<!--
+	<node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+-->
+	<include file="$(find turtlebot_gazebo)/launch/gmapping_demo.launch" />
+<!--
+	<node name="my_pkg" pkg="my_pkg" type="turtlebot.py" output="screen" />
+
+	<arg name="initial_pose_x" default="0.0"/>
+	<arg name="initial_pose_y" default="0.0"/>
+	<arg name="initial_pose_a" default="0.0"/>
+	<include file="$(find turtlebot_navigation)/launch/includes/amcl/amcl.launch.xml">
+	    <arg name="initial_pose_x" value="$(arg initial_pose_x)"/>
+	    <arg name="initial_pose_y" value="$(arg initial_pose_y)"/>
+	    <arg name="initial_pose_a" value="$(arg initial_pose_a)"/>
+	</include> 
+-->
+</launch>
