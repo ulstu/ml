@@ -5,6 +5,7 @@ import random
 from std_msgs.msg import String
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
+from nav_msgs.msg import OccupancyGrid
 
 
 FORWARD_SPEED = 0.5
@@ -70,25 +71,26 @@ def callback(scan):
     global keepMoving
     #rospy.loginfo(rospy.get_caller_id() + "I heard %s", scan)
 
-    isObstacleInFront = False
     # Find the closest range between the defined minimum and maximum angles
     minIndex = math.ceil((MIN_SCAN_ANGLE - scan.angle_min) / scan.angle_increment)
     maxIndex = math.floor((MAX_SCAN_ANGLE - scan.angle_min) / scan.angle_increment)
     res = ""
     for currIndex in range(int(minIndex + 1), int(maxIndex)):
         if scan.ranges[currIndex] < MIN_DIST_FROM_OBSTACLE:
-            isObstacleInFront = True
+            rospy.loginfo("Stop!");
+            keepMoving = False
             res += " " + str(scan.ranges[currIndex])
             break
     rospy.loginfo(res)
-    if isObstacleInFront:
-        rospy.loginfo("Stop!");
-        keepMoving = False
+
+def map_callback(map):
+    rospy.loginfo("map: {}".format(map.data))
     
 def listener():
     rospy.init_node('map_listener', anonymous=True)
-    rospy.Rate(10).sleep()
+    rospy.Rate(0.5).sleep()
     rospy.Subscriber("scan", LaserScan, callback)
+    rospy.Subscriber("map", OccupancyGrid, map_callback)
     move_forward()
     # spin() simply keeps python from exiting until this node is stopped
     rospy.spin()
