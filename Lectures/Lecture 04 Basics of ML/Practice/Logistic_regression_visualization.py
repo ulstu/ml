@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 from sklearn import linear_model
 
-# задаем нормальное распределение
+# set normal distribution
 xmin, xmax = -5, 5
 n_samples = 100
 np.random.seed(0)
