@@ -1,0 +1,14 @@
+<launch>
+	<include file="$(find turtlebot_gazebo)/launch/turtlebot_world.launch" >
+		<arg name="world_file"  default="$(find hiber_final_challenge)/worlds/lab_wg.world"/>
+	</include>
+	<include file="$(find turtlebot_gazebo)/launch/amcl_demo.launch">
+		<arg name="map_file" value="$(find hiber_final_challenge)/worlds/my_wg_map.yaml" />  
+	</include>
+	<include file="$(find turtlebot_rviz_launchers)/launch/view_navigation.launch" />
+
+	<node name="hiber_final_challenge_goals" pkg="hiber_final_challenge" type="02_goto_goal.py" output="screen" />
+
+	<node name="hiber_final_challenge_opencv" pkg="hiber_final_challenge" type="03_recognize.py" output="screen" />
+
+</launch>
