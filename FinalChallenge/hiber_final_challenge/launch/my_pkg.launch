@@ -1,0 +1,3 @@
+<launch>
+	<node name="my_pkg" pkg="my_pkg" type="start_turtle.py" output="screen" />
+</launch>
