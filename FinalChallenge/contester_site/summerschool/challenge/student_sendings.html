@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+	{{ block.super }}
+	<table  border="1" cellpadding="5">
+		<tr>
+			<td>Nickname</td>
+			<td>Upload time</td>
+			<td>X</td>
+			<td>Y</td>
+		</tr>
+		{% for obj in sendings %}
+		<tr>
+			<td>{{ obj.student_name }}</td>
+			<td>{{ obj.upload_time}}</td>
+			<td>{{ obj.x }}</td>
+			<td>{{ obj.y }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}
+
+

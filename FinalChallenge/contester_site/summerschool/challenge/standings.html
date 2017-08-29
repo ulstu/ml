@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block content %}
+	{{ block.super }}
+	<script type="text/javascript">
+		setTimeout(function(){
+		   window.location.reload(1);
+		}, 20000);
+	</script>
+	<table cellpadding="20" border="1">
+		<tr>
+			<td>
+				<table  cellpadding="5" border="1">
+					<tr>
+						<td>Rating position</td>
+						<td>Nickname</td>
+						<td>Total error</td>
+						<td>Real objects</td>
+						<td>Answer objects</td>
+						<td>Correct detections</td>
+						<td>Incorrect detections</td>
+						<td>False negative</td>
+						<td>Redundant detections</td>
+					</tr>
+					{% for obj in objects %}
+					<tr>
+						<td>{{ obj.pos }}</td>
+						<td><a href='/challenge/student/?name={{ obj.student_name }}'>{{ obj.student_name }}</a></td>
+						<td>{{ obj.error }}</td>
+						<td>{{ obj.real_object_number }}</td>
+						<td>{{ obj.answer_object_number }}</td>
+						<td>{{ obj.correct_detections }}</td>
+						<td>{{ obj.false_detections }}</td>
+						<td>{{ obj.false_negative }}</td>
+						<td>{{ obj.redundant_detections }}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</td>
+			<td>
+				List of nicknames:<br />
+				<pre>
+J.J.Q
+gsk
+Yu
+He
+Lurker
+Atlas
+LIZHIJUN
+itachi
+White
+jiujiu
+JS
+7urtl3b0t
+CALLOFDOG
+Shao_Han
+FEI2017
+StalinWang
+				</pre>	
+			</td>
+		</tr>
+	</table>
+<!--	
+	<table  cellspacing="20" cellpadding="5">
+		{% for l in log %}
+		<tr>
+			<td>{{ l }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+-->
+{% endblock %}

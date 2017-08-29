@@ -1,0 +1,2 @@
+0 0 red_cube
+5 5 red_cube
