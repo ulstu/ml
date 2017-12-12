@@ -1,5 +1,5 @@
 # English
-# Task for practice work 1
+# Assignment for practical work 1
 ## General Assignment
 1. Generate csv file containing 3 columns: x1, x2, y (> 400 rows). The type of the function is determined by the option (the range is chosen by the student).
 2. Open the file and create 2 plots in one window: x1 (x) and x2 (x) on one plot and y (x1), y (x2) on the another. Plots need to be built with matplotlib library (for the function y, you need to display points on the plot).
