@@ -6,7 +6,7 @@ data = pandas.read_csv('titanic.csv', index_col='PassengerId')
 
 # TITANIC TASK - 1
 # print Table headers instead all data table
-print list(data)
+print(list(data))
 # print data
 
 # Variable	Definition	Key
@@ -27,7 +27,8 @@ print list(data)
 # 2nd = Middle
 # 3rd = Lower
 #
-# age: Age is fractional if less than 1. If the age is estimated, is it in the form of xx.5
+# age: Age is fractional if less than 1. If the age is estimated,
+# is it in the form of xx.5
 #
 # sibsp: The dataset defines family relations in this way...
 # Sibling = brother, sister, stepbrother, stepsister
@@ -48,8 +49,8 @@ mans_count = len(data.loc[data['Sex'] == 'male'])
 sex = data[['Sex']]
 # for get matrix of digits use values[0]
 womans_count = sex.loc[data['Sex'] == 'female'].count().values[0]
-print mans_count
-print womans_count
+print(mans_count)
+print(womans_count)
 
 
 

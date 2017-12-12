@@ -14,12 +14,14 @@ def get_first_name(full_name):
     first_name = 'null'
     words = full_name.split()
 
+    index = -1
     if "Miss." in words:
         index = words.index("Miss.")
     if "Missis." in words:
         index = words.index("Missis.")
 
-    first_name = words[index + 1]
+    if index != -1:
+        first_name = words[index + 1]
 
     return first_name
 
@@ -43,4 +45,4 @@ girlsNamesCount.columns = ['Name', 'Count']
 # - name or index of column as sort base
 # - sort direction (ascending or descending)
 girlsNamesCount_Sort = girlsNamesCount.sort_values(by=['Count'], ascending=False)
-print girlsNamesCount_Sort
+print(girlsNamesCount_Sort)
