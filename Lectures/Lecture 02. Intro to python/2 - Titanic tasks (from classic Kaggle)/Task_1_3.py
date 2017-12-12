@@ -11,4 +11,4 @@ total_count = len(data)
 first_class_count = len(data.loc[data['Pclass'] == 1])
 
 first_class_persent = float(first_class_count)/total_count
-print first_class_persent, "%"
+print(first_class_persent * 100, "%")
