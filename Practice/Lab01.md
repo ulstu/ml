@@ -2,10 +2,10 @@
 # Assignment for practical work 1
 ## General Assignment
 1. Generate csv file containing 3 columns: x1, x2, y (> 400 rows). The type of the function is determined by the option (the range is chosen by the student).
-2. Open the file and create 2 plots in one window: x1 (x) and x2 (x) on one plot and y (x1), y (x2) on the another. Plots need to be built with matplotlib library (for the function y, you need to display points on the plot).
-3. Print to the console for each column (x1, x2, y) average, minimum and maximum values.
-4. Save data to the new csv file those lines for which the condition: x1 less average_x1 or x2 less average_x2
-5. Usу mplot3D to build a 3D graph of the function y (x1, x2) in a separate window.
+2. Open the file and create 2 plots in single window: x1 (x) and x2 (x) on the first and y (x1), y (x2) on the second. Plots need to be built with matplotlib library (for the function y, you need to display points on the plot).
+3. Print for each column (x1, x2, y) average, minimum and maximum values to the console.
+4. Save data to the new csv file those lines for which the condition x1 < average_x1 or x2 < average_x2
+5. Use mplot3D to build a 3D graph of the function y (x1, x2) in a separate window.
 
 ## Options
 y is a random number
