@@ -1,0 +1,20 @@
+[global]
+floatX = float32
+device = cpu
+
+[gpuarray]
+preallocate = 0.75
+
+[lib]
+cnmem = 1
+optimizer=fast_run
+
+[nvcc]
+fastmath = True
+
+[dnn]
+library_path = /usr/local/cuda/lib64
+include_path = /usr/local/cuda/include
+
+[blas]
+ldflags = -lopenblas
