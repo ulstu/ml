@@ -75,7 +75,7 @@ plt.show()
 
 # evaluate model accuracy
 lin_score = lin_reg.score(X_test, y_test)
-print "Linear regression accuracy: ", lin_score
+print("Linear regression accuracy: ", lin_score)
 
 log_score = accuracy_score(y_log_label, y_test)
-print "Logistic regression accuracy: ", log_score
+print("Logistic regression accuracy: ", log_score)

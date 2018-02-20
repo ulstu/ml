@@ -43,6 +43,6 @@ clf_tree.fit(X, y)
 importances = clf.coef_
 importances_tree = clf_tree.feature_importances_
 
-print list(samples)
-print importances
-print importances_tree
+print(list(samples))
+print(importances)
+print(importances_tree)

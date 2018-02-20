@@ -10,4 +10,4 @@ data = pandas.read_csv('titanic.csv', index_col='PassengerId')
 total_count = len(data)
 survived_count = data.loc[data['Survived'] == 1].count().values[0]
 survived_persent = float(survived_count)/total_count
-print survived_persent, "%"
+print(survived_persent, "%")

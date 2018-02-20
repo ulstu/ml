@@ -9,4 +9,4 @@ data = pandas.read_csv('titanic.csv', index_col='PassengerId')
 # Calculate the Pearson correlation between the SibSp and Patch features
 
 corr = data[['Parch', 'SibSp']].corr()
-print corr
+print(corr)

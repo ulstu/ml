@@ -10,6 +10,6 @@ data = pandas.read_csv('titanic.csv', index_col='PassengerId')
 mean_age = data['Age'].mean()
 median_age = data['Age'].median()
 
-print data['Age']
-print mean_age
-print median_age
+print(data['Age'])
+print(mean_age)
+print(median_age)

@@ -13,7 +13,7 @@ from scipy.sparse import hstack
 data_train = pandas.read_csv('salary-train.csv')
 data_test = pandas.read_csv('salary-test-mini.csv')
 
-print list(data_train)
+print(list(data_train))
 
 # set lowercase text
 data_train['FullDescription'] = data_train.FullDescription.str.lower()
@@ -62,11 +62,11 @@ x_test = hstack((test_text_feature_matrix, X_test_categ))
 ridge_regression = Ridge(alpha=1, random_state=241)
 ridge_regression.fit(x_train, y_train)
 y_test = ridge_regression.predict(x_test)
-print y_test
+print(y_test)
 
 # create model of linear regression without regularization
 # train and test it
 ridge_regression = Ridge(alpha=0, random_state=241)
 ridge_regression.fit(x_train, y_train)
 y_test = ridge_regression.predict(x_test)
-print y_test
+print(y_test)
