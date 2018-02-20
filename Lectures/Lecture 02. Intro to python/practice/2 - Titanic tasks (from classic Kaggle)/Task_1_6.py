@@ -13,19 +13,18 @@ data = pandas.read_csv('titanic.csv', index_col='PassengerId')
 def get_first_name(full_name):
     first_name = 'null'
     words = full_name.split()
-
+    index = 0
     if "Miss." in words:
         index = words.index("Miss.")
     if "Missis." in words:
         index = words.index("Missis.")
-
     first_name = words[index + 1]
-
     return first_name
 
 
 # apply get_first_name function for each cell in Name column
 data['Name'] = data['Name'].apply(get_first_name)
+print(data['Name'])
 #  Complete code for this is presented below (but it longer):
 #  data['Name'] = data['Name'].apply(lambda x: get_first_name(x))
 
@@ -43,4 +42,4 @@ girlsNamesCount.columns = ['Name', 'Count']
 # - name or index of column as sort base
 # - sort direction (ascending or descending)
 girlsNamesCount_Sort = girlsNamesCount.sort_values(by=['Count'], ascending=False)
-print girlsNamesCount_Sort
+print(girlsNamesCount_Sort)

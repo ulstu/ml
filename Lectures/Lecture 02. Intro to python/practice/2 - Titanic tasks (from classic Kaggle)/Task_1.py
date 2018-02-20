@@ -2,6 +2,7 @@
 import pandas
 import pandas.core.series as Series
 import numpy as np
+
 data = pandas.read_csv('titanic.csv', index_col='PassengerId')
 
 # TITANIC TASK - 1
@@ -34,8 +35,8 @@ print(list(data))
 # Spouse = husband, wife (mistresses and fiancés were ignored)
 #
 # parch: The dataset defines family relations in this way...
-# Parent = mother, father
-# Child = daughter, son, stepdaughter, stepson
+# 1Parent = mother, father
+# 2Child = daughter, son, stepdaughter, stepson
 # Some children travelled only with a nanny, therefore parch=0 for them.
 
 # TASK 1
@@ -45,7 +46,8 @@ print(list(data))
 # [colName] - return Series object
 # see more - http://pandas.pydata.org/pandas-docs/stable/
 mans_count = len(data.loc[data['Sex'] == 'male'])
-sex = data[['Sex']]
+sex = data.loc[data['Sex'] == 'male']
+# print(sex)
 # for get matrix of digits use values[0]
 womans_count = sex.loc[data['Sex'] == 'female'].count().values[0]
 print(mans_count)

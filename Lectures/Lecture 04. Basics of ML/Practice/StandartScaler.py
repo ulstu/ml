@@ -24,9 +24,11 @@ X = [[1., -1., 2.],
      [2., 0., 0.],
      [0., 1., -4.]]
 X_normalized = preprocessing.normalize(X, norm='l2', axis=0)
+print('L2')
 print (X_normalized)
 
 
+print('L1')
 X_normalized = preprocessing.normalize(X, norm='l1', axis=0)
 print (X_normalized)
 

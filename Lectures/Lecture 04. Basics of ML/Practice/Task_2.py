@@ -12,11 +12,7 @@ def replacer(row):
         row['Sex']=1.0
     else:
         row['Sex']=2.0
-
     return row
-
-
-
 
 import pandas
 data = pandas.read_csv('titanic.csv', index_col='PassengerId')

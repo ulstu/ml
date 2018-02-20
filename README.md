@@ -4,6 +4,8 @@ Ulyanovsk State Technical University
 
 [Registration form for submitting](https://docs.google.com/forms/d/e/1FAIpQLSd4xKxxuWCI36k6xujAw5oE0_BQ7_XKl0Z2bBEBnFp0LvnaWg/viewform)
 
+[Submitting system](http://okpy.org)
+
 References:
 * Recommeded course: https://www.coursera.org/learn/machine-learning
 * Recommended book: [Python for Data Analysis](http://www.amazon.com/Python-Data-Analysis-Wrangling-IPython/dp/1449319793) [ru](http://dmkpress.com/catalog/computer/programming/python/978-5-97060-315-4/) from Pandas author. 
