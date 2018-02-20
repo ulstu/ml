@@ -4,7 +4,7 @@ Ulyanovsk State Technical University
 
 [Registration form for submitting](https://docs.google.com/forms/d/e/1FAIpQLSd4xKxxuWCI36k6xujAw5oE0_BQ7_XKl0Z2bBEBnFp0LvnaWg/viewform)
 
-[Submitting system](http://okpy.org)
+[Submitting system](http://okpy.org), course CSULSTU71
 
 References:
 * Recommeded course: https://www.coursera.org/learn/machine-learning
