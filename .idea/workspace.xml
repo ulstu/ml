@@ -2,14 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71f36b6a-20f5-43da-abf4-f834d3074616" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/2D Task with Regressions (Lin, Poly, Ridge) vs. MLP.py" afterPath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/2D Task with Regressions (Lin, Poly, Ridge) vs. MLP.py" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/MLP_Backpropagation.py" afterPath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/MLP_Backpropagation.py" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/ND Collinearity Problem (MLP vs. Regression).py" afterPath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/ND Collinearity Problem (MLP vs. Regression).py" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/ND Task with Reg, Tree, MLP.py" afterPath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/ND Task with Reg, Tree, MLP.py" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/Simple. Perceptron and MLP.py" afterPath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/Simple. Perceptron and MLP.py" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/perceptron-test.csv" afterPath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/perceptron-test.csv" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/perceptron-train.csv" afterPath="$PROJECT_DIR$/Lectures/Lecture 05 Neural Nets/Practice/perceptron-train.csv" />
       <change beforePath="$PROJECT_DIR$/Practice/Lab02.md" afterPath="$PROJECT_DIR$/Practice/Lab02.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,7 +105,7 @@
         <entry file="file://$PROJECT_DIR$/Practice/Lab02.md">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="54">
-              <caret line="20" column="89" lean-forward="false" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+              <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -824,7 +816,7 @@
     <entry file="file://$PROJECT_DIR$/Practice/Lab02.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
-          <caret line="20" column="89" lean-forward="false" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+          <caret line="20" column="9" lean-forward="false" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
           <folding />
         </state>
       </provider>
