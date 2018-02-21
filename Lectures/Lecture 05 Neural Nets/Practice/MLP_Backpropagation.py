@@ -37,7 +37,7 @@ for j in range(100000):
     l3_error = y - l3
 
     if (j % 10000) == 0:
-        print "Error:" + str(np.mean(np.abs(l3_error)))
+        print("Error:" + str(np.mean(np.abs(l3_error))))
 
     l3_sigma = l3_error * sigma_derivative(l3)
 
@@ -61,4 +61,4 @@ X_test = np.array([[0, 0, 0],
 l1 = X_test
 l2 = activation(np.dot(l1, W_1_2))
 l3 = activation(np.dot(l2, W_2_3))
-print l3
+print(l3)

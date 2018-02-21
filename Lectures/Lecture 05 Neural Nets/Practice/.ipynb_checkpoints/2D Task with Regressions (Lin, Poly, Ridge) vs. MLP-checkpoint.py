@@ -29,6 +29,7 @@ import pylab
 h = .02  # step size in the mesh
 rs = 25
 
+# define models name
 names = ["LinearRegression",
                 "polynom 3",
                 "polynom 4",
@@ -37,6 +38,7 @@ names = ["LinearRegression",
                 "MLP 10",
                 "MLP 100"]
 
+# create models
 polynomic_step = ('poly', PolynomialFeatures(degree=3))
 linear_step = ('linear', LinearRegression(fit_intercept=False))
 polynomic_regression_low = Pipeline([polynomic_step, linear_step])
@@ -57,19 +59,24 @@ classifiers = [
     MLPClassifier(alpha=0.01, hidden_layer_sizes=(100,), random_state=rs)
 ]
 
+# generate source data
+# first linear separable data set
 X, y = make_classification(n_samples=500, n_features=2, n_redundant=0, n_informative=2,
                            random_state=rs, n_clusters_per_class=1)
 rng = np.random.RandomState(rs)
 X += 2 * rng.uniform(size=X.shape)
 linearly_separable = (X, y)
 
+# and than non linear data set
+# moons and circles
 datasets = [
+    linearly_separable,
     make_moons(noise=0.3, random_state=rs),
-    make_circles(noise=0.2, factor=0.5, random_state=rs),
-    linearly_separable]
+    make_circles(noise=0.2, factor=0.5, random_state=rs)]
 
 data_names = ["moons", "circles", "linearly_separable"]
 
+# prepare figure for plotting
 figure = plt.figure(figsize=(27, 9))
 i = 1
 # iterate over datasets
@@ -117,7 +124,6 @@ for ds_cnt, ds in enumerate(datasets):
         current_subplot.contourf(xx0, xx1, Z, cmap=cm, alpha=.8)
 
         # Plot also the training points
-        # current_subplot.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright)
         # and testing points
         current_subplot.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright,alpha=0.6)
 
