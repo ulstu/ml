@@ -1,5 +1,7 @@
 import numpy as np
 import pandas
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 from sklearn.linear_model import Perceptron
 from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
@@ -65,20 +67,20 @@ print("Perceptron with Norm: ", min(acc_pn), median(acc_pn), max(acc_pn), np.std
 print("MLP: ", min(acc_mlp), median(acc_mlp), max(acc_mlp), np.std(acc_mlp))
 print("MLP with Norm: ", min(acc_mlpn), median(acc_mlpn), max(acc_mlpn), np.std(acc_mlpn))
 
-# X = np.concatenate((X_train, X_test), axis=0)
-# x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
-# y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
+X = np.concatenate((X_train, X_test), axis=0)
+x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
+y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
 
-# figure = plt.figure(figsize=(17, 9))
-# cm = plt.cm.RdBu
-# cm_bright = ListedColormap(['#FF0000', '#0000FF'])
-# ax = plt.subplot(1, 1, 1)
-# # Plot the training points
-# ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright)
-# # and testing points
-# ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6)
-# ax.set_xlim(x_min, x_max)
-# ax.set_ylim(y_min, y_max)
-# ax.set_xticks(())
-# ax.set_yticks(())
-# plt.show()
+figure = plt.figure(figsize=(17, 9))
+cm = plt.cm.RdBu
+cm_bright = mpl.colors.ListedColormap(['#FF0000', '#0000FF'])
+ax = plt.subplot(1, 1, 1)
+# Plot the training points
+ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright)
+# and testing points
+ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6)
+ax.set_xlim(x_min, x_max)
+ax.set_ylim(y_min, y_max)
+ax.set_xticks(())
+ax.set_yticks(())
+plt.show()
