@@ -9,14 +9,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 from sklearn.metrics import pairwise_distances_argmin
-from sklearn.datasets import load_sample_image
+from PIL import Image
 from sklearn.utils import shuffle
 from time import time
 
 n_colors = 64
 
 # Load the Summer Palace photo
-china = load_sample_image("china.jpg")
+china = Image.open("./china.jpg")
+#china = load_sample_image("china.jpg")
 
 # Convert to floats instead of the default 8 bits integer coding. Dividing by
 # 255 is important so that plt.imshow behaves works well on float data (need to
