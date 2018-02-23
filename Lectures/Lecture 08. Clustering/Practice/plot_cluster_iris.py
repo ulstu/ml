@@ -36,6 +36,9 @@ np.random.seed(5)
 
 iris = datasets.load_iris()
 X = iris.data
+
+print(X.shape)
+
 y = iris.target
 
 estimators = [('k_means_iris_8', KMeans(n_clusters=8)),
@@ -90,3 +93,4 @@ ax.set_title('Ground Truth')
 ax.dist = 12
 
 fig.show()
+plt.show()
