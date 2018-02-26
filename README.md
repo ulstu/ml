@@ -20,4 +20,4 @@ References:
 * [Pandas lessons](https://bitbucket.org/hrojas/learn-pandas)
 * [Pandas tutorial](https://github.com/TomAugspurger/PyDataSeattle)
 * [Google collaboratory - powerful Jupyter Notebook environment for deep learning](https://colab.research.google.com/)
-
+* [Awesome deepvision links](https://github.com/kjw0612/awesome-deep-vision)
