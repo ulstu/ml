@@ -41,6 +41,19 @@ The option is determined by the data set, which can be downloaded from the link 
 22. Indoor User Movement Prediction from RSS data
 23. Spambase
 
+As for representing results of experiments one possible solution would be the following:
+```
+learning_rates = [0.01, 0.04,......]
+alphas = [0.01, .......]
+optimizers = ['adam', 'lbfgs', ...]
+for opt in optimizers:
+	for lr in learning_rates:
+		for alpha in alphas:
+			mlp = MLPClassifier(hidden_layer=[], alhpa = alpha, learning_rate = lr, solver=opt)
+			mlp.fit()
+			make scoring of model (f1 or r2 or accuracy or ...)
+	build 3d plot loss(learning_rates, alphas)
+```
 
 # Russian
 # Задание на лабораторную работу №3. Основы нейронных сетей
