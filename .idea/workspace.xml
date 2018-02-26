@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71f36b6a-20f5-43da-abf4-f834d3074616" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.ipynb" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Lecture 07. Deep Learning.pptx" afterPath="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Lecture 07. Deep Learning.pptx" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -104,12 +103,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
               <first_editor relative-caret-position="288">
                 <caret line="12" column="205" lean-forward="false" selection-start-line="12" selection-start-column="205" selection-end-line="12" selection-end-column="205" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Lab03.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Practice/Lab03.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="216">
+                <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -187,6 +199,7 @@
         <option value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.ipynb" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Practice/Lab03.md" />
       </list>
     </option>
   </component>
@@ -532,13 +545,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/task.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 03. Basics of Math for ML/Practice/Clustering_comparasion.py" />
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/Task_1_5.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -870,6 +876,17 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/Lab03.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="216">
+            <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

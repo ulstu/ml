@@ -41,7 +41,7 @@ The option is determined by the data set, which can be downloaded from the link 
 22. Indoor User Movement Prediction from RSS data
 23. Spambase
 
-As for representing results of experiments one possible solution would be the following:
+With regard to the presentation of experimental results, one possible solution would be:
 ```
 learning_rates = [0.01, 0.04,......]
 alphas = [0.01, .......]
