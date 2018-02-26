@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="71f36b6a-20f5-43da-abf4-f834d3074616" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.ipynb" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/readme.md" afterPath="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/readme.md" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,18 +15,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="color_quantization.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/color_quantization.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1104">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-              <folding>
-                <element signature="e#195#213#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="lab_04_synthetic_data.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/lab_04_synthetic_data.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -59,44 +48,10 @@
       <file leaf-file-name="lane_detection.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/lane_detection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="552">
-              <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="384">
+              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/.PyCharmCE2017.3/system/python_stubs/-313451744/cv2/__init__.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19344">
-              <caret line="840" column="0" lean-forward="false" selection-start-line="840" selection-start-column="0" selection-end-line="840" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plot_pca_iris.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/plot_pca_iris.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-              <folding>
-                <element signature="e#434#452#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Clustering_comparasion.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/Clustering_comparasion.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1944">
-              <caret line="88" column="14" lean-forward="false" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,8 +60,8 @@
       <file leaf-file-name="plot_cluster_iris.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/plot_cluster_iris.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="822">
-              <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+            <state relative-caret-position="2136">
+              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
               <folding>
                 <element signature="e#714#732#0" expanded="true" />
               </folding>
@@ -114,12 +69,50 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/readme.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="0">
+                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="cifar10.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="24">
-              <caret line="1" column="114" lean-forward="false" selection-start-line="1" selection-start-column="114" selection-end-line="1" selection-end-column="114" />
+            <state relative-caret-position="120">
+              <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="9" />
+              <folding>
+                <element signature="e#0#83#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="plot_iris1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/plot_iris1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="288">
+                <caret line="12" column="205" lean-forward="false" selection-start-line="12" selection-start-column="205" selection-end-line="12" selection-end-column="205" />
+                <folding />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -129,8 +122,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jupyter Notebook" />
         <option value="Python Script" />
+        <option value="Jupyter Notebook" />
       </list>
     </option>
   </component>
@@ -159,7 +152,6 @@
         <option value="$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/test.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/Task_1_4.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/Task_1_5.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 04. Basics of ML/Practice/lecture_notes.ipynb" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 04. Basics of ML/Practice/Logistic_regression_visualization.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 04. Basics of ML/Practice/TextAnalyzer_LinearRegression.py" />
@@ -191,6 +183,10 @@
         <option value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/color_quantization.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/04 - Motion detector.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/readme.md" />
+        <option value="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/keras_samples/3.5-classifying-movie-reviews.py" />
+        <option value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.py" />
+        <option value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.ipynb" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -214,7 +210,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -231,25 +226,13 @@
               <item name="robotics_ml" type="b2602c69:ProjectViewProjectNode" />
               <item name="robotics_ml" type="462c0819:PsiDirectoryNode" />
               <item name="Lectures" type="462c0819:PsiDirectoryNode" />
-              <item name="Lecture 01. Introduction to ML" type="462c0819:PsiDirectoryNode" />
+              <item name="Lecture 09. From Decision Tree to XGBoost" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="robotics_ml" type="b2602c69:ProjectViewProjectNode" />
               <item name="robotics_ml" type="462c0819:PsiDirectoryNode" />
               <item name="Lectures" type="462c0819:PsiDirectoryNode" />
-              <item name="Lecture 02. Intro to python" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="robotics_ml" type="b2602c69:ProjectViewProjectNode" />
-              <item name="robotics_ml" type="462c0819:PsiDirectoryNode" />
-              <item name="Lectures" type="462c0819:PsiDirectoryNode" />
-              <item name="Lecture 08. Clustering" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="robotics_ml" type="b2602c69:ProjectViewProjectNode" />
-              <item name="robotics_ml" type="462c0819:PsiDirectoryNode" />
-              <item name="Lectures" type="462c0819:PsiDirectoryNode" />
-              <item name="Lecture 08. Clustering" type="462c0819:PsiDirectoryNode" />
+              <item name="Lecture 09. From Decision Tree to XGBoost" type="462c0819:PsiDirectoryNode" />
               <item name="Practice" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -261,12 +244,13 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
-    <property name="last_opened_file_path" value="D:/CloudStorages/YandexDisk/Data/ulstu/Department/AI/ML/samples" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Deep Learning with Python" />
   </component>
   <component name="RemoteSynchronizer">
     <option name="targetMappings">
@@ -289,7 +273,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.lane_detection">
+  <component name="RunManager" selected="Python.plot_iris1">
     <configuration name="04 - Motion detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -308,19 +292,37 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="color_quantization" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="3.5-classifying-movie-reviews" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/keras_samples" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="robotics_ml" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/color_quantization.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/keras_samples/3.5-classifying-movie-reviews.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="decision_tree" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="robotics_ml" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -344,37 +346,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="plot_cluster_iris" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="plot_iris1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="robotics_ml" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/plot_cluster_iris.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="plot_pca_iris" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="robotics_ml" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/plot_pca_iris.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/plot_iris1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -462,19 +446,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Jupyter Notebook.robotics_ml" />
-      <item index="1" class="java.lang.String" itemvalue="Python.color_quantization" />
-      <item index="2" class="java.lang.String" itemvalue="Python.plot_cluster_iris" />
-      <item index="3" class="java.lang.String" itemvalue="Python.plot_pca_iris" />
-      <item index="4" class="java.lang.String" itemvalue="Python.lane_detection" />
-      <item index="5" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
+      <item index="1" class="java.lang.String" itemvalue="Python.lane_detection" />
+      <item index="2" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
+      <item index="3" class="java.lang.String" itemvalue="Python.3.5-classifying-movie-reviews" />
+      <item index="4" class="java.lang.String" itemvalue="Python.decision_tree" />
+      <item index="5" class="java.lang.String" itemvalue="Python.plot_iris1" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.lane_detection" />
-        <item index="1" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
-        <item index="2" class="java.lang.String" itemvalue="Python.color_quantization" />
-        <item index="3" class="java.lang.String" itemvalue="Python.plot_pca_iris" />
-        <item index="4" class="java.lang.String" itemvalue="Python.plot_cluster_iris" />
+        <item index="0" class="java.lang.String" itemvalue="Python.plot_iris1" />
+        <item index="1" class="java.lang.String" itemvalue="Python.decision_tree" />
+        <item index="2" class="java.lang.String" itemvalue="Python.3.5-classifying-movie-reviews" />
+        <item index="3" class="java.lang.String" itemvalue="Python.lane_detection" />
+        <item index="4" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
       </list>
     </recent_temporary>
   </component>
@@ -507,13 +491,13 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24600638" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4025559" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34914362" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34914362" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -548,41 +532,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" column="5" lean-forward="false" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/1 - Intro in Python/1 - Simple.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/1 - Intro in Python/2 - Struct.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/1 - Intro in Python/3 - Numpy Array.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="11" column="20" lean-forward="false" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/1 - Intro in Python/4 - Iterations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/task.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-14">
@@ -591,13 +540,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 03. Basics of Math for ML/Practice/Clustering_comparasion.py" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14">
-          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/Task_1_5.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -790,9 +732,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="16" column="12" lean-forward="false" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -800,9 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1944">
           <caret line="88" column="14" lean-forward="false" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,9 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="840">
           <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#434#452#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -820,7 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19344">
           <caret line="840" column="0" lean-forward="false" selection-start-line="840" selection-start-column="0" selection-end-line="840" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -828,9 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1104">
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="e#195#213#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -860,8 +789,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/lane_detection.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="552">
-          <caret line="23" column="8" lean-forward="true" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+        <state relative-caret-position="384">
+          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>
@@ -870,8 +799,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/plot_cluster_iris.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="822">
-          <caret line="96" column="0" lean-forward="true" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
+        <state relative-caret-position="2136">
+          <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
           <folding>
             <element signature="e#714#732#0" expanded="true" />
           </folding>
@@ -879,10 +808,68 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/readme.md">
-      <provider selected="true" editor-type-id="text-editor">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="1" column="114" lean-forward="false" selection-start-line="1" selection-start-column="114" selection-end-line="1" selection-end-column="114" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.py" />
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/keras_samples/3.5-classifying-movie-reviews.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="12" column="21" lean-forward="false" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/cifar10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#83#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/plot_iris1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="288">
+            <caret line="12" column="205" lean-forward="false" selection-start-line="12" selection-start-column="205" selection-end-line="12" selection-end-column="205" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-14">
+          <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
     </entry>
