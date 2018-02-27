@@ -6,10 +6,10 @@ width = int(video_stream.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(video_stream.get(cv2.CAP_PROP_FRAME_HEIGHT))
 fps = int(video_stream.get(cv2.CAP_PROP_FPS))
 
-print 'VIDEO FRAME SHAPE'
-print 'height', height
-print 'width', width
-print 'fps', fps
+print('VIDEO FRAME SHAPE')
+print('height', height)
+print('width', width)
+print('fps', fps)
 
 frame_exist = True
 
