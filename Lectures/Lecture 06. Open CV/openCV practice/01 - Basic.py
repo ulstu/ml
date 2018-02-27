@@ -6,7 +6,7 @@ import numpy as np
 source_image = cv2.imread('lena.bmp')
 
 img = source_image
-#img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 img = np.array(img, dtype=np.float64) / 255
 
 plt.figure()
@@ -40,6 +40,3 @@ cv2.waitKey(0)
 
 # save reslut into new file and change file format
 cv2.imwrite('result.png', result_image)
-
-#
-plt.imshow()
