@@ -22,3 +22,4 @@ References:
 * [Google collaboratory - powerful Jupyter Notebook environment for deep learning](https://colab.research.google.com/)
 * [Awesome deepvision links](https://github.com/kjw0612/awesome-deep-vision)
 * [SSD: Single-Shot MultiBox Detector implementation in Keras](https://github.com/pierluigiferrari/ssd_keras)
+* [Word2vec with Keras](http://adventuresinmachinelearning.com/word2vec-keras-tutorial/)

@@ -3,7 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="71f36b6a-20f5-43da-abf4-f834d3074616" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/Lesson 06. Open CV.pdf" afterPath="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/Lesson 06. Open CV.pdf" />
+      <change beforePath="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Lecture 07. Deep Learning.pdf" afterPath="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Lecture 07. Deep Learning.pdf" />
       <change beforePath="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Lecture 07. Deep Learning.pptx" afterPath="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Lecture 07. Deep Learning.pptx" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="lab_04_synthetic_data.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/lab_04_synthetic_data.py">
+      <file leaf-file-name="03 - Work with video.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/03 - Work with video.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
+            <state relative-caret-position="0">
+              <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -27,18 +30,8 @@
       <file leaf-file-name="04 - Motion detector.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/04 - Motion detector.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1656">
-              <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="03 - Work with video.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/03 - Work with video.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            <state relative-caret-position="1508">
+              <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -47,22 +40,10 @@
       <file leaf-file-name="lane_detection.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/lane_detection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+            <state relative-caret-position="348">
+              <caret line="19" column="58" lean-forward="false" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="58" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="plot_cluster_iris.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/plot_cluster_iris.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2136">
-              <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-              <folding>
-                <element signature="e#714#732#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -84,7 +65,7 @@
       <file leaf-file-name="cifar10.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/cifar10.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
+            <state relative-caret-position="145">
               <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="9" />
               <folding>
                 <element signature="e#0#83#0" expanded="true" />
@@ -93,22 +74,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="plot_iris1.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="plot_iris1.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/plot_iris1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+            <state relative-caret-position="667">
+              <caret line="61" column="48" lean-forward="false" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
+      <file leaf-file-name="Lab03.md" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Practice/Lab03.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="288">
-                <caret line="12" column="205" lean-forward="false" selection-start-line="12" selection-start-column="205" selection-end-line="12" selection-end-column="205" />
+              <first_editor relative-caret-position="1305">
+                <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -116,15 +97,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Lab03.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Practice/Lab03.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="216">
-                <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-                <folding />
-              </first_editor>
-              <second_editor />
+      <file leaf-file-name="01 - Basic.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/01 - Basic.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#10#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="02 - Color_correction.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/02 - Color_correction.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -142,6 +132,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>LinearRegresson</find>
+      <find>imread</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,7 +141,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Practice/samples/lab_03/test/Lab3 (1).py" />
         <option value="$PROJECT_DIR$/Practice/samples/lab_02/practice_02.ipynb" />
         <option value="$PROJECT_DIR$/Practice/samples/lab_02/lab01.py" />
         <option value="$PROJECT_DIR$/Practice/samples/lab_03/practice_03.py" />
@@ -198,8 +188,10 @@
         <option value="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/keras_samples/3.5-classifying-movie-reviews.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.py" />
         <option value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.ipynb" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Practice/Lab03.md" />
+        <option value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/03 - Work with video.py" />
+        <option value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/01 - Basic.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -239,6 +231,19 @@
               <item name="robotics_ml" type="b2602c69:ProjectViewProjectNode" />
               <item name="robotics_ml" type="462c0819:PsiDirectoryNode" />
               <item name="Lectures" type="462c0819:PsiDirectoryNode" />
+              <item name="Lecture 06. Open CV" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="robotics_ml" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robotics_ml" type="462c0819:PsiDirectoryNode" />
+              <item name="Lectures" type="462c0819:PsiDirectoryNode" />
+              <item name="Lecture 06. Open CV" type="462c0819:PsiDirectoryNode" />
+              <item name="openCV practice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="robotics_ml" type="b2602c69:ProjectViewProjectNode" />
+              <item name="robotics_ml" type="462c0819:PsiDirectoryNode" />
+              <item name="Lectures" type="462c0819:PsiDirectoryNode" />
               <item name="Lecture 09. From Decision Tree to XGBoost" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -257,8 +262,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -286,7 +291,61 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.plot_iris1">
+  <component name="RunManager" selected="Python.01 - Basic">
+    <configuration name="01 - Basic" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="robotics_ml" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/01 - Basic.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="02 - Color_correction" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="robotics_ml" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/02 - Color_correction.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="03 - Work with video" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="robotics_ml" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/03 - Work with video.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="04 - Motion detector" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -305,42 +364,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="3.5-classifying-movie-reviews" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/keras_samples" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="robotics_ml" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/keras_samples/3.5-classifying-movie-reviews.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="decision_tree" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="robotics_ml" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/decision_tree.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
     <configuration name="lane_detection" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -354,24 +377,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="robotics_ml" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/lane_detection.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="plot_iris1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="robotics_ml" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/plot_iris1.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -459,19 +464,19 @@
     </configuration>
     <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Jupyter Notebook.robotics_ml" />
-      <item index="1" class="java.lang.String" itemvalue="Python.lane_detection" />
-      <item index="2" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
-      <item index="3" class="java.lang.String" itemvalue="Python.3.5-classifying-movie-reviews" />
-      <item index="4" class="java.lang.String" itemvalue="Python.decision_tree" />
-      <item index="5" class="java.lang.String" itemvalue="Python.plot_iris1" />
+      <item index="1" class="java.lang.String" itemvalue="Python.01 - Basic" />
+      <item index="2" class="java.lang.String" itemvalue="Python.02 - Color_correction" />
+      <item index="3" class="java.lang.String" itemvalue="Python.03 - Work with video" />
+      <item index="4" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
+      <item index="5" class="java.lang.String" itemvalue="Python.lane_detection" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.plot_iris1" />
-        <item index="1" class="java.lang.String" itemvalue="Python.decision_tree" />
-        <item index="2" class="java.lang.String" itemvalue="Python.3.5-classifying-movie-reviews" />
-        <item index="3" class="java.lang.String" itemvalue="Python.lane_detection" />
-        <item index="4" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
+        <item index="0" class="java.lang.String" itemvalue="Python.01 - Basic" />
+        <item index="1" class="java.lang.String" itemvalue="Python.lane_detection" />
+        <item index="2" class="java.lang.String" itemvalue="Python.04 - Motion detector" />
+        <item index="3" class="java.lang.String" itemvalue="Python.03 - Work with video" />
+        <item index="4" class="java.lang.String" itemvalue="Python.02 - Color_correction" />
       </list>
     </recent_temporary>
   </component>
@@ -497,16 +502,16 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="84" y="-11" width="1847" height="1102" extended-state="6" />
+    <frame x="70" y="-9" width="1859" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27835616" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16512765" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="RemoteSynchronizer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4025559" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22996879" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -545,14 +550,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 03. Basics of Math for ML/Practice/Clustering_comparasion.py" />
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/Task_1_5.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 02. Intro to python/practice/2 - Titanic tasks (from classic Kaggle)/Task_1_4.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="429">
@@ -771,62 +768,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/lab_04_synthetic_data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
+        <state relative-caret-position="340">
           <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/04 - Motion detector.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1656">
-          <caret line="69" column="17" lean-forward="false" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/03 - Work with video.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/lane_detection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="23" column="8" lean-forward="false" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/Practice/plot_cluster_iris.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2136">
+        <state relative-caret-position="0">
           <caret line="96" column="0" lean-forward="false" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="0" />
-          <folding>
-            <element signature="e#714#732#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="114" lean-forward="false" selection-start-line="1" selection-start-column="114" selection-end-line="1" selection-end-column="114" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,9 +795,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Practice/Lab03.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="1305">
+            <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 08. Clustering/readme.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="1" column="114" lean-forward="false" selection-start-line="1" selection-start-column="114" selection-end-line="1" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="0">
+            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Lectures/Lecture 07. Deep Learning. CNN/Practice/cifar10.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
+        <state relative-caret-position="145">
           <caret line="9" column="9" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="9" />
           <folding>
             <element signature="e#0#83#0" expanded="true" />
@@ -855,38 +833,73 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/plot_iris1.py">
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/02 - Color_correction.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        <state relative-caret-position="406">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="288">
-            <caret line="12" column="205" lean-forward="false" selection-start-line="12" selection-start-column="205" selection-end-line="12" selection-end-column="205" />
-            <folding />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/03 - Work with video.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="15" column="11" lean-forward="false" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/04 - Motion detector.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1508">
+          <caret line="52" column="14" lean-forward="false" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/lane_detection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="19" column="58" lean-forward="false" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 06. Open CV/openCV practice/01 - Basic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="-14">
           <caret line="4" column="24" lean-forward="false" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Practice/Lab03.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="216">
-            <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-            <folding />
+          <first_editor relative-caret-position="348">
+            <caret line="12" column="67" lean-forward="false" selection-start-line="12" selection-start-column="67" selection-end-line="12" selection-end-column="67" />
+            <folding>
+              <marker date="1519803251678" expanded="true" signature="316:1608" ph="unordered list: * Recommeded course: h...com/)" />
+            </folding>
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lectures/Lecture 09. From Decision Tree to XGBoost/Practice/plot_iris1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="61" column="48" lean-forward="false" selection-start-line="61" selection-start-column="48" selection-end-line="61" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
