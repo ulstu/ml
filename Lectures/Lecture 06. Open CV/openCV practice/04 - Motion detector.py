@@ -11,7 +11,7 @@ print('height', height)
 print('width', width)
 print('fps', fps)
 
-motion_detector = cv2.createBackgroundSubtractorKNN()
+motion_detector = cv2.createBackgroundSubtractorKNN(history=10)
 
 frame_exist = True
 
