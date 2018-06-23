@@ -6,7 +6,7 @@ Ulyanovsk State Technical University
 
 [Submitting system](http://okpy.org), course CSULSTU71
 
-References:
+# References:
 * Recommeded course: https://www.coursera.org/learn/machine-learning
 * Lectures after the Coursera Course by Andrew Ng: https://github.com/diefimov/MTH594_MachineLearning
 * Recommended book: [Python for Data Analysis](http://www.amazon.com/Python-Data-Analysis-Wrangling-IPython/dp/1449319793) [ru](http://dmkpress.com/catalog/computer/programming/python/978-5-97060-315-4/) from Pandas author. 
@@ -24,3 +24,11 @@ References:
 * [SSD: Single-Shot MultiBox Detector implementation in Keras](https://github.com/pierluigiferrari/ssd_keras)
 * [Word2vec with Keras](http://adventuresinmachinelearning.com/word2vec-keras-tutorial/)
 * [Russian: Отличная статья про то, как создать ИНС, с примерами на Python](https://proglib.io/p/neural-nets-guide/)
+
+## Visual Attention Model
+* (https://towardsdatascience.com/visual-attention-model-in-deep-learning-708813c2912c)
+* (https://medium.com/@sunnerli/visual-attention-in-deep-learning-77653f611855)
+* (https://arxiv.org/pdf/1512.01693.pdf)
+* (https://arxiv.org/pdf/1406.6247.pdf)
+* (https://arxiv.org/pdf/1605.01335.pdf)
+* (https://openreview.net/pdf?id=B14TlG-RW)
