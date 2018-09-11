@@ -32,6 +32,7 @@ centers = [[1, 1], [-1, -1], [1, -1]]
 iris = datasets.load_iris()
 X = iris.data
 y = iris.target
+print(X.shape)
 
 fig = plt.figure(1, figsize=(4, 3))
 plt.clf()

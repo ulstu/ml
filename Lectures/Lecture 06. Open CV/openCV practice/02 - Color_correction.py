@@ -6,7 +6,10 @@ planes = cv2.split(image)
 
 # CLAHE (Contrast Limited Adaptive Histogram Equalization)
 clahe = cv2.createCLAHE(clipLimit=3, tileGridSize=(15, 15))
-planes[0] = clahe.apply(planes[0])
+planes[0] = clahe.apply(planes[1])
+#print(len(planes))
+#cv2.imshow('plane', planes[2])
+#cv2.waitKey(0)
 
 image = cv2.merge(planes)
 correct_image = cv2.cvtColor(image, cv2.COLOR_Lab2RGB)

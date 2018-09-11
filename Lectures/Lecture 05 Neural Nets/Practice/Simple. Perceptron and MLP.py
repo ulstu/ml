@@ -21,7 +21,7 @@ X_test = data_test.ix[:, 1:3].values
 y_test = data_test.ix[:, 0].values
 
 
-rs = np.linspace(0,100,num=100)
+rs = np.linspace(0,5,num=5)
 
 acc_p = []
 acc_pn = []
@@ -48,14 +48,14 @@ for i in rs:
     # print "Perceptron with normalization: ", acc
     acc_pn.append(acc)
 
-    mlp = MLPClassifier(random_state=i, solver="sgd", activation="tanh", alpha=0.01, hidden_layer_sizes=(2, ), max_iter=2000, tol=0.00000001)
-    mlp.fit(X_train, y_train)
+    mlp = MLPClassifier(random_state=i, solver="sgd", activation="tanh", alpha=0.01, hidden_layer_sizes=(20, ), max_iter=2000, tol=0.00000001)
+    mlp.fit(X_train_scaled, y_train)
     predictions = mlp.predict(X_test)
     acc = accuracy_score(y_test, predictions)
     # print "MLP: ",  acc
     acc_mlp.append(acc)
 
-    mlp = MLPClassifier(random_state=i, solver="sgd", activation="tanh", alpha=0.01, hidden_layer_sizes=(2, ), max_iter=2000, tol=0.00000001)
+    mlp = MLPClassifier(random_state=i, solver="sgd", activation="tanh", alpha=0.01, hidden_layer_sizes=(130, 130, 130), max_iter=2000, tol=0.00000001)
     mlp.fit(X_train_scaled, y_train)
     predictions = mlp.predict(X_test_scaled)
     acc = accuracy_score(y_test, predictions)

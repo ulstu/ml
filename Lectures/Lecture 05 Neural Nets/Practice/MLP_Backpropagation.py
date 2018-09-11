@@ -27,7 +27,7 @@ np.random.seed(4)
 W_1_2 = 2 * np.random.random((3, 5)) - 1
 W_2_3 = 2 * np.random.random((5, 1)) - 1
 
-speed = 1.1
+alpha = 1.1
 
 for j in range(100000):
     l1 = X
@@ -45,8 +45,8 @@ for j in range(100000):
 
     l2_sigma = l2_error * sigma_derivative(l2)
 
-    W_2_3 += speed * l2.T.dot(l3_sigma)
-    W_1_2 += speed * l1.T.dot(l2_sigma)
+    W_2_3 += alpha * l2.T.dot(l3_sigma)
+    W_1_2 += alpha * l1.T.dot(l2_sigma)
 
 
 X_test = np.array([[0, 0, 0],

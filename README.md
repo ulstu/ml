@@ -24,6 +24,8 @@ Ulyanovsk State Technical University
 * [SSD: Single-Shot MultiBox Detector implementation in Keras](https://github.com/pierluigiferrari/ssd_keras)
 * [Word2vec with Keras](http://adventuresinmachinelearning.com/word2vec-keras-tutorial/)
 * [Russian: Отличная статья про то, как создать ИНС, с примерами на Python](https://proglib.io/p/neural-nets-guide/)
+* [Russian: Анализ данных при помощи Python. Графики в pandas и matplotlib.](http://malev.ru/%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85-%D0%BF%D1%80%D0%B8-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%B8-python-%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%B8-%D0%B2-pandas/)
+* [Russian: Основы pandas](https://habr.com/company/ods/blog/322626/)
 
 ## Visual Attention Model
 * (https://towardsdatascience.com/visual-attention-model-in-deep-learning-708813c2912c)
