@@ -2,13 +2,108 @@
 Russia, Ulyanovsk
 Ulyanovsk State Technical University
 
-[Registration form for submitting](https://docs.google.com/forms/d/e/1FAIpQLSd4xKxxuWCI36k6xujAw5oE0_BQ7_XKl0Z2bBEBnFp0LvnaWg/viewform)
+## Week 1
+### 1. Basics of Machine Learning
+* Brief history of basic technologies
+* Definitions
+* Basics of ML
 
-[Submitting system](http://okpy.org), course CSULSTU71
+### 2. Python
+* Basic syntax
+* Arithmetic 
+* Strings
+* Lists
+* Exploratory data analysis with Pandas
+* Data visualization
+* Kaggle competitions
+* Titanic task
 
-# References:
-* Recommeded course: https://www.coursera.org/learn/machine-learning
-* Lectures after the Coursera Course by Andrew Ng: https://github.com/diefimov/MTH594_MachineLearning
+### 3. Linear regression
+* Linear regression
+* Cost function
+* Gradient descent
+* Linear regression with multiple variables
+* Debug (learning rate)
+* Normal equation
+* Features and polynomial regression
+* Multi-class classification
+* Feature scaling
+
+### 4. Decision trees. KNN. Logistic regression. Regularization.
+* Decision tree
+* K-nearest neighbors
+* Classification problem
+* Sigmoid function
+* Decision boundary
+* Cost function
+* Regularization. Problem of overfitting
+
+### 5. Machine learning system design
+* Error analysis. Metrics
+* Evaluating hypothesis. Train / test / validation set
+* High bias / high variance (model selection, regularization, learning curves)
+* Feature extraction
+
+### 6. Advances models
+* Support vector machines
+* Naive bayes
+* Clustering (k-means, c-means, hierarchical clustering)
+* Principal component analysis
+
+## Week 2
+
+### 7. Neural networks
+* Non-linear hypothesis
+* Neurons and the brain
+* Forward propagation (XNOR example)
+* Back propagation
+* Parameters initializing
+
+### 8. Deep learning. Convolutional neural networks
+* Convolution. Feature representation as hierarchy
+* Filters, stride, padding
+* Pooling
+* Popular architectures: AlexNet, VGG, ResNet, 
+* Classification, localization, regression
+
+### 9. Working with different data types
+* Images
+* GEO
+* Date and time
+* Timeseries
+* Texts. One-hot encoding
+* Texts. Word2vec
+* Sounds
+
+### 10. Recurrent neural networks
+* Basics of recurrent NN
+* LSTM
+* Time-series analysis
+* Text analysis
+
+### 11. Trees
+* Decision trees
+* Random forest
+* XGBoost
+* CatBoost
+
+### 12. Generative Adversarial networks
+
+### 13. Reinforcement learning
+
+
+## Course materials
+* jupyter environment: http://summer-school.hibers.tech
+* assignment submitting: http://moodle.hibers.tech
+* form for the registration to assignment submitting: https://docs.google.com/forms/d/e/1FAIpQLSe9oFVq3A5rpJpppMVVxIQZDH417RdrfoAAUITwtxamqJfKEg/viewform
+![](../img/qr-code.gif)
+
+## Links
+* [ML course by Andrew Ng](https://www.coursera.org/learn/machine-learning)
+* Lectures notes of the Coursera Course by Andrew Ng: https://github.com/diefimov/MTH594_MachineLearning
+* [ML course by Dmitry Efimov](https://github.com/diefimov/MTH594_MachineLearning)
+* [ML course by OpenData Science](https://github.com/Yorko/mlcourse.ai)
+* [MIT Deep learning](https://github.com/lexfridman/mit-deep-learning)
 * Recommended book: [Python for Data Analysis](http://www.amazon.com/Python-Data-Analysis-Wrangling-IPython/dp/1449319793) [ru](http://dmkpress.com/catalog/computer/programming/python/978-5-97060-315-4/) from Pandas author. 
 * [Recommended book:François Chollet. Deep Learning with Python. Manning, 2018](https://www.manning.com/books/deep-learning-with-python) and (https://github.com/fchollet/deep-learning-with-python-notebooks)
 * [100+ Free Data Science Books](http://www.learndatasci.com/free-books/)
@@ -23,6 +118,10 @@ Ulyanovsk State Technical University
 * [Awesome deepvision links](https://github.com/kjw0612/awesome-deep-vision)
 * [SSD: Single-Shot MultiBox Detector implementation in Keras](https://github.com/pierluigiferrari/ssd_keras)
 * [Word2vec with Keras](http://adventuresinmachinelearning.com/word2vec-keras-tutorial/)
+* https://github.com/qati/DeepLearningCourse
+* https://github.com/roebius/deeplearning_keras2
+* https://github.com/enggen/Deep-Learning-Coursera
+* https://github.com/fchollet/deep-learning-with-python-notebooks
 * [Russian: Отличная статья про то, как создать ИНС, с примерами на Python](https://proglib.io/p/neural-nets-guide/)
 * [Russian: Анализ данных при помощи Python. Графики в pandas и matplotlib.](http://malev.ru/%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7-%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85-%D0%BF%D1%80%D0%B8-%D0%BF%D0%BE%D0%BC%D0%BE%D1%89%D0%B8-python-%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%BA%D0%B8-%D0%B2-pandas/)
 * [Russian: Основы pandas](https://habr.com/company/ods/blog/322626/)
