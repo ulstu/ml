@@ -1,0 +1,5 @@
+*ipynb_checkpoints/
+data/aclImdb/
+data/faces/
+data/samsung_HAR/
+.idea/
