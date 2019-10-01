@@ -1,11 +1,11 @@
 # English
-# Assignment for practical work 2. Linear regression
+# Assignment for practical work 2a. Linear regression
 ## General Assignment
 
-Before performing the practical work, you need download the data set accordingly to the option on your machine
-1. Write a program that splits the original sample into a training set and a test set (training set, validation set, test set)
+Before performing the practical work, you need download the dataset accordingly to the option on your machine (or cloud service)
+1. Write a program that splits the original sample into a training set and a test set (training set, validation set, test set) with train_test_split method of Skikit Learn library
 2. Using the scikit-learn library (http://scikit-learn.org/stable/), train the linear regression model for the training sample (example: http://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py)
-3. Check the accuracy of the model from the test sample
+3. Check the accuracy of the model from the test set
 4. Build a model using a polynomial function (example: http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py). Build plots with the dependence of the error on the degree of the polynomial function.
 5. Build a model using regularization (example: http://scikit-learn.org/stable/modules/linear_model.html). On the basis of experiments, select parameters for regularization.
 
