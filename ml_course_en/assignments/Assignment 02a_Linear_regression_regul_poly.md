@@ -11,8 +11,8 @@ Before performing the practical work, you need download the dataset accordingly 
 
 
 ## Options
-Data sets are taken from the UCI Machine Learning Repository
-https://archive.ics.uci.edu/ml/datasets.html
+Data sets are taken from the [UCI Machine Learning Repository]
+(https://archive.ics.uci.edu/ml/datasets.php)
 The option is determined by the data set, which can be downloaded from the link above:
 1. Condition Based Maintenance of Naval Propulsion Plants
 2. UJIIndoorLoc
