@@ -4,17 +4,17 @@
 
 Before performing the practical work, you must download the data set accordingly to your option on the disk
 1. Write a program that splits the original sample into a training set, validation set, test set, if such a partition is not provided for by the proposed data set.
-2. Scale the features.
+2. Perform feature scaling.
 3. Using the scikit-learn library (http://scikit-learn.org/stable/), train 2 models of the neural network (Perceptron and MLPClassifier) ​​for the training sample. 
-Example MLPClassifier: http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
-Example and description of Perceptron: http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html
+Example of the MLPClassifier class: http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
+Example and description of the Perceptron class: http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html
 4. Check the accuracy of the model for the test sample.
 5. Conduct experiments and determine the best parameters of the learning rate, the regularization parameter, the optimization function.
 The data of the experiments must be presented in the report (graphs, experimental procedure, conclusions).
 
 ## Options
 Data sets are taken from the UCI Machine Learning Repository
-https://archive.ics.uci.edu/ml/datasets.html
+https://archive.ics.uci.edu/ml/datasets.php
 
 The option is determined by the data set, which can be downloaded from the link above:
 1. Abalone
