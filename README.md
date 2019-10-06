@@ -42,38 +42,37 @@ Ulyanovsk State Technical University
 * Error analysis. Metrics
 * Evaluating hypothesis. Train / test / validation set
 * High bias / high variance (model selection, regularization, learning curves)
-* Feature extraction
+* Feature extraction:
+- Images
+- GEO
+- Date and time
+- Timeseries
+- Texts. One-hot encoding
 
-### 6. Advances models
-* Support vector machines
-* Naive bayes
+### 6. Clustering
 * Clustering (k-means, c-means, hierarchical clustering)
 * Principal component analysis
 
 ## Week 2
 
-### 7. Neural networks
+### 7. Naive bayes and SVM
+* Bayes theorem
+* Naive bayes 
+* Support vector machines
+
+### 8. Neural networks
 * Non-linear hypothesis
 * Neurons and the brain
 * Forward propagation (XNOR example)
 * Back propagation
 * Parameters initializing
 
-### 8. Deep learning. Convolutional neural networks
+### 9. Deep learning. Convolutional neural networks
 * Convolution. Feature representation as hierarchy
 * Filters, stride, padding
 * Pooling
 * Popular architectures: AlexNet, VGG, ResNet, 
 * Classification, localization, regression
-
-### 9. Working with different data types
-* Images
-* GEO
-* Date and time
-* Timeseries
-* Texts. One-hot encoding
-* Texts. Word2vec
-* Sounds
 
 ### 10. Recurrent neural networks
 * Basics of recurrent NN
@@ -91,14 +90,8 @@ Ulyanovsk State Technical University
 
 ### 13. Reinforcement learning
 
-
-## Course materials
-* jupyter environment: http://summer-school.hibers.tech
-* assignment submitting: http://moodle.hibers.tech
-* form for the registration to assignment submitting: https://docs.google.com/forms/d/e/1FAIpQLSe9oFVq3A5rpJpppMVVxIQZDH417RdrfoAAUITwtxamqJfKEg/viewform
-![](../img/qr-code.gif)
-
 ## Links
+* [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/index.html)
 * [Ways to load files to google colab](https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92)
 * [ML course by Andrew Ng](https://www.coursera.org/learn/machine-learning)
 * Lectures notes of the Coursera Course by Andrew Ng: https://github.com/diefimov/MTH594_MachineLearning
