@@ -55,7 +55,7 @@ for i in rs:
     # print "MLP: ",  acc
     acc_mlp.append(acc)
 
-    mlp = MLPClassifier(random_state=i, solver="sgd", activation="tanh", alpha=0.01, hidden_layer_sizes=(130, 130, 130), max_iter=2000, tol=0.00000001)
+    mlp = MLPClassifier(random_state=i, solver="sgd", activation="tanh", alpha=0.01, hidden_layer_sizes=(230, 230, 230), max_iter=2000, tol=0.00000001)
     mlp.fit(X_train_scaled, y_train)
     predictions = mlp.predict(X_test_scaled)
     acc = accuracy_score(y_test, predictions)
