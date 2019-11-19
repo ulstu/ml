@@ -4,16 +4,15 @@
 Перед выполнением лабораторной работы необходимо загрузить набор данных в соответствии с вариантом на диск
 1. Написать программу, которая разделяет исходную выборку на обучающую и тестовую (training set, validation set, test set), если такое разделение не предусмотрено предложенным набором данных.
 2. Произвести масштабирование признаков (scaling).
-3. С использованием библиотеки scikit-learn (http://scikit-learn.org/stable/) обучить 2 модели нейронной сети (Perceptron и MLPClassifier) по обучающей выборке. Перед обучением необходимо осуществить масштабирование признаков. 
-Пример MLPClassifier: http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
-Пример и описание Perceptron: http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html
+3. С использованием библиотеки [scikit-learn](http://scikit-learn.org/stable/) обучить 2 модели нейронной сети (Perceptron и MLPClassifier) по обучающей выборке. Перед обучением необходимо осуществить масштабирование признаков. 
+[Пример MLPClassifier](http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html)
+Пример и описание [Perceptron](http://scikit-learn.org/stable/modules/generated/sklearn.linear_model.Perceptron.html)
 4. Проверить точность модели по тестовой выборке.
 5. Провести эксперименты и определить наилучшие параметры коэффициента обучения, параметра регуляризации, функции оптимизации.
 Данные экспериментов необходимо представить в отчете (графики, ход проведения эксперимента, выводы).
 
 ## Варианты
-Массивы данных берутся из UCI Machine Learning Repository
-https://archive.ics.uci.edu/ml/datasets.php
+Массивы данных берутся из [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets.php)
 
 Вариант определяется набором данных, который можно загрузить по ссылке выше:
 1. Abalone

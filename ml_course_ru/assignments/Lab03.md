@@ -3,15 +3,14 @@
 
 Перед выполнением лабораторной работы необходимо загрузить набор данных в соответствии с вариантом на диск
 1. Написать программу, которая разделяет исходную выборку на обучающую и тестовую (training set, test set). Использовать стандартные функции (train_test_split и др. нельзя).
-2. С использованием библиотеки scikit-learn (http://scikit-learn.org/stable/) обучить модель линейной регрессии по обучающей выборке (пример: http://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py)
+2. С использованием библиотеки [scikit-learn](http://scikit-learn.org/stable/) обучить модель линейной регрессии по обучающей выборке [пример](http://scikit-learn.org/stable/auto_examples/linear_model/plot_ols.html#sphx-glr-auto-examples-linear-model-plot-ols-py)
 3. Проверить точность модели по тестовой выборке
-4. Построить модель с использованием полиномиальной функции (пример: http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py). Построить графики зависимости точности на обучающей и тестовой выборке от степени полиномиальной функции.
-5. Построить модель с использованием регуляризации (пример: http://scikit-learn.org/stable/modules/linear_model.html). На основе экспериментов подобрать параметры для регуляризации.
+4. Построить модель с использованием полиномиальной функции [пример](http://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html#sphx-glr-auto-examples-model-selection-plot-underfitting-overfitting-py). Построить графики зависимости точности на обучающей и тестовой выборке от степени полиномиальной функции.
+5. Построить модель с использованием регуляризации [пример](http://scikit-learn.org/stable/modules/linear_model.html). На основе экспериментов подобрать параметры для регуляризации.
 Построить графики зависимости точности модели на обучающей и тестовой выборках от коэффициента регуляризации.
 
 ## Варианты
-Массивы данных берутся из UCI Machine Learning Repository
-https://archive.ics.uci.edu/ml/datasets.php
+Массивы данных берутся из [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets.php)
 
 Вариант определяется набором данных, который можно загрузить по ссылке выше:
 1. Condition Based Maintenance of Naval Propulsion Plants
