@@ -4,3 +4,5 @@ data/faces/
 data/samsung_HAR/
 .idea/
 .DS_Store
+venv/
+
