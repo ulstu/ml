@@ -91,6 +91,7 @@ Ulyanovsk State Technical University
 ### 13. Reinforcement learning
 
 ## Links
+* [Список книг по искусственному интеллекту](https://ru.stackoverflow.com/questions/678970/%d0%9a%d0%bd%d0%b8%d0%b3%d0%b8-%d0%b8-%d1%83%d1%87%d0%b5%d0%b1%d0%bd%d1%8b%d0%b5-%d1%80%d0%b5%d1%81%d1%83%d1%80%d1%81%d1%8b-%d0%bf%d0%be-%d0%bc%d0%b0%d1%88%d0%b8%d0%bd%d0%bd%d0%be%d0%bc%d1%83-%d0%be%d0%b1%d1%83%d1%87%d0%b5%d0%bd%d0%b8%d1%8e/683632#683632)
 * [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/index.html)
 * [Ways to load files to google colab](https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92)
 * [ML course by Andrew Ng](https://www.coursera.org/learn/machine-learning)
