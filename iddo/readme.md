@@ -6,6 +6,7 @@
 * https://youtu.be/YeCuGzi_4zo
 * https://youtu.be/wvxF-I3EHoc
 * https://youtu.be/uRaDAK_9vtM
+* https://youtu.be/3e81YjHIYAY
 
 
 2. Необходимо пройти курс "Нейронные сети и компьютерное зрение" https://stepik.org/course/50352/syllabus и получить сертификат по этому курсу (любой сертификат)
@@ -18,6 +19,7 @@
 * https://youtu.be/b805b_UPAG0
 * https://youtu.be/8KDbItdq3yA
 * https://youtu.be/4Ha7wNoaLzI
-* https://youtu.be/RNJa12UoDF4 
+* https://youtu.be/RNJa12UoDF4
+* https://youtu.be/p5b7SnnVodI 
 
 4. Итоговая аттестация будет проходить по изученному материалу лекций, онлайн курсу и лабораторных работ в формате зачета (билет с двумя вопросами и допвопросы на понимание содержательной части дисциплины с прокторингом)
