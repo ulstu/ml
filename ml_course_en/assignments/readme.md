@@ -1,17 +1,19 @@
 # Assignments for the practical part of the course "Introduction to Machine Learning"
 
 ## Assignments
+
 1. Exploratory data analysis with Pandas
 2. Linear regression. Polynomial features. Regularization (with options)
 3. Logistic Regression and Random Forest in the credit scoring problem
 4. Basics of neural networks  (with options)
 5. Unsupervised learning
-	5.1. Unsupervised learning practice
-	5.2. Unsupervised learning problem solving  (with options)
+	* 5.1. Unsupervised learning practice
+	* 5.2. Unsupervised learning problem solving  (with options)
 6. Basics of deep learning models for image recognition
 7. Deep learning. Text analisys
-	7.1. Word2Vec
-	7.2. Word2Vec with Negative Sampling 
+	* 7.1. Word2Vec
+	* 7.2. Word2Vec with Negative Sampling 
+
 
 ## Grading
 
