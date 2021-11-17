@@ -2,13 +2,12 @@
 Russia, Ulyanovsk
 Ulyanovsk State Technical University
 
-## Week 1
-### 1. Basics of Machine Learning
+## 1. Basics of Machine Learning
 * Brief history of basic technologies
 * Definitions
 * Basics of ML
 
-### 2. Python
+## 2. Python
 * Basic syntax
 * Arithmetic 
 * Strings
@@ -18,7 +17,7 @@ Ulyanovsk State Technical University
 * Kaggle competitions
 * Titanic task
 
-### 3. Linear regression
+## 3. Linear regression
 * Linear regression
 * Cost function
 * Gradient descent
@@ -29,7 +28,7 @@ Ulyanovsk State Technical University
 * Multi-class classification
 * Feature scaling
 
-### 4. Decision trees. KNN. Logistic regression. Regularization.
+## 4. Decision trees. KNN. Logistic regression. Regularization.
 * Decision tree
 * K-nearest neighbors
 * Classification problem
@@ -38,7 +37,7 @@ Ulyanovsk State Technical University
 * Cost function
 * Regularization. Problem of overfitting
 
-### 5. Machine learning system design
+## 5. Machine learning system design
 * Error analysis. Metrics
 * Evaluating hypothesis. Train / test / validation set
 * High bias / high variance (model selection, regularization, learning curves)
@@ -49,48 +48,46 @@ Ulyanovsk State Technical University
 - Timeseries
 - Texts. One-hot encoding
 
-### 6. Clustering
+## 6. Clustering
 * Clustering (k-means, c-means, hierarchical clustering)
 * Principal component analysis
 
-## Week 2
-
-### 7. Naive bayes and SVM
+## 7. Naive bayes and SVM
 * Bayes theorem
 * Naive bayes 
 * Support vector machines
 
-### 8. Neural networks
+## 8. Neural networks
 * Non-linear hypothesis
 * Neurons and the brain
 * Forward propagation (XNOR example)
 * Back propagation
 * Parameters initializing
 
-### 9. Deep learning. Convolutional neural networks
+## 9. Deep learning. Convolutional neural networks
 * Convolution. Feature representation as hierarchy
 * Filters, stride, padding
 * Pooling
 * Popular architectures: AlexNet, VGG, ResNet, 
 * Classification, localization, regression
 
-### 10. Recurrent neural networks
+## 10. Recurrent neural networks
 * Basics of recurrent NN
 * LSTM
 * Time-series analysis
 * Text analysis
 
-### 11. Trees
+## 11. Time seriaes analysis
+
+## 12. Trees
 * Decision trees
 * Random forest
 * XGBoost
 * CatBoost
 
-### 12. Generative Adversarial networks
-
-### 13. Reinforcement learning
 
 ## Links
+* [Probability theory for Machine Learning](https://see.stanford.edu/materials/aimlcs229/cs229-prob.pdf)
 * [Список книг по искусственному интеллекту](https://ru.stackoverflow.com/questions/678970/%d0%9a%d0%bd%d0%b8%d0%b3%d0%b8-%d0%b8-%d1%83%d1%87%d0%b5%d0%b1%d0%bd%d1%8b%d0%b5-%d1%80%d0%b5%d1%81%d1%83%d1%80%d1%81%d1%8b-%d0%bf%d0%be-%d0%bc%d0%b0%d1%88%d0%b8%d0%bd%d0%bd%d0%be%d0%bc%d1%83-%d0%be%d0%b1%d1%83%d1%87%d0%b5%d0%bd%d0%b8%d1%8e/683632#683632)
 * [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/index.html)
 * [Ways to load files to google colab](https://towardsdatascience.com/3-ways-to-load-csv-files-into-colab-7c14fcbdcb92)
