@@ -20,9 +20,9 @@
 Final grade depends on two parts: assignment score and final testing score.
 
 Assignment score depends on the number of completed assignments:
-* Assignment score 4: 1, 2, 4, 5.1
-* Assignment score 3: 1, 2, 3, 4, 5.1, 5.2
-* Assignment score 2: 1, 2, 3, 4, 5.1, 5.2, 6
-* Assignment score 1: 1, 2, 3, 4, 5.1, 5.2, 6, 7.1, 7.2
+* Assignment score 4: 1, 2, 4
+* Assignment score 3: 1, 2, 4, 5.2
+* Assignment score 2: 1, 2, 4, 5.2, 6
+* Assignment score 1: 1, 2, 4, 5.2, 6, 7.1
 
 Final score = mean(Assignment score, Final testing score).
