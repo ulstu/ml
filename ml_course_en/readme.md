@@ -1,6 +1,6 @@
 # Exam questions
 1. Confusion matrix. How to calculate precision/recall/f1 metrics? Why it is important?
-2. One hot encoding
+2. Text vectorization: One hot encoding, n-grams, tf-idf
 3. Overfitting and underfitting. How to detect? What to do to avoid a problem?
 4. What are the reasons for using PCA (principal component analysis)? How to choose a good value for components?
 5. Python slicing. Pandas data extraction.
