@@ -2,6 +2,7 @@
 data/aclImdb/
 data/faces/
 data/samsung_HAR/
+data/nuscenes/
 .idea/
 .DS_Store
 venv/
