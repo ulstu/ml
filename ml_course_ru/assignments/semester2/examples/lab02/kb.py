@@ -65,8 +65,8 @@ def defuzzification(cooling_output, x_cooling):
     return numerator / denominator
 
 # Пример: входные данные (температура и влажность)
-temp_value = 30  # Пример температуры 30°C (жарко)
-humidity_value = 45  # Пример влажности 45% (сухо)
+temp_value = 12  # Пример температуры 30°C (жарко)
+humidity_value = 20  # Пример влажности 45% (сухо)
 
 # Найдем значения функций принадлежности для заданных температуры и влажности
 temp_mf = np.array([np.interp(temp_value, x_temp, cold),
