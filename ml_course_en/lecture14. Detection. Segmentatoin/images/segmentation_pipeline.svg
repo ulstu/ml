@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="360" viewBox="0 0 1100 360">
+<rect width="1100" height="360" fill="#f8fbff"/>
+<text x="60" y="55" font-size="28" font-family="Arial" fill="#183153">Semantic Segmentation Pipeline</text>
+<rect x="50" y="90" width="180" height="180" rx="16" fill="#ffffff" stroke="#1f77b4" stroke-width="3"/>
+<rect x="75" y="115" width="55" height="55" fill="#d9ecff"/>
+<rect x="138" y="115" width="55" height="55" fill="#ffe9cf"/>
+<rect x="75" y="178" width="55" height="55" fill="#e2ffd9"/>
+<rect x="138" y="178" width="55" height="55" fill="#ffdbe6"/>
+<text x="93" y="295" font-size="20" font-family="Arial" fill="#183153">RGB image</text>
+<line x1="230" y1="180" x2="355" y2="180" stroke="#183153" stroke-width="5"/>
+<polygon points="355,180 338,170 338,190" fill="#183153"/>
+<rect x="360" y="80" width="220" height="200" rx="20" fill="#eef5ff" stroke="#2a6fdb" stroke-width="3"/>
+<rect x="390" y="112" width="160" height="34" rx="8" fill="#cfe2ff"/>
+<rect x="390" y="156" width="160" height="34" rx="8" fill="#d9e9ff"/>
+<rect x="390" y="200" width="160" height="34" rx="8" fill="#cfe2ff"/>
+<text x="413" y="134" font-size="18" font-family="Arial" fill="#183153">Encoder</text>
+<text x="398" y="178" font-size="18" font-family="Arial" fill="#183153">Bottleneck</text>
+<text x="412" y="222" font-size="18" font-family="Arial" fill="#183153">Decoder</text>
+<text x="394" y="295" font-size="20" font-family="Arial" fill="#183153">U-Net / DeepLabV3</text>
+<line x1="580" y1="180" x2="705" y2="180" stroke="#183153" stroke-width="5"/>
+<polygon points="705,180 688,170 688,190" fill="#183153"/>
+<rect x="710" y="90" width="180" height="180" rx="16" fill="#ffffff" stroke="#2ca02c" stroke-width="3"/>
+<rect x="735" y="115" width="55" height="55" fill="#ececec"/>
+<rect x="798" y="115" width="55" height="55" fill="#ffb86b"/>
+<rect x="735" y="178" width="55" height="55" fill="#ececec"/>
+<rect x="798" y="178" width="55" height="55" fill="#7ed957"/>
+<text x="742" y="295" font-size="20" font-family="Arial" fill="#183153">Class mask</text>
+<line x1="890" y1="180" x2="1000" y2="180" stroke="#183153" stroke-width="5"/>
+<polygon points="1000,180 983,170 983,190" fill="#183153"/>
+<rect x="1005" y="118" width="65" height="65" rx="12" fill="#ffb86b"/>
+<rect x="1005" y="188" width="65" height="65" rx="12" fill="#7ed957"/>
+<text x="1015" y="160" font-size="16" font-family="Arial" fill="#183153">pet</text>
+<text x="1011" y="228" font-size="16" font-family="Arial" fill="#183153">edge</text>
+<text x="986" y="295" font-size="20" font-family="Arial" fill="#183153">Pixel labels</text>
+</svg>

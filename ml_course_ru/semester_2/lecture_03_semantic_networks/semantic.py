@@ -274,7 +274,7 @@ rules = [
 
 # Инициализация и настройка базы данных Neo4j
 db = Neo4jDB("bolt://localhost:7687", "neo4j", "treugolnik")
-# db.setup_ontology_and_rules(rules)
+#db.setup_ontology_and_rules(rules)
 
 # 2. Симуляция данных от датчиков
 def generate_sensor_data():

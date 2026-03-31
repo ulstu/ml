@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="420" viewBox="0 0 1180 420">
+<rect width="1180" height="420" fill="#fcfcff"/>
+<text x="45" y="52" font-size="28" font-family="Arial" fill="#183153">U-Net: why skip connections matter</text>
+<rect x="60" y="95" width="110" height="220" rx="14" fill="#d6e8ff" stroke="#2457a7" stroke-width="2"/>
+<rect x="220" y="115" width="95" height="180" rx="14" fill="#bdd8ff" stroke="#2457a7" stroke-width="2"/>
+<rect x="360" y="145" width="80" height="120" rx="14" fill="#9ec4ff" stroke="#2457a7" stroke-width="2"/>
+<rect x="500" y="165" width="85" height="90" rx="14" fill="#7aaeff" stroke="#2457a7" stroke-width="2"/>
+<rect x="640" y="145" width="80" height="120" rx="14" fill="#ffe1bd" stroke="#d97706" stroke-width="2"/>
+<rect x="780" y="115" width="95" height="180" rx="14" fill="#ffd39d" stroke="#d97706" stroke-width="2"/>
+<rect x="930" y="95" width="110" height="220" rx="14" fill="#ffc982" stroke="#d97706" stroke-width="2"/>
+<line x1="170" y1="205" x2="220" y2="205" stroke="#183153" stroke-width="4"/>
+<line x1="315" y1="205" x2="360" y2="205" stroke="#183153" stroke-width="4"/>
+<line x1="440" y1="205" x2="500" y2="205" stroke="#183153" stroke-width="4"/>
+<line x1="585" y1="205" x2="640" y2="205" stroke="#183153" stroke-width="4"/>
+<line x1="720" y1="205" x2="780" y2="205" stroke="#183153" stroke-width="4"/>
+<line x1="875" y1="205" x2="930" y2="205" stroke="#183153" stroke-width="4"/>
+<path d="M170 120 C250 60, 670 60, 780 120" fill="none" stroke="#16a34a" stroke-width="5" stroke-dasharray="10 8"/>
+<path d="M315 145 C395 90, 570 90, 640 145" fill="none" stroke="#16a34a" stroke-width="5" stroke-dasharray="10 8"/>
+<path d="M440 170 C500 130, 575 130, 640 170" fill="none" stroke="#16a34a" stroke-width="5" stroke-dasharray="10 8"/>
+<text x="72" y="340" font-size="18" font-family="Arial" fill="#183153">Encoder</text>
+<text x="515" y="285" font-size="18" font-family="Arial" fill="#183153">Bottleneck</text>
+<text x="940" y="340" font-size="18" font-family="Arial" fill="#183153">Decoder</text>
+<text x="835" y="68" font-size="18" font-family="Arial" fill="#16a34a">skip connections copy spatial detail</text>
+<text x="52" y="385" font-size="18" font-family="Arial" fill="#183153">The left side compresses context, the right side restores resolution. Skip connections prevent small objects and boundaries from disappearing.</text>
+</svg>
