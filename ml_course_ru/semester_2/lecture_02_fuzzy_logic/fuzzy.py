@@ -3,60 +3,142 @@ import skfuzzy as fuzz
 from skfuzzy import control as ctrl
 import matplotlib.pyplot as plt
 
-# Вход 1: Ошибка по температуре (текущая - желаемая), °C
-error = ctrl.Antecedent(np.arange(-20, 21, 1), 'error')
-# Вход 2: Скорость изменения температуры, °C/мин
+
+# ================================
+# ШАГ 1. СОЗДАНИЕ ПЕРЕМЕННЫХ
+# ================================
+
+# Создаем входную переменную "error" (ошибка температуры)
+# Диапазон от -15 до 15 градусов с шагом 1
+error = ctrl.Antecedent(np.arange(-15, 16, 1), 'error')
+
+# Создаем входную переменную "temp_rate" (скорость изменения температуры)
+# Диапазон от -5 до 5 градусов/мин
 temp_rate = ctrl.Antecedent(np.arange(-5, 6, 1), 'temp_rate')
-# Выход: Мощность кондиционера, %
+
+# Создаем выходную переменную "cooling_power" (мощность кондиционера)
+# Диапазон от 0 до 100 процентов
 cooling_power = ctrl.Consequent(np.arange(0, 101, 1), 'cooling_power')
 
-# Функции принадлежности
-error['too_cold']   = fuzz.trapmf(error.universe, [-20, -20, -5,  0])
-error['ok']         = fuzz.trimf(error.universe,  [-2,   0,   2])
-error['too_hot']    = fuzz.trapmf(error.universe, [ 0,   5,  20, 20])
 
-temp_rate['decreasing'] = fuzz.trimf(temp_rate.universe, [-5, -3,  0])
-temp_rate['steady']     = fuzz.trimf(temp_rate.universe, [-1,  0,  1])
-temp_rate['increasing'] = fuzz.trimf(temp_rate.universe, [ 0,  3,  5])
+# ================================
+# ШАГ 2. ФУНКЦИИ ПРИНАДЛЕЖНОСТИ
+# ================================
 
-cooling_power['low']    = fuzz.trimf(cooling_power.universe, [ 0, 25, 50])
-cooling_power['medium'] = fuzz.trimf(cooling_power.universe, [25, 50, 75])
-cooling_power['high']   = fuzz.trimf(cooling_power.universe, [50, 75,100])
+# --- Функции принадлежности для ошибки ---
 
-# Правила (примерная логика)
-rule1 = ctrl.Rule(error['too_hot'] & temp_rate['increasing'], cooling_power['high'])
-rule2 = ctrl.Rule(error['too_hot'] & temp_rate['steady'],     cooling_power['high'])
-rule3 = ctrl.Rule(error['too_hot'] & temp_rate['decreasing'], cooling_power['medium'])
+# Очень холодно (температура намного ниже желаемой) - трапециевидная функция с пиками на -15 и -8 градусах
+error['too_cold'] = fuzz.trapmf(error.universe, [-15, -15, -8, -2])
 
-rule4 = ctrl.Rule(error['ok'] & temp_rate['increasing'],      cooling_power['medium'])
-rule5 = ctrl.Rule(error['ok'] & temp_rate['steady'],          cooling_power['low'])
-rule6 = ctrl.Rule(error['ok'] & temp_rate['decreasing'],      cooling_power['low'])
+# Норма (температура близка к желаемой) - треугольная функция с пиком на 0 градусах
+error['ok'] = fuzz.trimf(error.universe, [-3, 0, 3])
 
-rule7 = ctrl.Rule(error['too_cold'] & temp_rate['increasing'], cooling_power['low'])
-rule8 = ctrl.Rule(error['too_cold'] & temp_rate['steady'],     cooling_power['low'])
-rule9 = ctrl.Rule(error['too_cold'] & temp_rate['decreasing'], cooling_power['low'])
+# Слишком жарко (температура выше желаемой) - трапециевидная функция с пиками на 2 и 8 градусах
+error['too_hot'] = fuzz.trapmf(error.universe, [2, 8, 15, 15])
 
-cooling_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6, rule7, rule8, rule9])
+
+# --- Функции принадлежности для скорости изменения температуры ---
+
+# Температура падает - треугольная функция с пиком на -3 градусах/мин
+temp_rate['decreasing'] = fuzz.trimf(temp_rate.universe, [-5, -3, 0])
+
+# Температура стабильна - треугольная функция с пиком на 0 градусах/мин
+temp_rate['steady'] = fuzz.trimf(temp_rate.universe, [-1, 0, 1])
+
+# Температура растет - треугольная функция с пиком на 3 градусах/мин
+temp_rate['increasing'] = fuzz.trimf(temp_rate.universe, [0, 3, 5])
+
+
+# --- Функции принадлежности для мощности кондиционера ---
+
+# Низкая мощность - треугольная функция с пиком на 20 процентах
+cooling_power['low'] = fuzz.trimf(cooling_power.universe, [0, 20, 40])
+
+# Средняя мощность - треугольная функция с пиком на 50 процентах
+cooling_power['medium'] = fuzz.trimf(cooling_power.universe, [30, 50, 70])
+
+# Высокая мощность - треугольная функция с пиком на 80 процентах
+cooling_power['high'] = fuzz.trimf(cooling_power.universe, [60, 80, 100])
+
+
+# ================================
+# ШАГ 3. НЕЧЕТКИЕ ПРАВИЛА
+# ================================
+
+# Если слишком холодно → мощность низкая
+rule1 = ctrl.Rule(error['too_cold'], cooling_power['low'])
+
+# Если температура нормальная и растет → средняя мощность
+rule2 = ctrl.Rule(error['ok'] & temp_rate['increasing'], cooling_power['medium'])
+
+# Если температура нормальная и стабильна → низкая мощность
+rule3 = ctrl.Rule(error['ok'] & temp_rate['steady'], cooling_power['low'])
+
+# Если слишком жарко и температура растет → высокая мощность
+rule4 = ctrl.Rule(error['too_hot'] & temp_rate['increasing'], cooling_power['high'])
+
+# Если слишком жарко и температура стабильна → высокая мощность
+rule5 = ctrl.Rule(error['too_hot'] & temp_rate['steady'], cooling_power['high'])
+
+# Если слишком жарко и температура падает → средняя мощность
+rule6 = ctrl.Rule(error['too_hot'] & temp_rate['decreasing'], cooling_power['medium'])
+
+
+# ================================
+# ШАГ 4. СОЗДАНИЕ СИСТЕМЫ
+# ================================
+
+# Создаем систему управления из набора правил
+cooling_ctrl = ctrl.ControlSystem([rule1, rule2, rule3, rule4, rule5, rule6])
+
+# Создаем объект симуляции
 cooling_sim = ctrl.ControlSystemSimulation(cooling_ctrl)
 
-def simulate_system(temperature_value, desired_temp_value, temp_rate_value):
-    err = temperature_value - desired_temp_value
-    cooling_sim.input['error'] = err
-    cooling_sim.input['temp_rate'] = temp_rate_value
+
+# ================================
+# ШАГ 5. ФУНКЦИЯ СИМУЛЯЦИИ
+# ================================
+
+def simulate_system(current_temp, desired_temp, rate):
+    """
+    Функция принимает:
+    current_temp  - текущая температура
+    desired_temp  - желаемая температура
+    rate          - скорость изменения температуры
+    """
+
+    # Вычисляем ошибку регулирования
+    error_value = current_temp - desired_temp
+
+    # Передаем входные данные в систему
+    cooling_sim.input['error'] = error_value
+    cooling_sim.input['temp_rate'] = rate
+
+    # Запускаем нечеткий вывод
     cooling_sim.compute()
 
-    print(f"Температура: {temperature_value}°C")
-    print(f"Желаемая температура: {desired_temp_value}°C")
-    print(f"Ошибка: {err:+.1f}°C")
-    print(f"Скорость изменения: {temp_rate_value}°C/мин")
+    # Выводим результаты
+    print(f"Текущая температура: {current_temp}°C")
+    print(f"Желаемая температура: {desired_temp}°C")
+    print(f"Ошибка: {error_value}°C")
+    print(f"Скорость изменения: {rate}°C/мин")
     print(f"Мощность кондиционера: {cooling_sim.output['cooling_power']:.2f}%")
 
+    # Визуализация результата
     cooling_power.view(sim=cooling_sim)
 
-# Тест
-temperature_value = 30   # Текущая
-desired_temp_value = 25  # Желаемая
-temp_rate_value = 2
-simulate_system(temperature_value, desired_temp_value, temp_rate_value)
 
+# ================================
+# ШАГ 6. ТЕСТ СИСТЕМЫ
+# ================================
+
+# Пример:
+# В комнате 30°C
+# Хотим 24°C
+# Температура растет на 2°C/мин
+simulate_system(current_temp=25,
+                desired_temp=24,
+                rate=2)
+
+# Отображаем график
 plt.show()

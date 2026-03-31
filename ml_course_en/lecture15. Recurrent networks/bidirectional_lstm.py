@@ -118,31 +118,37 @@ train_model()
 print('Model trained')
 
 # Функция для генерации текста
-def generate_text(model, start_str, length=50):
+def generate_text(model, start_str, length=200):
     model.eval()
-    hidden = model.init_hidden(1)
-    input_seq = torch.tensor([char2idx[word] for word in start_str.split() if word in char2idx], dtype=torch.long, device=device).unsqueeze(0)
+    input_seq = [char2idx[ch] for ch in start_str]
     generated_text = start_str
-    
+
     for _ in range(length):
+        # Поддерживаем фиксированный размер входной последовательности
+        input_tensor = torch.tensor([input_seq[-seq_length:]], dtype=torch.long, device=device)
         with torch.no_grad():
-            output, hidden = model(input_seq, hidden)
+            output = model(input_tensor)
+
             temperature = 0.7
             probs = torch.nn.functional.softmax(output / temperature, dim=1)
-            top_p = 0.9  # Используем nucleus sampling вместо top-k
+
+            top_p = 0.9
             sorted_probs, sorted_indices = torch.sort(probs, descending=True)
             cumulative_probs = torch.cumsum(sorted_probs, dim=1)
             mask = cumulative_probs < top_p
-            mask[:, 0] = True  # Гарантируем, что хотя бы один элемент останется
-            cumulative_probs = torch.cumsum(sorted_probs, dim=1)
-            filtered_indices = torch.masked_select(sorted_indices, mask).unsqueeze(0) if torch.any(mask) else sorted_indices[:, :1]
-            filtered_probs = torch.masked_select(sorted_probs, mask).unsqueeze(0) if torch.any(mask) else sorted_probs[:, :1]
+            mask[:, 0] = True
+            filtered_indices = sorted_indices[mask].unsqueeze(0)
+            filtered_probs = sorted_probs[mask].unsqueeze(0)
+
             predicted_idx = filtered_indices.squeeze(0)[torch.multinomial(filtered_probs.squeeze(0), num_samples=1)].item()
+
             predicted_char = idx2char[predicted_idx]
-            generated_text += ' ' + predicted_char
-            input_seq = torch.tensor([[predicted_idx]], dtype=torch.long, device=device)
-    
+            generated_text += predicted_char
+
+            input_seq.append(predicted_idx)
+
     return generated_text
+
 
 # Генерируем текст
 print(generate_text(model, "You must write", 10))

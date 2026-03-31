@@ -1,99 +1,101 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torch.utils.data import DataLoader, Dataset
-from datasets import load_dataset
-import random
+import numpy as np
+import requests
 
-# Установка случайного зерна для воспроизводимости
-SEED = 1234
-random.seed(SEED)
-torch.manual_seed(SEED)
-torch.backends.cudnn.deterministic = True
-
+# device setup
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# Загрузка датасета перевода (Hugging Face datasets)
-dataset = load_dataset("opus_books", "en-fr")
-train_data = list(dataset["train"])[:10000]  # Преобразуем в список
+# Загрузка датасета
+url = "https://www.gutenberg.org/files/1342/1342-0.txt"
+response = requests.get(url)
+text = response.text[:50000]
 
-# Токенизация и построение словарей
-from collections import Counter
-from itertools import chain
+# Словарь
+chars = list(set(text))
+char2idx = {ch: idx for idx, ch in enumerate(chars)}
+idx2char = {idx: ch for ch, idx in char2idx.items()}
+encoded_text = np.array([char2idx[ch] for ch in text])
 
-def tokenize_text(text):
-    return text.lower().split()
+# Параметры
+seq_length = 100
+batch_size = 64
+hidden_size = 128
+embedding_size = 64
+num_epochs = 10
+learning_rate = 0.005
+vocab_size = len(chars)
 
-src_counter = Counter(chain.from_iterable(map(lambda x: tokenize_text(x["translation"]["en"]), train_data)))
-tgt_counter = Counter(chain.from_iterable(map(lambda x: tokenize_text(x["translation"]["fr"]), train_data)))
+# Подготовка данных
+def create_batches(data, seq_length, batch_size):
+    X, Y = [], []
+    for i in range(len(data) - seq_length):
+        X.append(data[i:i+seq_length])
+        Y.append(data[i+seq_length])
+    X_tensor = torch.tensor(X, dtype=torch.long, device=device)
+    Y_tensor = torch.tensor(Y, dtype=torch.long, device=device)
+    dataset = torch.utils.data.TensorDataset(X_tensor, Y_tensor)
+    return torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True)
 
-src_vocab = {word: i+1 for i, (word, _) in enumerate(src_counter.most_common(25000))}
-tgt_vocab = {word: i+1 for i, (word, _) in enumerate(tgt_counter.most_common(25000))}
+dataloader = create_batches(encoded_text, seq_length, batch_size)
 
-src_vocab["<unk>"] = 0
-tgt_vocab["<unk>"] = 0
-tgt_vocab["<sos>"] = len(tgt_vocab)
-tgt_vocab["<eos>"] = len(tgt_vocab) + 1
+# Attention Model
+class AttentionRNN(nn.Module):
+    def __init__(self, vocab_size, embedding_size, hidden_size):
+        super(AttentionRNN, self).__init__()
+        self.embedding = nn.Embedding(vocab_size, embedding_size)
+        self.lstm = nn.LSTM(embedding_size, hidden_size, num_layers=2, batch_first=True)
+        self.attention = nn.Linear(hidden_size, 1)
+        self.fc = nn.Linear(hidden_size, vocab_size)
 
-SRC_VOCAB_SIZE = len(src_vocab)
-TGT_VOCAB_SIZE = len(tgt_vocab)
-EMBEDDING_DIM = 256
-HIDDEN_DIM = 512
-N_LAYERS = 2
-BIDIRECTIONAL = True
-DROPOUT = 0.5
+    def forward(self, x):
+        x = self.embedding(x)
+        lstm_out, _ = self.lstm(x)
 
-class Encoder(nn.Module):
-    def __init__(self, vocab_size, embedding_dim, hidden_dim, n_layers, bidirectional, dropout):
-        super().__init__()
-        self.embedding = nn.Embedding(vocab_size, embedding_dim)
-        self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=n_layers, bidirectional=bidirectional, dropout=dropout, batch_first=True)
-        self.dropout = nn.Dropout(dropout)
-    
-    def forward(self, src):
-        embedded = self.dropout(self.embedding(src))
-        outputs, (hidden, cell) = self.lstm(embedded)
-        hidden = hidden.view(N_LAYERS, 2, hidden.shape[1], hidden.shape[2])
-        hidden = torch.cat((hidden[:, 0, :, :], hidden[:, 1, :, :]), dim=2)
-        cell = cell.view(N_LAYERS, 2, cell.shape[1], cell.shape[2])
-        cell = torch.cat((cell[:, 0, :, :], cell[:, 1, :, :]), dim=2)
-        return outputs, hidden, cell
+        # Attention
+        attn_weights = torch.softmax(self.attention(lstm_out).squeeze(-1), dim=1)
+        context = torch.sum(attn_weights.unsqueeze(-1) * lstm_out, dim=1)
 
-class Seq2Seq(nn.Module):
-    def __init__(self, encoder, decoder):
-        super().__init__()
-        self.encoder = encoder
-        self.decoder = decoder
-    
-    def forward(self, src, tgt):
-        encoder_outputs, hidden, cell = self.encoder(src)
-        input = tgt[:, 0]
-        outputs = torch.zeros(tgt.shape[0], tgt.shape[1], TGT_VOCAB_SIZE).to(device)
-        for t in range(1, tgt.shape[1]):
-            output, hidden, cell = self.decoder(input, hidden, cell, encoder_outputs)
-            outputs[:, t] = output
-            input = tgt[:, t]
-        return outputs
+        out = self.fc(context)
+        return out
 
-def train(model, dataloader, optimizer, criterion):
+model = AttentionRNN(vocab_size, embedding_size, hidden_size).to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+# Training
+def train_model():
     model.train()
-    for src, tgt in dataloader:
-        optimizer.zero_grad()
-        output = model(src, tgt)
-        output = output[:, 1:].reshape(-1, output.shape[-1])
-        tgt = tgt[:, 1:].reshape(-1)
-        loss = criterion(output, tgt)
-        loss.backward()
-        optimizer.step()
+    for epoch in range(num_epochs):
+        total_loss = 0
+        for X_batch, Y_batch in dataloader:
+            optimizer.zero_grad()
+            outputs = model(X_batch)
+            loss = criterion(outputs, Y_batch)
+            loss.backward()
+            optimizer.step()
+            total_loss += loss.item()
+        print(f'Epoch {epoch+1}, Loss: {total_loss/len(dataloader):.4f}')
 
-criterion = nn.CrossEntropyLoss(ignore_index=0)
+train_model()
 
-encoder = Encoder(SRC_VOCAB_SIZE, EMBEDDING_DIM, HIDDEN_DIM, N_LAYERS, BIDIRECTIONAL, DROPOUT).to(device)
-seq2seq_attention = Seq2Seq(encoder, AttentionDecoder(TGT_VOCAB_SIZE, EMBEDDING_DIM, HIDDEN_DIM, N_LAYERS, DROPOUT).to(device))
+# Генерация текста
+def generate_text(model, start_str, length=200):
+    model.eval()
+    input_seq = torch.tensor([[char2idx[ch] for ch in start_str]], dtype=torch.long, device=device)
+    generated_text = start_str
 
-optimizer_attention = optim.Adam(seq2seq_attention.parameters())
+    for _ in range(length):
+        with torch.no_grad():
+            output = model(input_seq)
+            predicted_idx = torch.argmax(output, dim=1).item()
+            predicted_char = idx2char[predicted_idx]
+            generated_text += predicted_char
 
-print("Training Attention Model")
-for epoch in range(5):
-    train(seq2seq_attention, train_dataloader, optimizer_attention, criterion)
-    print(f"Epoch {epoch+1} completed")
+            input_seq = torch.cat([input_seq[:, 1:], torch.tensor([[predicted_idx]], device=device)], dim=1)
+
+    return generated_text
+
+# Пример генерации
+print(generate_text(model, "You must write", 100))
