@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="390" viewBox="0 0 1160 390">
+<rect width="1160" height="390" fill="#fcfcff"/>
+<text x="48" y="52" font-size="28" font-family="Arial" fill="#183153">Modern YOLO workflow</text>
+<rect x="60" y="98" width="160" height="180" rx="18" fill="#ffffff" stroke="#2457a7" stroke-width="3"/>
+<text x="109" y="190" font-size="22" font-family="Arial" fill="#183153">Dataset</text>
+<line x1="220" y1="188" x2="340" y2="188" stroke="#183153" stroke-width="5"/>
+<polygon points="340,188 323,178 323,198" fill="#183153"/>
+<rect x="345" y="98" width="180" height="180" rx="18" fill="#eef5ff" stroke="#2a6fdb" stroke-width="3"/>
+<text x="393" y="167" font-size="22" font-family="Arial" fill="#183153">Train</text>
+<text x="374" y="202" font-size="18" font-family="Arial" fill="#183153">augment + optimize</text>
+<line x1="525" y1="188" x2="645" y2="188" stroke="#183153" stroke-width="5"/>
+<polygon points="645,188 628,178 628,198" fill="#183153"/>
+<rect x="650" y="98" width="180" height="180" rx="18" fill="#fff4e6" stroke="#d97706" stroke-width="3"/>
+<text x="684" y="167" font-size="22" font-family="Arial" fill="#183153">Validate</text>
+<text x="687" y="202" font-size="18" font-family="Arial" fill="#183153">mAP, PR curves</text>
+<line x1="830" y1="188" x2="950" y2="188" stroke="#183153" stroke-width="5"/>
+<polygon points="950,188 933,178 933,198" fill="#183153"/>
+<rect x="955" y="98" width="155" height="180" rx="18" fill="#f0fff4" stroke="#16a34a" stroke-width="3"/>
+<text x="992" y="167" font-size="22" font-family="Arial" fill="#183153">Deploy</text>
+<text x="985" y="202" font-size="18" font-family="Arial" fill="#183153">export / infer</text>
+<text x="64" y="338" font-size="18" font-family="Arial" fill="#183153">This notebook uses the Ultralytics API because it is the quickest path from theory to a working detector for students.</text>
+</svg>

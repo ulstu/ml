@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="390" viewBox="0 0 1180 390">
+<rect width="1180" height="390" fill="#fbfcff"/>
+<text x="48" y="52" font-size="28" font-family="Arial" fill="#183153">Faster R-CNN in one picture</text>
+<rect x="55" y="95" width="180" height="190" rx="18" fill="#ffffff" stroke="#2457a7" stroke-width="3"/>
+<text x="105" y="195" font-size="24" font-family="Arial" fill="#183153">Image</text>
+<line x1="235" y1="190" x2="355" y2="190" stroke="#183153" stroke-width="5"/>
+<polygon points="355,190 338,180 338,200" fill="#183153"/>
+<rect x="360" y="98" width="190" height="184" rx="18" fill="#eaf2ff" stroke="#2a6fdb" stroke-width="3"/>
+<text x="395" y="155" font-size="22" font-family="Arial" fill="#183153">CNN backbone</text>
+<text x="398" y="188" font-size="20" font-family="Arial" fill="#183153">feature map</text>
+<line x1="550" y1="190" x2="670" y2="190" stroke="#183153" stroke-width="5"/>
+<polygon points="670,190 653,180 653,200" fill="#183153"/>
+<rect x="675" y="98" width="165" height="184" rx="18" fill="#fff6e7" stroke="#d97706" stroke-width="3"/>
+<text x="718" y="155" font-size="22" font-family="Arial" fill="#183153">RPN</text>
+<text x="694" y="188" font-size="18" font-family="Arial" fill="#183153">Region proposals</text>
+<line x1="840" y1="190" x2="955" y2="190" stroke="#183153" stroke-width="5"/>
+<polygon points="955,190 938,180 938,200" fill="#183153"/>
+<rect x="960" y="98" width="155" height="184" rx="18" fill="#f0fff4" stroke="#16a34a" stroke-width="3"/>
+<text x="991" y="155" font-size="22" font-family="Arial" fill="#183153">ROI head</text>
+<text x="985" y="188" font-size="18" font-family="Arial" fill="#183153">class + box refine</text>
+<text x="60" y="340" font-size="18" font-family="Arial" fill="#183153">Two-stage detector: first generate proposals, then classify and refine them.</text>
+</svg>
