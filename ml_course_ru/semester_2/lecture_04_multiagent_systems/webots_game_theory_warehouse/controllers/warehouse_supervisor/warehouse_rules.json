@@ -1,0 +1,29 @@
+{
+  "documents": [
+    {
+      "id": "traffic_right_hand",
+      "text": "At aisle intersections robots follow deadline priority first; if deadlines are equal, the robot that has another robot on its right-hand side yields. Loaded robots keep priority over empty robots when the deadline class is equal."
+    },
+    {
+      "id": "collision_static",
+      "text": "A route segment is valid only if the robot safety disk does not intersect racks, chargers, walls or closed aisles. If a segment is blocked, the operational layer replans with A star on the warehouse occupancy grid."
+    },
+    {
+      "id": "collision_dynamic",
+      "text": "Dynamic collision avoidance treats other robots as moving safety disks. A robot slows down or waits when the next short motion would reduce separation below the safety margin."
+    },
+    {
+      "id": "three_level_control",
+      "text": "The three-level control model separates strategic policy, tactical coordination and operational execution. The LLM sets strategic weights, game-theoretic models assign tasks and routes, and local planners execute collision-free motion."
+    },
+    {
+      "id": "congestion_policy",
+      "text": "The central crossing is short but shared. When several assigned routes use the same center edges, the congestion-game penalty should increase so some robots choose north, south or east bypasses."
+    },
+    {
+      "id": "warehouse_axes",
+      "text": "The Webots world uses ENU coordinates. East is positive X, north is positive Y, and height is positive Z. Do not describe movements with screen-left or screen-right unless the camera orientation is fixed."
+    }
+  ]
+}
+

@@ -1,0 +1,28 @@
+@startuml llm_pipeline
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+
+title Полный pipeline LLM + Vector DB + формальные модели
+
+rectangle "1. Sensor / State Layer\nrobot-agent status messages,\ntasks, batteries, routes" as state
+database "2. Local Vector DB\nwarehouse_rules.json\nhashed embeddings + cosine search" as vectordb
+rectangle "3. Strategic LLM Layer\nOllama on localhost\nweights, safety margin,\nblocked edges" as llm
+rectangle "4. Tactical Game Layer\nContract Net auction\nCongestion game\nBest-response Nash profile" as game
+rectangle "5. Distributed Operational Layer\nper-robot controllers\nA* planner, traffic rules,\ncollision checks" as control
+rectangle "Webots Scene\nrobot/cargo translation,\nrotation and event logs" as webots
+
+state --> vectordb : compact query
+vectordb --> llm : retrieved rules
+state --> llm : compact JSON state
+llm --> game : Strategy
+game --> control : assignment messages + routes
+control --> webots : each robot moves itself
+webots --> state : next tick status messages
+
+note bottom of llm
+The LLM does not directly drive motors.
+It tunes strategic parameters for
+formal decision models.
+end note
+@enduml

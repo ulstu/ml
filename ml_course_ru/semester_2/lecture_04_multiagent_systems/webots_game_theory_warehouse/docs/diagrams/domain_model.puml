@@ -1,0 +1,112 @@
+@startuml domain_model
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam classAttributeIconSize 0
+skinparam defaultFontName Arial
+
+title Предметная модель и формальные сущности
+
+class Task {
+  task_id: str
+  pickup: Point
+  dropoff: Point
+  reward: float
+  deadline: float
+  cargo_def: str
+  status: str
+  assigned_agent: str?
+  selected_route: str?
+}
+
+class Route {
+  route_id: str
+  waypoints: tuple[Point]
+  edges: tuple[str]
+}
+
+class AgentSnapshot {
+  agent_id: str
+  position: Point
+  battery: float
+  status: str
+  task_id: str?
+}
+
+class Strategy {
+  deadline_weight: float
+  travel_weight: float
+  congestion_weight: float
+  battery_weight: float
+  safety_margin: float
+  traffic_rule: str
+  blocked_edges: tuple[str]
+  retrieved_rules: tuple[str]
+  note: str
+}
+
+class Assignment {
+  agent_id: str
+  task_id: str
+  route_id: str
+  bid: float
+  utility: float
+  audit: dict
+}
+
+class NetworkAgent {
+  agent_id: str
+  def_name: str
+  position: Point
+  battery: float
+  status: str
+  task_id: str?
+  route_id: str?
+  waypoints: list[Point]
+}
+
+class WarehouseRobotAgent {
+  agent_id: str
+  peers: dict[PeerState]
+  current_task: dict?
+  receive_messages()
+  step_motion()
+  broadcast_status()
+}
+
+class WarehouseSupervisor {
+  tasks: list[Task]
+  agents: dict[NetworkAgent]
+  strategy: Strategy
+  dispatch()
+  broadcast_task_board()
+  receive_messages()
+}
+
+class WarehouseLayout {
+  bounds: tuple[float]
+  obstacles: list[RectObstacle]
+  plan_path()
+  segment_is_free()
+}
+
+class TrafficRuleEngine {
+  safety_margin: float
+  must_yield()
+}
+
+WarehouseSupervisor "1" *-- "3" Task
+WarehouseSupervisor "1" *-- "4" NetworkAgent
+WarehouseSupervisor "1" --> "1" Strategy
+WarehouseRobotAgent "1" --> "1" WarehouseLayout
+WarehouseRobotAgent "1" --> "1" TrafficRuleEngine
+Task "1" --> "0..*" Route : route options
+Assignment --> AgentSnapshot : winner
+Assignment --> Task : assigned task
+Assignment --> Route : selected route
+
+note bottom of Assignment
+Assignment is first produced by
+Contract Net auction, then route_id
+is refined by the congestion game.
+end note
+@enduml

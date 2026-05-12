@@ -1,0 +1,210 @@
+#VRML_SIM R2023b utf8
+
+PROTO WarehouseRobot [
+  # Позиция робота в мире: X, Y, Z.
+  field SFVec3f translation 0 0 0.14
+  # Ориентация робота; yaw задается вращением вокруг Z.
+  field SFRotation rotation 0 0 1 0
+  # Имя Webots-узла, из которого контроллер получает agent_id.
+  field SFString name "warehouse_robot"
+  # По умолчанию каждый робот запускает индивидуальный MAS-контроллер.
+  field SFString controller "warehouse_robot_agent"
+  # Цвет корпуса, чтобы агентов можно было визуально различать.
+  field SFColor color 0.13 0.33 0.78
+] {
+  Robot {
+    # Webots подставляет translation из поля PROTO.
+    translation IS translation
+    # Webots подставляет rotation из поля PROTO.
+    rotation IS rotation
+    # name передается в Python-контроллер.
+    name IS name
+    # controller выбирает папку controllers/<controller_name>.
+    controller IS controller
+    # supervisor TRUE дает локальному robot-agent доступ к своему node и cargo DEF.
+    supervisor TRUE
+    children [
+      # Receiver принимает task_board, strategy, assignment и peer status.
+      Receiver {
+        name "network_receiver"
+        channel 1
+      }
+      # Emitter публикует status, pickup, done и replan.
+      Emitter {
+        name "network_emitter"
+        channel 1
+      }
+      # Основной корпус робота.
+      Transform {
+        translation 0 0 0.10
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor IS color
+              roughness 0.45
+              metalness 0
+            }
+            geometry Box {
+              size 0.62 0.78 0.20
+            }
+          }
+        ]
+      }
+      # Нижняя грузовая платформа.
+      Transform {
+        translation 0 -0.10 0.235
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.08 0.09 0.10
+              roughness 0.55
+            }
+            geometry Box {
+              size 0.54 0.46 0.07
+            }
+          }
+        ]
+      }
+      # Верхняя светлая площадка под груз.
+      Transform {
+        translation 0 -0.10 0.295
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.78 0.80 0.82
+              roughness 0.35
+              metalness 0.1
+            }
+            geometry Box {
+              size 0.50 0.42 0.03
+            }
+          }
+        ]
+      }
+      # Передний сенсорный блок для визуальной ориентации.
+      Transform {
+        translation 0 0.32 0.24
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.92 0.93 0.96
+              roughness 0.35
+            }
+            geometry Box {
+              size 0.16 0.12 0.10
+            }
+          }
+        ]
+      }
+      # Вертикальная стойка условного сенсора.
+      Transform {
+        translation 0 0.28 0.38
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.04 0.04 0.04
+              roughness 0.4
+            }
+            geometry Cylinder {
+              height 0.20
+              radius 0.025
+            }
+          }
+        ]
+      }
+      # Верхний лидар/сенсор как визуальная деталь.
+      Transform {
+        translation 0 0.28 0.50
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.02 0.02 0.025
+              roughness 0.25
+            }
+            geometry Cylinder {
+              height 0.06
+              radius 0.105
+              subdivision 32
+            }
+          }
+        ]
+      }
+      # Переднее левое колесо.
+      Transform {
+        translation -0.35 0.24 0.02
+        rotation 0 1 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.015 0.015 0.017
+              roughness 0.7
+            }
+            geometry Cylinder {
+              height 0.08
+              radius 0.105
+              subdivision 32
+            }
+          }
+        ]
+      }
+      # Переднее правое колесо.
+      Transform {
+        translation 0.35 0.24 0.02
+        rotation 0 1 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.015 0.015 0.017
+              roughness 0.7
+            }
+            geometry Cylinder {
+              height 0.08
+              radius 0.105
+              subdivision 32
+            }
+          }
+        ]
+      }
+      # Заднее левое колесо.
+      Transform {
+        translation -0.35 -0.24 0.02
+        rotation 0 1 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.015 0.015 0.017
+              roughness 0.7
+            }
+            geometry Cylinder {
+              height 0.08
+              radius 0.105
+              subdivision 32
+            }
+          }
+        ]
+      }
+      # Заднее правое колесо.
+      Transform {
+        translation 0.35 -0.24 0.02
+        rotation 0 1 0 1.5708
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.015 0.015 0.017
+              roughness 0.7
+            }
+            geometry Cylinder {
+              height 0.08
+              radius 0.105
+              subdivision 32
+            }
+          }
+        ]
+      }
+    ]
+    # Bounding object нужен Webots для визуальной/физической оболочки робота.
+    boundingObject Box {
+      size 0.72 0.88 0.56
+    }
+  }
+}

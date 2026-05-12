@@ -1,0 +1,39 @@
+@startuml state_machine
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+
+title Состояния робота и транспортной задачи
+
+state "Robot lifecycle" as robot {
+  [*] --> Idle
+  Idle --> ToPickup : assignment won
+  ToPickup --> Waiting : must_yield()
+  Waiting --> ToPickup : path clear
+  ToPickup --> Transporting : reaches pickup
+  Transporting --> WaitingLoaded : must_yield()
+  WaitingLoaded --> Transporting : path clear
+  Transporting --> Idle : reaches dropoff
+}
+
+state "Task lifecycle" as task {
+  [*] --> Open
+  Open --> Assigned : auction winner
+  Assigned --> Picked : robot at pickup
+  Picked --> Completed : robot at dropoff
+  Completed --> [*]
+}
+
+note right of robot
+ToPickup corresponds to an
+assigned task. Transporting
+means that cargo follows the
+robot platform.
+end note
+
+note right of task
+Completed keeps the cargo at
+the dropoff zone and releases
+the robot back to idle.
+end note
+@enduml

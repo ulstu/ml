@@ -1,0 +1,57 @@
+@startuml decision_sequence
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+
+title Многоуровневое принятие решений в одном цикле
+
+actor "Webots clock" as clock
+participant "WarehouseSupervisor" as sup
+participant "Robot agents\nwarehouse_robot_agent.py" as agents
+participant "llm_strategy.py" as llm
+database "LocalVectorStore\nwarehouse_rules.json" as vectordb
+participant "Ollama\nlocal LLM" as ollama
+participant "game_models.py\nContract Net" as auction
+participant "game_models.py\nCongestion Game" as game
+participant "planner.py + traffic_rules.py\nA* and collision checks" as planner
+participant "Webots nodes\nrobots/cargo" as nodes
+
+clock -> sup : step(time_step)
+
+alt strategy period elapsed
+  sup -> llm : ask_llm_strategy(tasks, agents, now)
+  llm -> vectordb : query compact state
+  vectordb --> llm : retrieved rules
+  llm -> ollama : POST /api/generate\ncompact JSON state
+  alt LLM responds
+    ollama --> llm : JSON weights
+  else connection error, invalid JSON, or configured timeout
+    llm --> llm : fallback_strategy()
+  end
+  llm --> sup : Strategy
+  sup -> agents : broadcast strategy
+end
+
+alt dispatch period elapsed
+  sup -> auction : contract_net_auction()
+  auction --> auction : compute bids\nreward + urgency - costs
+  auction -> game : choose_route_nash_equilibrium()
+  loop iterated best response
+    game --> game : each winner selects\nminimum-cost route
+  end
+  game --> auction : stable assignments
+  auction --> sup : Assignment[]
+  sup -> agents : assignment messages
+end
+
+loop every simulation step
+  agents -> agents : exchange status messages
+  agents -> planner : must_yield(), segment_is_free(),\nplan_path() if blocked
+  planner --> agents : safe next target or wait
+  agents -> nodes : set own robot translation/rotation
+  agents -> nodes : set assigned cargo translation
+  agents -> sup : status, pickup, done, replan
+end
+
+sup --> sup : report [pickup], [done], [success]
+@enduml

@@ -1,0 +1,59 @@
+@startuml components
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName Arial
+skinparam packageTitleAlignment left
+
+title Компоненты примера Webots MAS
+
+package "Webots scene" {
+  [game_theory_warehouse.wbt] as world
+  [WarehouseRobot.proto] as proto
+  [ROBOT_0..ROBOT_3] as robots
+  [CARGO_A..CARGO_C] as cargos
+  [Receiver/Emitter channel 1] as network
+}
+
+package "Supervisor controller" {
+  [warehouse_supervisor.py] as supervisor
+  [scenario.py] as scenario
+  [game_models.py] as models
+  [llm_strategy.py] as llm
+  [vector_memory.py] as vectormemory
+  [warehouse_rules.json] as rules
+  [planner.py] as planner
+  [traffic_rules.py] as traffic
+}
+
+package "Robot controllers" {
+  [warehouse_robot_agent.py] as agent
+}
+
+cloud "Local Ollama\nqwen2.5:0.5b or other model" as ollama
+
+world --> proto : EXTERNPROTO
+world --> robots : DEF nodes
+world --> cargos : DEF nodes
+world --> network : message bus
+robots --> agent : individual controller
+
+supervisor --> network : task board,\nstrategy,\nassignments
+agent --> network : status,\npickup/done,\npeer state
+agent --> robots : own translation/rotation
+agent --> cargos : own assigned cargo
+supervisor --> scenario : tasks and routes
+supervisor --> models : auction,\ncongestion game,\nbest response
+supervisor --> llm : ask strategy weights
+agent --> planner : A* replanning,\ncollision checks
+agent --> traffic : priority and yield rules
+llm --> ollama : HTTP /api/generate
+llm --> vectormemory : retrieve rules
+vectormemory --> rules : persisted documents
+
+note right of models
+Formal core is independent
+from Webots API and can be
+tested with dry_run.py.
+end note
+@enduml
