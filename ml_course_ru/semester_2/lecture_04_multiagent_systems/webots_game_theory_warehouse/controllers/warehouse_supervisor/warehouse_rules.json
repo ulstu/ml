@@ -21,9 +21,16 @@
       "text": "The central crossing is short but shared. When several assigned routes use the same center edges, the congestion-game penalty should increase so some robots choose north, south or east bypasses."
     },
     {
+      "id": "large_scene_policy",
+      "text": "In a large warehouse with many simultaneous transport tasks, waiting at the central crossing can dominate travel distance. The strategic advisor should increase congestion_weight, keep travel_weight low or moderate, and prefer balanced north, south, east and west bypass routes instead of sending all robots through the center."
+    },
+    {
+      "id": "maintenance_center_policy",
+      "text": "If the scene profile says the center crossing has maintenance or inspection traffic, do not drive all routes through the center. Blocking at most one center edge is allowed, but the safer policy is usually to raise congestion_weight and spread robots over redundant bypass corridors."
+    },
+    {
       "id": "warehouse_axes",
       "text": "The Webots world uses ENU coordinates. East is positive X, north is positive Y, and height is positive Z. Do not describe movements with screen-left or screen-right unless the camera orientation is fixed."
     }
   ]
 }
-

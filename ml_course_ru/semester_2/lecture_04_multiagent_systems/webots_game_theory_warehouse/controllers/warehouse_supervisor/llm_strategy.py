@@ -96,9 +96,14 @@ def fallback_strategy(tasks: Sequence[Task], agents: Sequence[AgentSnapshot], no
     )
 
 
-def _compact_state(tasks: Sequence[Task], agents: Sequence[AgentSnapshot], now: float) -> dict:
+def _compact_state(
+    tasks: Sequence[Task],
+    agents: Sequence[AgentSnapshot],
+    now: float,
+    scene_profile: Optional[dict] = None,
+) -> dict:
     # Компактное состояние уменьшает prompt и заставляет LLM отвечать по делу.
-    return {
+    state = {
         # Время округляем до 0.1 секунды.
         "time": round(now, 1),
         # Для каждой задачи оставляем только поля, важные для стратегии.
@@ -132,8 +137,13 @@ def _compact_state(tasks: Sequence[Task], agents: Sequence[AgentSnapshot], now: 
             "south_bypass",
             "north_bypass",
             "east_bypass",
+            "west_bypass",
         ],
     }
+    if scene_profile:
+        # scene_profile передает LLM именно стратегический контекст эксперимента.
+        state["scene_profile"] = scene_profile
+    return state
 
 
 def _extract_json(text: str) -> dict:
@@ -165,7 +175,7 @@ def _bounded_margin(value: object, fallback: float) -> float:
     except (TypeError, ValueError):
         return fallback
     # Ограничиваем safety margin реалистичным диапазоном метров.
-    return max(0.45, min(1.2, number))
+    return max(0.45, min(0.9, number))
 
 
 def ask_llm_strategy(
@@ -173,13 +183,14 @@ def ask_llm_strategy(
     agents: Sequence[AgentSnapshot],
     now: float,
     timeout: Optional[float] = None,
+    scene_profile: Optional[dict] = None,
 ) -> Strategy:
     """Request strategic weights from a local Ollama model."""
 
     # Если вызывающий код не задал лимит явно, используем общий режим из MAS_LLM_TIMEOUT.
     effective_timeout = LLM_TIMEOUT if timeout is None else timeout
     # Сначала строим компактное состояние склада.
-    state = _compact_state(tasks, agents, now)
+    state = _compact_state(tasks, agents, now, scene_profile)
     # Загружаем локальную векторную БД правил.
     store = LocalVectorStore.default()
     # query_text — текстовый запрос для RAG, построенный из состояния склада.
@@ -197,11 +208,15 @@ def ask_llm_strategy(
         "congestion_weight, battery_weight, safety_margin, traffic_rule, "
         "blocked_edges, note. "
         "Weights must be numbers between 0.3 and 4.0. blocked_edges must be a "
-        "list containing only known possible_edges. safety_margin must be a "
-        "number between 0.45 and 1.2 meters. Prefer high deadline_weight when "
-        "deadlines are close and high congestion_weight when many agents are "
-        "busy. Use retrieved warehouse rules as policy memory, but do not "
-        "invent direct robot commands.\nRetrieved rules:\n"
+        "list containing only known possible_edges; block at most one edge. "
+        "safety_margin must be a number between 0.45 and 0.9 meters. Prefer "
+        "high deadline_weight when deadlines are close and high "
+        "congestion_weight when many agents or tasks share the same central "
+        "crossing. In large warehouses, do not over-penalize travel distance: "
+        "when the scene_profile says center conflicts are expected, keep "
+        "travel_weight low or moderate and use congestion_weight to spread "
+        "traffic across bypass routes. Use retrieved warehouse rules as policy "
+        "memory, but do not invent direct robot commands.\nRetrieved rules:\n"
         + rules_to_prompt(retrieved)
         + "\nState:\n"
         + json.dumps(state, ensure_ascii=True)
@@ -263,9 +278,10 @@ def ask_llm_strategy(
             "south_bypass",
             "north_bypass",
             "east_bypass",
+            "west_bypass",
         }
         # Фильтруем blocked_edges, чтобы игнорировать выдуманные LLM ребра.
-        blocked = tuple(edge for edge in decision.get("blocked_edges", []) if edge in allowed_edges)
+        blocked = tuple(edge for edge in decision.get("blocked_edges", []) if edge in allowed_edges)[:1]
         # Собираем нормализованную Strategy.
         strategy = Strategy(
             deadline_weight=_bounded_weight(decision.get("deadline_weight"), fallback.deadline_weight),
@@ -278,6 +294,24 @@ def ask_llm_strategy(
             retrieved_rules=tuple(rule.rule_id for rule in retrieved),
             note=str(decision.get("note", "ollama strategy")),
         )
+        if scene_profile and scene_profile.get("disrupted_edges"):
+            # Maintenance-профиль из основной сцены: LLM интерпретирует правило,
+            # а guardrail переводит его в безопасное ограничение для игры с
+            # заторами. Закрываем только одно ребро, чтобы не обвалить граф.
+            disrupted = [edge for edge in scene_profile.get("disrupted_edges", []) if edge in allowed_edges]
+            strategy.blocked_edges = tuple(disrupted[:1])
+            strategy.congestion_weight = max(strategy.congestion_weight, 3.8)
+            strategy.travel_weight = min(strategy.travel_weight, 0.55)
+            strategy.safety_margin = min(strategy.safety_margin, 0.72)
+            strategy.note = strategy.note + " | maintenance guardrail"
+        elif scene_profile is None and len(tasks) <= 3:
+            # В базовой Webots-демонстрации два диагональных задания иначе
+            # целятся в один центральный коридор. Закрываем одно входное ребро
+            # как "metering" policy: это не команда роботу, а мягкое
+            # стратегическое ограничение для congestion game.
+            strategy.blocked_edges = ("west_center",)
+            strategy.safety_margin = min(strategy.safety_margin, 0.72)
+            strategy.note = strategy.note + " | base-scene guardrail: meter west_center"
         # Логируем уже проверенную стратегию, а не сырой ответ LLM.
         _log("llm-response", strategy_to_log(strategy))
         return strategy

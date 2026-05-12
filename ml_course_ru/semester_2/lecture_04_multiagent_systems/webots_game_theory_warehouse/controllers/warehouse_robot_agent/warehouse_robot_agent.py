@@ -328,8 +328,10 @@ class WarehouseRobotAgent:
     def ensure_collision_free_target(self, target: Point) -> Optional[Point]:
         # dynamic — текущие активные роботы-соседи.
         dynamic = self.peer_obstacles()
-        # Если прямой сегмент свободен, оставляем исходный target.
-        if self.layout.segment_is_free(self.position, target, dynamic=dynamic):
+        # Длинный сегмент проверяем только на статические препятствия. Иначе робот
+        # начинает перестраиваться из-за соседа, который пока далеко, но стоит
+        # около будущего waypoint. Динамику проверяет короткий next_position ниже.
+        if self.layout.segment_is_free(self.position, target, dynamic=()):
             return target
 
         # Если сегмент заблокирован, запускаем перепланирование не чаще раза в секунду.

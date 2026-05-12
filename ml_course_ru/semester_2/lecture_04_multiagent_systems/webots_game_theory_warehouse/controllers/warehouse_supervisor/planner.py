@@ -8,6 +8,7 @@ from dataclasses import dataclass
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from game_models import Point, distance
+from warehouse_geometry import SCENE_SCALE, scaled_point
 
 
 @dataclass(frozen=True)
@@ -97,7 +98,7 @@ class WarehouseLayout:
         # Длина сегмента нужна, чтобы понять, сколько промежуточных точек проверять.
         length = distance(start, goal)
         # Чем меньше шаг семплирования, тем меньше шанс "перепрыгнуть" тонкое препятствие.
-        samples = max(2, int(math.ceil(length / (self.grid_step * 0.15))))
+        samples = max(2, int(math.ceil(length / (self.grid_step * 0.45))))
         # Проверяем start, goal и все промежуточные точки на отрезке.
         for index in range(samples + 1):
             # alpha идет от 0 до 1 и задает положение точки на отрезке.
@@ -280,20 +281,23 @@ class WarehouseLayout:
         return simplified
 
 
-def make_warehouse_layout() -> WarehouseLayout:
+def make_warehouse_layout(scale: float = SCENE_SCALE, route_variant: str = "standard") -> WarehouseLayout:
     # Фабрика возвращает карту склада, совпадающую с расширенной Webots-сценой.
+    obstacles = [
+        RectObstacle("rack_north_west", scaled_point((-3.12, 3.44), scale), scaled_point((3.28, 0.36), scale)),
+        RectObstacle("rack_north_east", scaled_point((3.12, 3.44), scale), scaled_point((3.28, 0.36), scale)),
+        RectObstacle("rack_south_west", scaled_point((-3.12, -3.44), scale), scaled_point((3.28, 0.36), scale)),
+        RectObstacle("rack_south_east", scaled_point((3.12, -3.44), scale), scaled_point((3.28, 0.36), scale)),
+    ]
+    if route_variant == "maintenance_center":
+        obstacles.append(RectObstacle("maintenance_center", scaled_point((0.0, 0.0), scale), scaled_point((1.55, 1.55), scale)))
     return WarehouseLayout(
         # Границы допустимой области движения роботов.
-        bounds=(-7.45, 7.45, -5.85, 5.85),
+        bounds=(-7.45 * scale, 7.45 * scale, -5.85 * scale, 5.85 * scale),
         # Прямоугольные стеллажи, которые нельзя пересекать safety disk робота.
-        obstacles=[
-            RectObstacle("rack_north_west", (-3.12, 3.44), (3.28, 0.36)),
-            RectObstacle("rack_north_east", (3.12, 3.44), (3.28, 0.36)),
-            RectObstacle("rack_south_west", (-3.12, -3.44), (3.28, 0.36)),
-            RectObstacle("rack_south_east", (3.12, -3.44), (3.28, 0.36)),
-        ],
-        # Размер клетки A* выбран достаточно мелким для объезда стеллажей.
-        grid_step=0.35,
+        obstacles=obstacles,
+        # На увеличенной сцене крупная клетка держит A* быстрым и наглядным.
+        grid_step=0.75 if scale >= 2.0 else 0.35,
         # Радиус safety disk чуть больше габаритов визуальной платформы.
         robot_radius=0.46,
     )

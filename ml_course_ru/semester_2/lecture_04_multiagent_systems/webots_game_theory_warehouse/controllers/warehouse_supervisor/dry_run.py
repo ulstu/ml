@@ -13,8 +13,9 @@ from typing import List, Optional
 
 from game_models import AgentSnapshot, Point, Strategy, contract_net_auction, distance
 from planner import DynamicObstacle, make_warehouse_layout
-from scenario import make_routes, make_tasks
+from scenario import WEBOTS_ROBOT_COUNT, make_webots_tasks_and_routes, release_time_for_task
 from traffic_rules import TrafficRuleEngine
+from warehouse_geometry import make_agent_start_positions
 
 
 # Скорость совпадает с Webots-контроллером робота.
@@ -96,9 +97,11 @@ def move_towards(agent: DryAgent, agents: List[DryAgent], layout, traffic: Traff
 
     # Строим список динамических препятствий из других агентов.
     dynamic = dynamic_obstacles(agent, agents, layout)
-    # Если прямой сегмент к target заблокирован, пробуем A* detour.
-    if not layout.segment_is_free(agent.position, target, dynamic=dynamic):
-        detour = layout.plan_path(agent.position, target, dynamic=dynamic)
+    # Длинный сегмент проверяем только на статические препятствия. Динамику
+    # учитываем на коротком следующем шаге, чтобы не перестраиваться из-за
+    # робота, который пока далеко, но стоит около будущего waypoint.
+    if not layout.segment_is_free(agent.position, target, dynamic=()):
+        detour = layout.plan_path(agent.position, target, dynamic=())
         # Если detour пуст или первый шаг небезопасен, агент ждет.
         if not detour or not layout.segment_is_free(agent.position, detour[0], dynamic=dynamic):
             agent.wait_timer += dt
@@ -129,11 +132,9 @@ def move_towards(agent: DryAgent, agents: List[DryAgent], layout, traffic: Traff
     agent.wait_timer = 0.0
 
 
-def run(max_time: float = 220.0, dt: float = 0.1) -> int:
-    # Создаем fresh tasks для headless-прогона.
-    tasks = make_tasks()
-    # Загружаем маршруты из того же сценария, что и Webots.
-    routes_by_task = make_routes()
+def run(max_time: float = 980.0, dt: float = 0.2) -> int:
+    # Создаем fresh tasks для основной Webots-конфигурации.
+    tasks, routes_by_task = make_webots_tasks_and_routes()
     # Индекс route_id -> Route.
     route_index = {route.route_id: route for routes in routes_by_task.values() for route in routes}
     # Карта склада с obstacle checks.
@@ -142,13 +143,11 @@ def run(max_time: float = 220.0, dt: float = 0.1) -> int:
     traffic = TrafficRuleEngine(0.62)
     # Стартовые позиции совпадают с world-файлом.
     agents = [
-        DryAgent("R0", (-6.32, -0.88)),
-        DryAgent("R1", (-6.32, 0.88)),
-        DryAgent("R2", (-4.08, -1.52)),
-        DryAgent("R3", (-4.08, 1.52)),
+        DryAgent("R%d" % index, position)
+        for index, position in enumerate(make_agent_start_positions(WEBOTS_ROBOT_COUNT))
     ]
     # Фиксированная стратегия делает dry-run детерминированным.
-    strategy = Strategy(deadline_weight=1.5, travel_weight=1.0, congestion_weight=1.8, battery_weight=0.7, safety_margin=0.62)
+    strategy = Strategy(deadline_weight=1.5, travel_weight=1.0, congestion_weight=3.0, battery_weight=0.7, safety_margin=0.62, blocked_edges=("west_center",))
     # Callback для получения дедлайнов из списка tasks.
     task_deadline = lambda task_id: next(item.deadline for item in tasks if item.task_id == task_id)
     # now — модельное время.
@@ -160,6 +159,11 @@ def run(max_time: float = 220.0, dt: float = 0.1) -> int:
 
     # Основной цикл dry-run.
     while now <= max_time:
+        # Открываем следующие волны задач так же, как Webots supervisor.
+        for task in tasks:
+            if task.status == "pending" and now >= release_time_for_task(task.task_id):
+                task.status = "open"
+                events.append("t=%05.1f release %s" % (now, task.task_id))
         # Запускаем аукцион, когда пришло время dispatch.
         if now >= next_dispatch:
             assignments = contract_net_auction(snapshots(agents), tasks, routes_by_task, now, strategy)

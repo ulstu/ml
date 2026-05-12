@@ -8,7 +8,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.287460297897924 0.4636027509601479 0.8381163800061541 1.2737696302489359
-  position -8.2 -14.8 12.4
+  position -27.88 -50.32 42.16
   followType "None"
 }
 DEF SUN DirectionalLight {
@@ -25,7 +25,7 @@ DEF WAREHOUSE_FLOOR Solid {
         metalness 0
       }
       geometry Box {
-        size 15.36 12.16 0.04
+        size 52.224 41.344 0.04
       }
     }
   ]
@@ -40,14 +40,14 @@ DEF CENTER_CROSSING Solid {
         roughness 0.65
       }
       geometry Box {
-        size 1.92 1.92 0.012
+        size 6.528 6.528 0.012
       }
     }
   ]
   name "shared congestion crossing"
 }
 DEF WEST_CENTER_LANE Solid {
-  translation -2.96 0 0.012
+  translation -10.064 0 0.012
   children [
     Shape {
       appearance PBRAppearance {
@@ -55,14 +55,14 @@ DEF WEST_CENTER_LANE Solid {
         roughness 0.6
       }
       geometry Box {
-        size 4 0.128 0.012
+        size 13.6 0.435 0.012
       }
     }
   ]
   name "west center lane"
 }
 DEF EAST_CENTER_LANE Solid {
-  translation 2.96 0 0.012
+  translation 10.064 0 0.012
   children [
     Shape {
       appearance PBRAppearance {
@@ -70,14 +70,14 @@ DEF EAST_CENTER_LANE Solid {
         roughness 0.6
       }
       geometry Box {
-        size 4 0.128 0.012
+        size 13.6 0.435 0.012
       }
     }
   ]
   name "east center lane"
 }
 DEF NORTH_CENTER_LANE Solid {
-  translation 0 2.4 0.012
+  translation 0 8.16 0.012
   children [
     Shape {
       appearance PBRAppearance {
@@ -85,14 +85,14 @@ DEF NORTH_CENTER_LANE Solid {
         roughness 0.6
       }
       geometry Box {
-        size 0.128 3.36 0.012
+        size 0.435 11.424 0.012
       }
     }
   ]
   name "north center lane"
 }
 DEF SOUTH_CENTER_LANE Solid {
-  translation 0 -2.4 0.012
+  translation 0 -8.16 0.012
   children [
     Shape {
       appearance PBRAppearance {
@@ -100,14 +100,14 @@ DEF SOUTH_CENTER_LANE Solid {
         roughness 0.6
       }
       geometry Box {
-        size 0.128 3.36 0.012
+        size 0.435 11.424 0.012
       }
     }
   ]
   name "south center lane"
 }
 DEF NORTH_BYPASS_LANE Solid {
-  translation 0 4.64 0.011
+  translation 0 15.776 0.011
   children [
     Shape {
       appearance PBRAppearance {
@@ -115,14 +115,14 @@ DEF NORTH_BYPASS_LANE Solid {
         roughness 0.6
       }
       geometry Box {
-        size 6.88 0.128 0.012
+        size 23.392 0.435 0.012
       }
     }
   ]
   name "north bypass lane"
 }
 DEF SOUTH_BYPASS_LANE Solid {
-  translation 0 -4.64 0.011
+  translation 0 -15.776 0.011
   children [
     Shape {
       appearance PBRAppearance {
@@ -130,14 +130,14 @@ DEF SOUTH_BYPASS_LANE Solid {
         roughness 0.6
       }
       geometry Box {
-        size 6.88 0.128 0.012
+        size 23.392 0.435 0.012
       }
     }
   ]
   name "south bypass lane"
 }
 DEF EAST_BYPASS_LANE Solid {
-  translation 4.4 0 0.011
+  translation 14.96 0 0.011
   children [
     Shape {
       appearance PBRAppearance {
@@ -145,14 +145,14 @@ DEF EAST_BYPASS_LANE Solid {
         roughness 0.6
       }
       geometry Box {
-        size 0.128 9.28 0.012
+        size 0.435 31.552 0.012
       }
     }
   ]
   name "east bypass lane"
 }
 DEF NORTH_WALL Solid {
-  translation 0 6.16 0.5
+  translation 0 20.944 0.5
   children [
     Shape {
       appearance PBRAppearance {
@@ -160,14 +160,14 @@ DEF NORTH_WALL Solid {
         roughness 0.8
       }
       geometry Box {
-        size 15.52 0.192 1
+        size 52.768 0.653 1
       }
     }
   ]
   name "north wall"
 }
 DEF SOUTH_WALL Solid {
-  translation 0 -6.16 0.5
+  translation 0 -20.944 0.5
   children [
     Shape {
       appearance PBRAppearance {
@@ -175,14 +175,14 @@ DEF SOUTH_WALL Solid {
         roughness 0.8
       }
       geometry Box {
-        size 15.52 0.192 1
+        size 52.768 0.653 1
       }
     }
   ]
   name "south wall"
 }
 DEF WEST_WALL Solid {
-  translation -7.76 0 0.5
+  translation -26.384 0 0.5
   children [
     Shape {
       appearance PBRAppearance {
@@ -190,14 +190,14 @@ DEF WEST_WALL Solid {
         roughness 0.8
       }
       geometry Box {
-        size 0.192 12.16 1
+        size 0.653 41.344 1
       }
     }
   ]
   name "west wall"
 }
 DEF EAST_DOCK_BACK_WALL Solid {
-  translation 7.76 0 0.5
+  translation 26.384 0 0.5
   children [
     Shape {
       appearance PBRAppearance {
@@ -205,14 +205,14 @@ DEF EAST_DOCK_BACK_WALL Solid {
         roughness 0.8
       }
       geometry Box {
-        size 0.192 12.16 1
+        size 0.653 41.344 1
       }
     }
   ]
   name "east wall with docks"
 }
 DEF DOCK_DOOR_1 Solid {
-  translation 7.632 2.48 0.45
+  translation 25.949 8.432 0.45
   children [
     Shape {
       appearance PBRAppearance {
@@ -221,14 +221,14 @@ DEF DOCK_DOOR_1 Solid {
         metalness 0.2
       }
       geometry Box {
-        size 0.128 1.68 0.7
+        size 0.435 5.712 0.7
       }
     }
   ]
   name "dock door 1"
 }
 DEF DOCK_DOOR_2 Solid {
-  translation 7.632 -2.48 0.45
+  translation 25.949 -8.432 0.45
   children [
     Shape {
       appearance PBRAppearance {
@@ -237,14 +237,14 @@ DEF DOCK_DOOR_2 Solid {
         metalness 0.2
       }
       geometry Box {
-        size 0.128 1.68 0.7
+        size 0.435 5.712 0.7
       }
     }
   ]
   name "dock door 2"
 }
 DEF RACK_NORTH_A Solid {
-  translation -3.12 3.44 0.62
+  translation -10.608 11.696 0.62
   children [
     Shape {
       appearance PBRAppearance {
@@ -252,7 +252,7 @@ DEF RACK_NORTH_A Solid {
         roughness 0.65
       }
       geometry Box {
-        size 3.28 0.352 0.12
+        size 11.152 1.197 0.12
       }
     }
     Pose {
@@ -264,13 +264,13 @@ DEF RACK_NORTH_A Solid {
             roughness 0.65
           }
           geometry Box {
-            size 3.28 0.352 0.12
+            size 11.152 1.197 0.12
           }
         }
       ]
     }
     Pose {
-      translation -1.152 0 0.18
+      translation -3.917 0 0.18
       children [
         Shape {
           appearance PBRAppearance {
@@ -278,13 +278,13 @@ DEF RACK_NORTH_A Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
     }
     Pose {
-      translation 0.24 0 0.18
+      translation 0.816 0 0.18
       children [
         Shape {
           appearance PBRAppearance {
@@ -292,13 +292,13 @@ DEF RACK_NORTH_A Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
     }
     Pose {
-      translation 1.216 0 0.53
+      translation 4.134 0 0.53
       children [
         Shape {
           appearance PBRAppearance {
@@ -306,7 +306,7 @@ DEF RACK_NORTH_A Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
@@ -315,7 +315,7 @@ DEF RACK_NORTH_A Solid {
   name "rack north A"
 }
 DEF RACK_NORTH_B Solid {
-  translation 3.12 3.44 0.62
+  translation 10.608 11.696 0.62
   children [
     Shape {
       appearance PBRAppearance {
@@ -323,7 +323,7 @@ DEF RACK_NORTH_B Solid {
         roughness 0.65
       }
       geometry Box {
-        size 3.28 0.352 0.12
+        size 11.152 1.197 0.12
       }
     }
     Pose {
@@ -335,13 +335,13 @@ DEF RACK_NORTH_B Solid {
             roughness 0.65
           }
           geometry Box {
-            size 3.28 0.352 0.12
+            size 11.152 1.197 0.12
           }
         }
       ]
     }
     Pose {
-      translation -1.04 0 0.18
+      translation -3.536 0 0.18
       children [
         Shape {
           appearance PBRAppearance {
@@ -349,13 +349,13 @@ DEF RACK_NORTH_B Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
     }
     Pose {
-      translation 1.12 0 0.53
+      translation 3.808 0 0.53
       children [
         Shape {
           appearance PBRAppearance {
@@ -363,7 +363,7 @@ DEF RACK_NORTH_B Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
@@ -372,7 +372,7 @@ DEF RACK_NORTH_B Solid {
   name "rack north B"
 }
 DEF RACK_SOUTH_A Solid {
-  translation -3.12 -3.44 0.62
+  translation -10.608 -11.696 0.62
   children [
     Shape {
       appearance PBRAppearance {
@@ -380,7 +380,7 @@ DEF RACK_SOUTH_A Solid {
         roughness 0.65
       }
       geometry Box {
-        size 3.28 0.352 0.12
+        size 11.152 1.197 0.12
       }
     }
     Pose {
@@ -392,13 +392,13 @@ DEF RACK_SOUTH_A Solid {
             roughness 0.65
           }
           geometry Box {
-            size 3.28 0.352 0.12
+            size 11.152 1.197 0.12
           }
         }
       ]
     }
     Pose {
-      translation -1.152 0 0.18
+      translation -3.917 0 0.18
       children [
         Shape {
           appearance PBRAppearance {
@@ -406,13 +406,13 @@ DEF RACK_SOUTH_A Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
     }
     Pose {
-      translation 0.4 0 0.53
+      translation 1.36 0 0.53
       children [
         Shape {
           appearance PBRAppearance {
@@ -420,7 +420,7 @@ DEF RACK_SOUTH_A Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
@@ -429,7 +429,7 @@ DEF RACK_SOUTH_A Solid {
   name "rack south A"
 }
 DEF RACK_SOUTH_B Solid {
-  translation 3.12 -3.44 0.62
+  translation 10.608 -11.696 0.62
   children [
     Shape {
       appearance PBRAppearance {
@@ -437,7 +437,7 @@ DEF RACK_SOUTH_B Solid {
         roughness 0.65
       }
       geometry Box {
-        size 3.28 0.352 0.12
+        size 11.152 1.197 0.12
       }
     }
     Pose {
@@ -449,13 +449,13 @@ DEF RACK_SOUTH_B Solid {
             roughness 0.65
           }
           geometry Box {
-            size 3.28 0.352 0.12
+            size 11.152 1.197 0.12
           }
         }
       ]
     }
     Pose {
-      translation -0.88 0 0.18
+      translation -2.992 0 0.18
       children [
         Shape {
           appearance PBRAppearance {
@@ -463,13 +463,13 @@ DEF RACK_SOUTH_B Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
     }
     Pose {
-      translation 1.152 0 0.53
+      translation 3.917 0 0.53
       children [
         Shape {
           appearance PBRAppearance {
@@ -477,7 +477,7 @@ DEF RACK_SOUTH_B Solid {
             roughness 0.55
           }
           geometry Box {
-            size 0.544 0.544 0.25
+            size 1.85 1.85 0.25
           }
         }
       ]
@@ -486,7 +486,7 @@ DEF RACK_SOUTH_B Solid {
   name "rack south B"
 }
 DEF CHARGER_0 Solid {
-  translation -6.48 -0.88 0.08
+  translation -22.032 -2.992 0.08
   children [
     Shape {
       appearance PBRAppearance {
@@ -495,14 +495,14 @@ DEF CHARGER_0 Solid {
         metalness 0.2
       }
       geometry Box {
-        size 0.288 0.96 0.16
+        size 0.979 3.264 0.16
       }
     }
   ]
   name "charging station west lower"
 }
 DEF CHARGER_1 Solid {
-  translation -6.48 0.88 0.08
+  translation -22.032 2.992 0.08
   children [
     Shape {
       appearance PBRAppearance {
@@ -511,14 +511,14 @@ DEF CHARGER_1 Solid {
         metalness 0.2
       }
       geometry Box {
-        size 0.288 0.96 0.16
+        size 0.979 3.264 0.16
       }
     }
   ]
   name "charging station west upper"
 }
 DEF PICKUP_A Solid {
-  translation -5.36 -2.4 0.035
+  translation -18.224 -8.16 0.035
   children [
     Shape {
       appearance PBRAppearance {
@@ -527,7 +527,7 @@ DEF PICKUP_A Solid {
       }
       geometry Cylinder {
         height 0.07
-        radius 0.32
+        radius 1.088
         subdivision 40
       }
     }
@@ -535,7 +535,7 @@ DEF PICKUP_A Solid {
   name "pickup A blue station"
 }
 DEF PICKUP_B Solid {
-  translation -5.36 2.4 0.035
+  translation -18.224 8.16 0.035
   children [
     Shape {
       appearance PBRAppearance {
@@ -544,7 +544,7 @@ DEF PICKUP_B Solid {
       }
       geometry Cylinder {
         height 0.07
-        radius 0.32
+        radius 1.088
         subdivision 40
       }
     }
@@ -552,7 +552,7 @@ DEF PICKUP_B Solid {
   name "pickup B blue station"
 }
 DEF PICKUP_C Solid {
-  translation 0 -4.24 0.035
+  translation 0 -14.416 0.035
   children [
     Shape {
       appearance PBRAppearance {
@@ -561,7 +561,7 @@ DEF PICKUP_C Solid {
       }
       geometry Cylinder {
         height 0.07
-        radius 0.32
+        radius 1.088
         subdivision 40
       }
     }
@@ -569,7 +569,7 @@ DEF PICKUP_C Solid {
   name "pickup C blue station"
 }
 DEF DROPOFF_1 Solid {
-  translation 5.36 2.48 0.045
+  translation 18.224 8.432 0.045
   children [
     Shape {
       appearance PBRAppearance {
@@ -577,14 +577,14 @@ DEF DROPOFF_1 Solid {
         roughness 0.55
       }
       geometry Box {
-        size 0.96 0.96 0.09
+        size 3.264 3.264 0.09
       }
     }
   ]
   name "dropoff 1 green dock pad"
 }
 DEF DROPOFF_2 Solid {
-  translation 5.36 -2.48 0.045
+  translation 18.224 -8.432 0.045
   children [
     Shape {
       appearance PBRAppearance {
@@ -592,14 +592,14 @@ DEF DROPOFF_2 Solid {
         roughness 0.55
       }
       geometry Box {
-        size 0.96 0.96 0.09
+        size 3.264 3.264 0.09
       }
     }
   ]
   name "dropoff 2 green dock pad"
 }
 DEF DROPOFF_3 Solid {
-  translation 0 4.24 0.045
+  translation 0 14.416 0.045
   children [
     Shape {
       appearance PBRAppearance {
@@ -607,14 +607,14 @@ DEF DROPOFF_3 Solid {
         roughness 0.55
       }
       geometry Box {
-        size 0.96 0.96 0.09
+        size 3.264 3.264 0.09
       }
     }
   ]
   name "dropoff 3 green dock pad"
 }
 DEF CARGO_A Solid {
-  translation -5.36 -2.4 0.23
+  translation -18.224 -8.16 0.23
   children [
     Shape {
       appearance PBRAppearance {
@@ -629,7 +629,7 @@ DEF CARGO_A Solid {
   name "cargo A red crate"
 }
 DEF CARGO_B Solid {
-  translation -5.36 2.4 0.23
+  translation -18.224 8.16 0.23
   children [
     Shape {
       appearance PBRAppearance {
@@ -644,7 +644,7 @@ DEF CARGO_B Solid {
   name "cargo B orange crate"
 }
 DEF CARGO_C Solid {
-  translation 0 -4.24 0.23
+  translation 0 -14.416 0.23
   children [
     Shape {
       appearance PBRAppearance {
@@ -657,6 +657,96 @@ DEF CARGO_C Solid {
     }
   ]
   name "cargo C violet crate"
+}
+DEF CARGO_A2 Solid {
+  translation -18.224 -9.21 0.23
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.86 0.18 0.18
+        roughness 0.55
+      }
+      geometry Box {
+        size 0.576 0.576 0.3
+      }
+    }
+  ]
+  name "cargo A2 red crate"
+}
+DEF CARGO_B2 Solid {
+  translation -18.224 9.21 0.23
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.83 0.46 0.12
+        roughness 0.55
+      }
+      geometry Box {
+        size 0.576 0.576 0.3
+      }
+    }
+  ]
+  name "cargo B2 orange crate"
+}
+DEF CARGO_C2 Solid {
+  translation -1.05 -14.416 0.23
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.54 0.24 0.74
+        roughness 0.55
+      }
+      geometry Box {
+        size 0.576 0.576 0.3
+      }
+    }
+  ]
+  name "cargo C2 violet crate"
+}
+DEF CARGO_A3 Solid {
+  translation -18.224 -7.11 0.23
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.86 0.18 0.18
+        roughness 0.55
+      }
+      geometry Box {
+        size 0.576 0.576 0.3
+      }
+    }
+  ]
+  name "cargo A3 red crate"
+}
+DEF CARGO_B3 Solid {
+  translation -18.224 7.11 0.23
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.83 0.46 0.12
+        roughness 0.55
+      }
+      geometry Box {
+        size 0.576 0.576 0.3
+      }
+    }
+  ]
+  name "cargo B3 orange crate"
+}
+DEF CARGO_C3 Solid {
+  translation 1.05 -14.416 0.23
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.54 0.24 0.74
+        roughness 0.55
+      }
+      geometry Box {
+        size 0.576 0.576 0.3
+      }
+    }
+  ]
+  name "cargo C3 violet crate"
 }
 DEF SUPERVISOR Robot {
   children [
@@ -674,25 +764,49 @@ DEF SUPERVISOR Robot {
   supervisor TRUE
 }
 DEF ROBOT_0 WarehouseRobot {
-  translation -6.32 -0.88 0.14
+  translation -21.488 -2.992 0.14
   rotation 0 0 1 -1.5708
   name "agent_0"
 }
 DEF ROBOT_1 WarehouseRobot {
-  translation -6.32 0.88 0.14
+  translation -21.488 2.992 0.14
   rotation 0 0 1 -1.5708
   name "agent_1"
   color 0.1 0.56 0.42
 }
 DEF ROBOT_2 WarehouseRobot {
-  translation -4.08 -1.52 0.14
+  translation -13.872 -5.168 0.14
   rotation 0 0 1 -1.5708
   name "agent_2"
   color 0.68 0.24 0.72
 }
 DEF ROBOT_3 WarehouseRobot {
-  translation -4.08 1.52 0.14
+  translation -13.872 5.168 0.14
   rotation 0 0 1 -1.5708
   name "agent_3"
   color 0.82 0.46 0.16
+}
+DEF ROBOT_4 WarehouseRobot {
+  translation -21.488 -8.976 0.14
+  rotation 0 0 1 -1.5708
+  name "agent_4"
+  color 0.16 0.42 0.86
+}
+DEF ROBOT_5 WarehouseRobot {
+  translation -21.488 8.976 0.14
+  rotation 0 0 1 -1.5708
+  name "agent_5"
+  color 0.78 0.18 0.22
+}
+DEF ROBOT_6 WarehouseRobot {
+  translation 0 -17.51 0.14
+  rotation 0 0 1 -1.5708
+  name "agent_6"
+  color 0.42 0.62 0.18
+}
+DEF ROBOT_7 WarehouseRobot {
+  translation 0 17.51 0.14
+  rotation 0 0 1 -1.5708
+  name "agent_7"
+  color 0.64 0.28 0.82
 }

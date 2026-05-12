@@ -11,13 +11,13 @@ from controller import Supervisor
 
 from game_models import AgentSnapshot, Assignment, Point, Task, contract_net_auction
 from llm_strategy import ask_llm_strategy, strategy_to_log
-from scenario import make_routes, make_tasks
+from scenario import WEBOTS_ROBOT_COUNT, WEBOTS_SCENE_PROFILE, make_webots_tasks_and_routes, release_time_for_task
 
 
 # DISPATCH_PERIOD задает, как часто coordinator запускает Contract Net.
 DISPATCH_PERIOD = 5.0
 # STRATEGY_PERIOD задает, как часто запрашивается LLM/RAG стратегия.
-STRATEGY_PERIOD = 14.0
+STRATEGY_PERIOD = float(os.environ.get("MAS_STRATEGY_PERIOD", "90.0"))
 # BOARD_PERIOD задает частоту рассылки task board роботам.
 BOARD_PERIOD = 0.7
 
@@ -57,10 +57,8 @@ class WarehouseSupervisor:
         # Включаем приемник на каждом шаге симуляции.
         self.receiver.enable(self.time_step)
 
-        # Загружаем список задач из сценария.
-        self.tasks = make_tasks()
-        # Загружаем кандидатные маршруты для каждой задачи.
-        self.routes_by_task = make_routes()
+        # Загружаем плотную maintenance-конфигурацию: 9 задач, 8 роботов.
+        self.tasks, self.routes_by_task = make_webots_tasks_and_routes()
         # Индекс route_id -> Route ускоряет отправку assignment.
         self.route_index = {
             route.route_id: route
@@ -72,7 +70,7 @@ class WarehouseSupervisor:
         # Стартовое время используем и для LLM, и для расписания, чтобы не делать второй запрос сразу.
         initial_now = self.now()
         # Получаем начальную стратегию от LLM/RAG или fallback.
-        self.strategy = ask_llm_strategy(self.tasks, self.snapshots(), initial_now)
+        self.strategy = ask_llm_strategy(self.tasks, self.snapshots(), initial_now, scene_profile=WEBOTS_SCENE_PROFILE)
         # last_strategy_time равен времени запроса, поэтому следующий запрос будет через STRATEGY_PERIOD.
         self.last_strategy_time = initial_now
         # Отрицательные last_* заставляют выполнить публикацию доски и аукцион сразу после старта.
@@ -88,8 +86,8 @@ class WarehouseSupervisor:
     def _load_agents(self) -> Dict[str, NetworkAgent]:
         # agents — словарь сетевых состояний роботов.
         agents: Dict[str, NetworkAgent] = {}
-        # В мире ожидаются четыре робота ROBOT_0..ROBOT_3.
-        for index in range(4):
+        # В мире ожидаются роботы ROBOT_0..ROBOT_7.
+        for index in range(WEBOTS_ROBOT_COUNT):
             def_name = "ROBOT_%d" % index
             # getFromDef проверяет, что узел реально есть в мире.
             node = self.robot.getFromDef(def_name)
@@ -132,10 +130,12 @@ class WarehouseSupervisor:
             now = self.now()
             # Сначала принимаем все входящие сообщения от роботов.
             self.receive_messages()
+            # Открываем следующие волны заявок, когда наступает их release time.
+            self.release_pending_tasks(now)
 
             # Периодически обновляем стратегию через RAG+LLM.
             if now - self.last_strategy_time >= STRATEGY_PERIOD:
-                self.strategy = ask_llm_strategy(self.tasks, self.snapshots(), now)
+                self.strategy = ask_llm_strategy(self.tasks, self.snapshots(), now, scene_profile=WEBOTS_SCENE_PROFILE)
                 self.last_strategy_time = now
                 print("[strategy]", strategy_to_log(self.strategy))
                 # Рассылаем новую стратегию всем robot-agent контроллерам.
@@ -235,6 +235,15 @@ class WarehouseSupervisor:
         # Каждое назначение превращаем в сетевое assignment-сообщение.
         for assignment in assignments:
             self.apply_assignment(assignment, now)
+
+    def release_pending_tasks(self, now: float) -> None:
+        # Волны A2/B2/C2 и A3/B3/C3 видны на складе сразу, но становятся
+        # доступными аукциону позже, чтобы визуальная сцена не превращалась
+        # в физическую пробку у pickup-зон.
+        for task in self.tasks:
+            if task.status == "pending" and now >= release_time_for_task(task.task_id):
+                task.status = "open"
+                print("[release] task=%s time=%.1f" % (task.task_id, now))
 
     def apply_assignment(self, assignment: Assignment, now: float) -> None:
         # Находим сетевое состояние агента-победителя.
