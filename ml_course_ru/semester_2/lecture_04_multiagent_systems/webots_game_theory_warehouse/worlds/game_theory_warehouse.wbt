@@ -151,6 +151,21 @@ DEF EAST_BYPASS_LANE Solid {
   ]
   name "east bypass lane"
 }
+DEF WEST_BYPASS_LANE Solid {
+  translation -14.96 0 0.011
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.66 0.22 0.66
+        roughness 0.6
+      }
+      geometry Box {
+        size 0.435 31.552 0.012
+      }
+    }
+  ]
+  name "west bypass lane"
+}
 DEF NORTH_WALL Solid {
   translation 0 20.944 0.5
   children [
@@ -750,6 +765,14 @@ DEF CARGO_C3 Solid {
 }
 DEF SUPERVISOR Robot {
   children [
+    Camera {
+      translation 0 0 45
+      name "article_camera"
+      fieldOfView 1.15
+      width 1600
+      height 1000
+      near 0.1
+    }
     Receiver {
       name "network_receiver"
       channel 1

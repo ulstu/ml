@@ -82,6 +82,14 @@ class Strategy:
     traffic_rule: str = "deadline_priority_right_hand"
     # blocked_edges позволяет LLM/стратегии закрывать отдельные ребра графа.
     blocked_edges: Tuple[str, ...] = ()
+    # go_agents — роботы, которым стратегический уровень рекомендует получать новые заявки.
+    go_agents: Tuple[str, ...] = ()
+    # hold_agents — роботы, которым лучше подождать освобождения pickup/dropoff/коридора.
+    hold_agents: Tuple[str, ...] = ()
+    # max_active_tasks ограничивает число одновременно исполняемых заявок.
+    max_active_tasks: int = 3
+    # max_new_assignments ограничивает размер новой пачки назначений за один аукцион.
+    max_new_assignments: int = 3
     # retrieved_rules показывает, какие документы RAG попали в стратегию.
     retrieved_rules: Tuple[str, ...] = ()
     # note хранит человекочитаемое объяснение стратегии.
@@ -107,6 +115,11 @@ class Assignment:
 def distance(a: Point, b: Point) -> float:
     # Евклидово расстояние на плоскости склада.
     return hypot(a[0] - b[0], a[1] - b[1])
+
+
+def task_family(task_id: str) -> str:
+    # A2/B3/C4 используют те же зоны погрузки/разгрузки, что A/B/C.
+    return task_id.rstrip("0123456789")
 
 
 def route_length(route: Route) -> float:
@@ -221,10 +234,39 @@ def contract_net_auction(
 ) -> List[Assignment]:
     """Greedy contract-net auction with utility-based bids."""
 
+    # active_tasks нужны для тактического ограничения пропускной способности склада.
+    active_tasks = [
+        task
+        for task in tasks
+        if task.status not in ("open", "completed")
+    ]
+    # Занятая task family означает, что ее pickup/dropoff слот пока занят.
+    active_families = {task_family(task.task_id) for task in active_tasks}
+    # Сколько новых задач можно выпустить в сеть прямо сейчас.
+    capacity_left = max(strategy.max_active_tasks - len(active_tasks), 0)
+    # LLM/guardrail может дополнительно ограничить размер пачки назначений.
+    max_new_assignments = max(0, min(strategy.max_new_assignments, capacity_left))
+    # Если лимит исчерпан, новые назначения пока не выдаются.
+    if max_new_assignments <= 0:
+        return []
+
     # В аукцион допускаются только свободные роботы.
     idle_agents = [agent for agent in agents if agent.status == "idle"]
+    # Если LLM указала go_agents и среди них есть свободные роботы, используем их как шлюз.
+    if strategy.go_agents:
+        go_idle_agents = [
+            agent
+            for agent in idle_agents
+            if agent.agent_id in strategy.go_agents and agent.agent_id not in strategy.hold_agents
+        ]
+        if go_idle_agents:
+            idle_agents = go_idle_agents
     # Назначаются только еще открытые задачи.
-    open_tasks = [task for task in tasks if task.status == "open"]
+    open_tasks = [
+        task
+        for task in tasks
+        if task.status == "open" and task_family(task.task_id) not in active_families
+    ]
     # candidates — все потенциальные ставки robot-task.
     candidates: List[Assignment] = []
 
@@ -264,19 +306,27 @@ def contract_net_auction(
     used_agents = set()
     # used_tasks запрещает назначать одну задачу нескольким роботам.
     used_tasks = set()
+    # used_families не дает одному аукциону забить одну pickup/dropoff-зону.
+    used_families = set()
     # winners — победители аукциона до уточнения маршрутов.
     winners: List[Assignment] = []
     # Идем по ставкам сверху вниз.
     for candidate in candidates:
         # Пропускаем кандидата, если робот или задача уже заняты.
-        if candidate.agent_id in used_agents or candidate.task_id in used_tasks:
+        family = task_family(candidate.task_id)
+        if candidate.agent_id in used_agents or candidate.task_id in used_tasks or family in used_families:
             continue
         # Фиксируем робота как использованного.
         used_agents.add(candidate.agent_id)
         # Фиксируем задачу как назначенную.
         used_tasks.add(candidate.task_id)
+        # Фиксируем pickup/dropoff-семью как занятую этим батчем.
+        used_families.add(family)
         # Сохраняем победителя.
         winners.append(candidate)
+        # Не выпускаем больше роботов, чем разрешает стратегический слой.
+        if len(winners) >= max_new_assignments:
+            break
 
     # После аукциона решаем отдельную игру выбора маршрутов.
     return choose_route_nash_equilibrium(winners, routes_by_task, strategy)

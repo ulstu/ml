@@ -1,0 +1,75 @@
+@startuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam defaultFontName "Arial"
+skinparam defaultFontSize 11
+skinparam dpi 140
+skinparam nodesep 12
+skinparam ranksep 14
+skinparam padding 2
+skinparam ArrowThickness 1
+skinparam rectangle {
+  BorderColor #333333
+  BackgroundColor #F8F8F8
+  RoundCorner 4
+}
+skinparam database {
+  BorderColor #333333
+  BackgroundColor #EEF5FF
+}
+left to right direction
+
+title Потоки данных в предлагаемой MAS
+
+rectangle "1. Данные сцены" {
+  rectangle "Роботы\npose/status/events" as Robots
+  rectangle "Состояние z_t\nagents/tasks/zones/edges" as State
+}
+
+rectangle "2. RAG-LLM слой" {
+  database "Vector DB\nSQLite + embeddings\nrules" as VDB
+  rectangle "RAG\nTop-k rules" as RAG
+  rectangle "Prompt\nstate + rules\n+ schema" as Prompt
+  rectangle "Ollama LLM\nstrategy JSON" as LLM
+  rectangle "Guardrails\nranges, IDs, gates" as Guard
+  rectangle "Strategy Θ\nweights, go/hold, limits" as Theta
+}
+
+rectangle "3. Формальные модели" {
+  rectangle "Contract Net\nallocation" as CNP
+  rectangle "Congestion game\nroutes" as Game
+}
+
+rectangle "4. Исполнение" {
+  rectangle "Assignments\nrobot-task-route" as Assign
+  rectangle "Local control\nA*, avoidance,\ntraffic rules" as Control
+}
+
+Robots --> State : telemetry/events
+State --> RAG : query context
+VDB --> RAG : embedded rules
+RAG --> Prompt : retrieved rules
+State --> Prompt : compact JSON
+Prompt --> LLM : constrained prompt
+LLM --> Guard : strategy JSON
+Guard --> Theta : validated Θ
+Theta --> CNP : bid weights and dispatch gate
+State --> CNP : idle robots/open tasks
+CNP --> Game : candidate assignments
+Theta --> Game : congestion weights/edge policy
+Game --> Assign : selected routes
+Assign --> Robots : Emitter/Receiver messages
+Robots --> Control : local goal and route
+Control --> Robots : wheel commands
+Control --> State : pickup/done/replan
+
+note top of LLM
+  LLM не выдает скорости
+  или траектории.
+end note
+
+note bottom of Guard
+  При отказе LLM
+  используется fallback.
+end note
+@enduml

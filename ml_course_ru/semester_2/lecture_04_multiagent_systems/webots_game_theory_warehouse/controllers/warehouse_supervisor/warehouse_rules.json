@@ -29,6 +29,10 @@
       "text": "If the scene profile says the center crossing has maintenance or inspection traffic, do not drive all routes through the center. Blocking at most one center edge is allowed, but the safer policy is usually to raise congestion_weight and spread robots over redundant bypass corridors."
     },
     {
+      "id": "dispatch_metering_policy",
+      "text": "When many orders are open at once, do not release all idle robots to pickup zones. The strategic dispatcher should return go_agents for robots that may receive a new task now, hold_agents for robots that should wait, max_active_tasks for the number of simultaneous deliveries, and max_new_assignments for the next Contract Net batch. This replaces artificial release waves with waiting for aisle, pickup and dropoff capacity."
+    },
+    {
       "id": "warehouse_axes",
       "text": "The Webots world uses ENU coordinates. East is positive X, north is positive Y, and height is positive Z. Do not describe movements with screen-left or screen-right unless the camera orientation is fixed."
     }

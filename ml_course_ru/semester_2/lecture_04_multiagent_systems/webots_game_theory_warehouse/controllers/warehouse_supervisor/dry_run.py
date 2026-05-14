@@ -13,7 +13,7 @@ from typing import List, Optional
 
 from game_models import AgentSnapshot, Point, Strategy, contract_net_auction, distance
 from planner import DynamicObstacle, make_warehouse_layout
-from scenario import WEBOTS_ROBOT_COUNT, make_webots_tasks_and_routes, release_time_for_task
+from scenario import WEBOTS_ROBOT_COUNT, make_webots_tasks_and_routes
 from traffic_rules import TrafficRuleEngine
 from warehouse_geometry import make_agent_start_positions
 
@@ -147,7 +147,16 @@ def run(max_time: float = 980.0, dt: float = 0.2) -> int:
         for index, position in enumerate(make_agent_start_positions(WEBOTS_ROBOT_COUNT))
     ]
     # Фиксированная стратегия делает dry-run детерминированным.
-    strategy = Strategy(deadline_weight=1.5, travel_weight=1.0, congestion_weight=3.0, battery_weight=0.7, safety_margin=0.62, blocked_edges=("west_center",))
+    strategy = Strategy(
+        deadline_weight=1.5,
+        travel_weight=0.55,
+        congestion_weight=3.8,
+        battery_weight=0.7,
+        safety_margin=0.62,
+        blocked_edges=(),
+        max_active_tasks=3,
+        max_new_assignments=3,
+    )
     # Callback для получения дедлайнов из списка tasks.
     task_deadline = lambda task_id: next(item.deadline for item in tasks if item.task_id == task_id)
     # now — модельное время.
@@ -159,11 +168,6 @@ def run(max_time: float = 980.0, dt: float = 0.2) -> int:
 
     # Основной цикл dry-run.
     while now <= max_time:
-        # Открываем следующие волны задач так же, как Webots supervisor.
-        for task in tasks:
-            if task.status == "pending" and now >= release_time_for_task(task.task_id):
-                task.status = "open"
-                events.append("t=%05.1f release %s" % (now, task.task_id))
         # Запускаем аукцион, когда пришло время dispatch.
         if now >= next_dispatch:
             assignments = contract_net_auction(snapshots(agents), tasks, routes_by_task, now, strategy)

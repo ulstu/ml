@@ -40,6 +40,10 @@ class Strategy {
   safety_margin: float
   traffic_rule: str
   blocked_edges: tuple[str]
+  go_agents: tuple[str]
+  hold_agents: tuple[str]
+  max_active_tasks: int
+  max_new_assignments: int
   retrieved_rules: tuple[str]
   note: str
 }
@@ -94,8 +98,8 @@ class TrafficRuleEngine {
   must_yield()
 }
 
-WarehouseSupervisor "1" *-- "3" Task
-WarehouseSupervisor "1" *-- "4" NetworkAgent
+WarehouseSupervisor "1" *-- "9" Task
+WarehouseSupervisor "1" *-- "8" NetworkAgent
 WarehouseSupervisor "1" --> "1" Strategy
 WarehouseRobotAgent "1" --> "1" WarehouseLayout
 WarehouseRobotAgent "1" --> "1" TrafficRuleEngine

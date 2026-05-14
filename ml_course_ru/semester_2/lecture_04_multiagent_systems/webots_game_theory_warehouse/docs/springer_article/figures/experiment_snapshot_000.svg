@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="850" viewBox="0 0 1200 850">
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<text x="40" y="45" font-family="Arial" font-size="28" fill="#111">t = 0 s: все заявки открыты, роботы ожидают</text>
+<rect x="11.5" y="10.6" width="1176.9" height="828.8" fill="#d9dbdd" stroke="#333" stroke-width="2"/>
+<rect x="526.2" y="357.0" width="147.7" height="136.0" fill="#f4c542" stroke="#333" stroke-width="1" opacity="0.9"/>
+<line x1="69.2" y1="425.0" x2="1130.8" y2="425.0" stroke="#3166b3" stroke-width="10" opacity="0.75" stroke-linecap="round"/>
+<line x1="600.0" y1="807.5" x2="600.0" y2="42.5" stroke="#3166b3" stroke-width="10" opacity="0.75" stroke-linecap="round"/>
+<line x1="46.2" y1="89.3" x2="1153.8" y2="89.3" stroke="#874b95" stroke-width="10" opacity="0.75" stroke-linecap="round"/>
+<line x1="46.2" y1="760.8" x2="1153.8" y2="760.8" stroke="#874b95" stroke-width="10" opacity="0.75" stroke-linecap="round"/>
+<line x1="946.2" y1="807.5" x2="946.2" y2="42.5" stroke="#874b95" stroke-width="10" opacity="0.75" stroke-linecap="round"/>
+<line x1="253.8" y1="807.5" x2="253.8" y2="42.5" stroke="#874b95" stroke-width="10" opacity="0.75" stroke-linecap="round"/>
+<rect x="380.8" y="637.5" width="69.2" height="85.0" fill="#7b7d7f" stroke="#222" stroke-width="1"/>
+<rect x="380.8" y="212.5" width="69.2" height="85.0" fill="#7b7d7f" stroke="#222" stroke-width="1"/>
+<rect x="750.0" y="637.5" width="69.2" height="85.0" fill="#7b7d7f" stroke="#222" stroke-width="1"/>
+<rect x="750.0" y="212.5" width="69.2" height="85.0" fill="#7b7d7f" stroke="#222" stroke-width="1"/>
+<rect x="525.0" y="340.0" width="57.7" height="170.0" fill="#7b7d7f" stroke="#222" stroke-width="1"/>
+<rect x="617.3" y="340.0" width="57.7" height="170.0" fill="#7b7d7f" stroke="#222" stroke-width="1"/>
+<rect x="172.4" y="591.4" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="188.4" y="603.4" font-family="Arial" font-size="16" fill="#111" opacity="0.35">A</text>
+<rect x="172.4" y="244.6" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="188.4" y="256.6" font-family="Arial" font-size="16" fill="#111" opacity="0.35">B</text>
+<rect x="593.0" y="724.3" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="609.0" y="736.3" font-family="Arial" font-size="16" fill="#111" opacity="0.35">C</text>
+<rect x="172.4" y="613.7" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="188.4" y="625.7" font-family="Arial" font-size="16" fill="#111" opacity="0.35">A2</text>
+<rect x="172.4" y="222.3" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="188.4" y="234.3" font-family="Arial" font-size="16" fill="#111" opacity="0.35">B2</text>
+<rect x="568.8" y="724.3" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="584.8" y="736.3" font-family="Arial" font-size="16" fill="#111" opacity="0.35">C2</text>
+<rect x="172.4" y="569.1" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="188.4" y="581.1" font-family="Arial" font-size="16" fill="#111" opacity="0.35">A3</text>
+<rect x="172.4" y="266.9" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="188.4" y="278.9" font-family="Arial" font-size="16" fill="#111" opacity="0.35">B3</text>
+<rect x="617.2" y="724.3" width="14" height="14" fill="#c55" opacity="0.35" stroke="#222"/>
+<text x="633.2" y="736.3" font-family="Arial" font-size="16" fill="#111" opacity="0.35">C3</text>
+<circle cx="1020.6" cy="245.8" r="12" fill="none" stroke="#111" stroke-width="3"/>
+<text x="1035.6" y="250.8" font-family="Arial" font-size="16" fill="#111">DA</text>
+<circle cx="1020.6" cy="604.2" r="12" fill="none" stroke="#111" stroke-width="3"/>
+<text x="1035.6" y="609.2" font-family="Arial" font-size="16" fill="#111">DB</text>
+<circle cx="600.0" cy="118.7" r="12" fill="none" stroke="#111" stroke-width="3"/>
+<text x="615.0" y="123.7" font-family="Arial" font-size="16" fill="#111">DC</text>
+<circle cx="104.1" cy="488.6" r="13" fill="#1f77b4" stroke="#111" stroke-width="2"/>
+<text x="93.1" y="493.6" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R0</text>
+<circle cx="104.1" cy="361.4" r="13" fill="#2ca02c" stroke="#111" stroke-width="2"/>
+<text x="93.1" y="366.4" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R1</text>
+<circle cx="104.1" cy="557.9" r="13" fill="#d62728" stroke="#111" stroke-width="2"/>
+<text x="93.1" y="562.9" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R2</text>
+<circle cx="104.1" cy="292.1" r="13" fill="#9467bd" stroke="#111" stroke-width="2"/>
+<text x="93.1" y="297.1" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R3</text>
+<circle cx="138.5" cy="637.5" r="13" fill="#ff7f0e" stroke="#111" stroke-width="2"/>
+<text x="127.5" y="642.5" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R4</text>
+<circle cx="138.5" cy="212.5" r="13" fill="#8c564b" stroke="#111" stroke-width="2"/>
+<text x="127.5" y="217.5" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R5</text>
+<circle cx="560.8" cy="765.0" r="13" fill="#17becf" stroke="#111" stroke-width="2"/>
+<text x="549.8" y="770.0" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R6</text>
+<circle cx="639.2" cy="765.0" r="13" fill="#7f7f7f" stroke="#111" stroke-width="2"/>
+<text x="628.2" y="770.0" font-family="Arial" font-size="13" fill="#fff" font-weight="bold">R7</text>
+<text x="40" y="805" font-family="Arial" font-size="18" fill="#222">Схематический снимок: восстановлен из координат сценария и событий лога Webots; X вправо (восток), Y вверх (север).</text>
+</svg>

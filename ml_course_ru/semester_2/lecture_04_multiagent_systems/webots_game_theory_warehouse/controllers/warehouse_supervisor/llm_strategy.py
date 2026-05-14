@@ -15,7 +15,7 @@ import urllib.request
 from dataclasses import asdict
 from typing import Iterable, Optional, Sequence
 
-from game_models import AgentSnapshot, Strategy, Task
+from game_models import AgentSnapshot, Strategy, Task, distance
 from vector_memory import LocalVectorStore, rules_to_prompt
 
 
@@ -91,6 +91,10 @@ def fallback_strategy(tasks: Sequence[Task], agents: Sequence[AgentSnapshot], no
         safety_margin=0.62,
         traffic_rule="deadline_priority_right_hand",
         blocked_edges=(),
+        go_agents=(),
+        hold_agents=(),
+        max_active_tasks=3,
+        max_new_assignments=3,
         retrieved_rules=(),
         note=note,
     )
@@ -139,6 +143,12 @@ def _compact_state(
             "east_bypass",
             "west_bypass",
         ],
+        # dispatch_context делает для RAG явным, что нужны правила go/hold-шлюза.
+        "dispatch_context": {
+            "open_orders": sum(1 for task in tasks if task.status == "open"),
+            "idle_agents": sum(1 for agent in agents if agent.status == "idle"),
+            "policy_need": "choose go_agents hold_agents max_active_tasks max_new_assignments for pickup dropoff aisle capacity",
+        },
     }
     if scene_profile:
         # scene_profile передает LLM именно стратегический контекст эксперимента.
@@ -178,6 +188,104 @@ def _bounded_margin(value: object, fallback: float) -> float:
     return max(0.45, min(0.9, number))
 
 
+def _bounded_int(value: object, fallback: int, lower: int, upper: int) -> int:
+    try:
+        # LLM может вернуть число как строку, поэтому приводим через int(float()).
+        number = int(float(value))
+    except (TypeError, ValueError):
+        return fallback
+    # Ограничиваем диапазон тактических лимитов.
+    return max(lower, min(upper, number))
+
+
+def _agent_ids(value: object, allowed_agents: set[str]) -> tuple[str, ...]:
+    # Невалидные списки заменяем пустым tuple.
+    if not isinstance(value, list):
+        return ()
+    # Оставляем только реально существующих агентов.
+    return tuple(str(agent_id) for agent_id in value if str(agent_id) in allowed_agents)
+
+
+def _task_family(task_id: str) -> str:
+    # A2/B3/C4 относятся к тем же pickup/dropoff-семействам, что A/B/C.
+    return task_id.rstrip("0123456789")
+
+
+def _dispatch_gate(
+    tasks: Sequence[Task],
+    agents: Sequence[AgentSnapshot],
+    max_active_tasks: int,
+    max_new_assignments: int,
+) -> tuple[tuple[str, ...], tuple[str, ...], int]:
+    # active_count показывает, сколько роботов уже едут или везут груз.
+    active_count = sum(1 for task in tasks if task.status not in ("open", "completed"))
+    # capacity_left — сколько новых роботов можно выпустить сейчас.
+    capacity_left = max(max_active_tasks - active_count, 0)
+    # allowed_new — итоговый размер новой пачки назначений.
+    allowed_new = max(0, min(max_new_assignments, capacity_left))
+    # Свободные роботы доступны для нового контракта.
+    idle_agents = [agent for agent in agents if agent.status == "idle"]
+    # Открытые задачи сортируются так, чтобы сначала покрыть разные зоны A/B/C.
+    open_tasks = sorted(
+        (task for task in tasks if task.status == "open"),
+        key=lambda task: (
+            0 if task.task_id == _task_family(task.task_id) else 1,
+            task.deadline,
+            -task.reward,
+            task.task_id,
+        ),
+    )
+    # chosen хранит роботов, которых стоит выпустить прямо сейчас.
+    chosen: list[str] = []
+    # selected_families не дает первым батчем перегрузить одну pickup/dropoff-пару.
+    selected_families: set[str] = set()
+    # Для каждой срочной открытой задачи берем ближайшего еще не выбранного робота.
+    for task in open_tasks:
+        # Останавливаемся, когда окно пропускной способности заполнено.
+        if len(chosen) >= allowed_new:
+            break
+        # В первом проходе пропускаем повтор той же транспортной семьи.
+        if _task_family(task.task_id) in selected_families:
+            continue
+        # candidates — свободные роботы, которые еще не получили разрешение ехать.
+        candidates = [agent for agent in idle_agents if agent.agent_id not in chosen]
+        # Если свободных роботов больше нет, назначать некого.
+        if not candidates:
+            break
+        # Локальная эвристика выбирает робота с минимальным расстоянием до pickup.
+        best_agent = min(
+            candidates,
+            key=lambda agent: (distance(agent.position, task.pickup), agent.agent_id),
+        )
+        # Этот робот попадает в go_agents.
+        chosen.append(best_agent.agent_id)
+        # Запоминаем, что это направление уже покрыто текущим батчем.
+        selected_families.add(_task_family(task.task_id))
+    # Если семей меньше, чем разрешенных назначений, добираем оставшуюся емкость.
+    for task in open_tasks:
+        # Останавливаемся, когда окно пропускной способности заполнено.
+        if len(chosen) >= allowed_new:
+            break
+        # candidates — оставшиеся свободные роботы.
+        candidates = [agent for agent in idle_agents if agent.agent_id not in chosen]
+        # Если свободных роботов больше нет, назначать некого.
+        if not candidates:
+            break
+        # Добор снова идет к ближайшему pickup, но уже без ограничения по семье.
+        best_agent = min(
+            candidates,
+            key=lambda agent: (distance(agent.position, task.pickup), agent.agent_id),
+        )
+        # Добавляем робота, если он еще не был выбран.
+        if best_agent.agent_id not in chosen:
+            chosen.append(best_agent.agent_id)
+    # go_agents — роботы, которых стратегический слой выпускает в аукцион.
+    go_agents = tuple(chosen)
+    # Остальные свободные роботы ждут освобождения pickup/dropoff/коридора.
+    hold_agents = tuple(agent.agent_id for agent in idle_agents if agent.agent_id not in go_agents)
+    return go_agents, hold_agents, allowed_new
+
+
 def ask_llm_strategy(
     tasks: Sequence[Task],
     agents: Sequence[AgentSnapshot],
@@ -206,16 +314,26 @@ def ask_llm_strategy(
         "You are a strategic dispatcher for a multi-agent warehouse. "
         "Return only compact JSON with keys: deadline_weight, travel_weight, "
         "congestion_weight, battery_weight, safety_margin, traffic_rule, "
-        "blocked_edges, note. "
+        "blocked_edges, go_agents, hold_agents, max_active_tasks, "
+        "max_new_assignments, note. No markdown, no nested objects. "
         "Weights must be numbers between 0.3 and 4.0. blocked_edges must be a "
         "list containing only known possible_edges; block at most one edge. "
+        "go_agents and hold_agents must be arrays of agent id strings such as "
+        "[\"R4\", \"R5\"], never arrays of objects. max_active_tasks and "
+        "max_new_assignments must be small integers. "
         "safety_margin must be a number between 0.45 and 0.9 meters. Prefer "
         "high deadline_weight when deadlines are close and high "
         "congestion_weight when many agents or tasks share the same central "
         "crossing. In large warehouses, do not over-penalize travel distance: "
         "when the scene_profile says center conflicts are expected, keep "
         "travel_weight low or moderate and use congestion_weight to spread "
-        "traffic across bypass routes. Use retrieved warehouse rules as policy "
+        "traffic across bypass routes. Also meter robot release: choose "
+        "go_agents that may receive new tasks now and hold_agents that should "
+        "wait for pickup/dropoff/aisle space. Choose go_agents by task urgency, "
+        "distance to pickup and zone capacity; do not use release waves. "
+        "max_active_tasks should usually be 3 for this scene, because the "
+        "three pickup/dropoff families A/B/C have one loading slot each. "
+        "Use retrieved warehouse rules as policy "
         "memory, but do not invent direct robot commands.\nRetrieved rules:\n"
         + rules_to_prompt(retrieved)
         + "\nState:\n"
@@ -228,7 +346,7 @@ def ask_llm_strategy(
             "prompt": prompt,
             "format": "json",
             "stream": False,
-            "options": {"temperature": 0.1, "num_predict": 180},
+            "options": {"temperature": 0.1, "num_predict": 320},
         }
     ).encode("utf-8")
     # Логируем метаданные запроса без полного prompt.
@@ -280,8 +398,16 @@ def ask_llm_strategy(
             "east_bypass",
             "west_bypass",
         }
+        # LLM может ссылаться только на реально существующих роботов.
+        allowed_agents = {agent.agent_id for agent in agents}
         # Фильтруем blocked_edges, чтобы игнорировать выдуманные LLM ребра.
         blocked = tuple(edge for edge in decision.get("blocked_edges", []) if edge in allowed_edges)[:1]
+        # Проверяем списки go/hold агентов.
+        go_agents = _agent_ids(decision.get("go_agents"), allowed_agents)
+        hold_agents = _agent_ids(decision.get("hold_agents"), allowed_agents)
+        # Тактические лимиты пропускной способности.
+        max_active_tasks = _bounded_int(decision.get("max_active_tasks"), fallback.max_active_tasks, 1, 4)
+        max_new_assignments = _bounded_int(decision.get("max_new_assignments"), fallback.max_new_assignments, 1, 4)
         # Собираем нормализованную Strategy.
         strategy = Strategy(
             deadline_weight=_bounded_weight(decision.get("deadline_weight"), fallback.deadline_weight),
@@ -291,18 +417,31 @@ def ask_llm_strategy(
             safety_margin=_bounded_margin(decision.get("safety_margin"), fallback.safety_margin),
             traffic_rule=str(decision.get("traffic_rule", fallback.traffic_rule)),
             blocked_edges=blocked,
+            go_agents=go_agents,
+            hold_agents=hold_agents,
+            max_active_tasks=max_active_tasks,
+            max_new_assignments=max_new_assignments,
             retrieved_rules=tuple(rule.rule_id for rule in retrieved),
             note=str(decision.get("note", "ollama strategy")),
         )
         if scene_profile and scene_profile.get("disrupted_edges"):
-            # Maintenance-профиль из основной сцены: LLM интерпретирует правило,
-            # а guardrail переводит его в безопасное ограничение для игры с
-            # заторами. Закрываем только одно ребро, чтобы не обвалить граф.
-            disrupted = [edge for edge in scene_profile.get("disrupted_edges", []) if edge in allowed_edges]
-            strategy.blocked_edges = tuple(disrupted[:1])
+            # Maintenance-профиль основной сцены теперь мягкий: центр получает
+            # высокий congestion_weight, но не закрывается полностью, чтобы
+            # роботы могли ехать по видимым центральным линиям, если это выгодно.
+            strategy.blocked_edges = ()
             strategy.congestion_weight = max(strategy.congestion_weight, 3.8)
             strategy.travel_weight = min(strategy.travel_weight, 0.55)
             strategy.safety_margin = min(strategy.safety_margin, 0.72)
+            strategy.max_active_tasks = 3
+            strategy.max_new_assignments = 3
+            go_agents, hold_agents, _ = _dispatch_gate(
+                tasks,
+                agents,
+                strategy.max_active_tasks,
+                strategy.max_new_assignments,
+            )
+            strategy.go_agents = go_agents
+            strategy.hold_agents = hold_agents
             strategy.note = strategy.note + " | maintenance guardrail"
         elif scene_profile is None and len(tasks) <= 3:
             # В базовой Webots-демонстрации два диагональных задания иначе
@@ -311,6 +450,11 @@ def ask_llm_strategy(
             # стратегическое ограничение для congestion game.
             strategy.blocked_edges = ("west_center",)
             strategy.safety_margin = min(strategy.safety_margin, 0.72)
+            go_agents, hold_agents, _ = _dispatch_gate(tasks, agents, 3, 3)
+            strategy.go_agents = go_agents
+            strategy.hold_agents = hold_agents
+            strategy.max_active_tasks = 3
+            strategy.max_new_assignments = 3
             strategy.note = strategy.note + " | base-scene guardrail: meter west_center"
         # Логируем уже проверенную стратегию, а не сырой ответ LLM.
         _log("llm-response", strategy_to_log(strategy))
@@ -327,6 +471,15 @@ def ask_llm_strategy(
         _log("llm-fallback", "reason=%s: %s" % (error.__class__.__name__, error))
         # Строим fallback-стратегию из текущего состояния.
         strategy = fallback_strategy(tasks, agents, now)
+        # Даже без LLM сохраняем тот же тактический шлюз пропускной способности.
+        go_agents, hold_agents, _ = _dispatch_gate(
+            tasks,
+            agents,
+            strategy.max_active_tasks,
+            strategy.max_new_assignments,
+        )
+        strategy.go_agents = go_agents
+        strategy.hold_agents = hold_agents
         # Даже при fallback сохраняем, какие правила были извлечены RAG.
         strategy.retrieved_rules = tuple(rule.rule_id for rule in retrieved)
         # Логируем итоговую fallback-стратегию.
@@ -339,5 +492,10 @@ def strategy_to_log(strategy: Strategy) -> str:
     data = asdict(strategy)
     # tuple не всегда удобно читать в JSON-логе, поэтому делаем list.
     data["blocked_edges"] = list(strategy.blocked_edges)
+    # go_agents/hold_agents тоже выводятся списками для наглядной демонстрации.
+    data["go_agents"] = list(strategy.go_agents)
+    data["hold_agents"] = list(strategy.hold_agents)
+    # retrieved_rules показывает, какие документы RAG попали в prompt.
+    data["retrieved_rules"] = list(strategy.retrieved_rules)
     # sort_keys делает логи стабильными между запусками.
     return json.dumps(data, ensure_ascii=True, sort_keys=True)

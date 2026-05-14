@@ -1,0 +1,121 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\providecommand{\doi}[1]{https://doi.org/#1}
+
+\bibitem{Ahn2022SayCan}
+Ahn, M., Brohan, A., Brown, N., Chebotar, Y., Cortes, O., David, B., Finn, C.,
+  Gopalakrishnan, K., Hausman, K., Herzog, A., et~al.: Do as i can, not as i
+  say: Grounding language in robotic affordances. arXiv preprint
+  arXiv:2204.01691  (2022). \doi{10.48550/arXiv.2204.01691}
+
+\bibitem{Dias2006MarketSurvey}
+Dias, M.B., Zlot, R., Kalra, N., Stentz, A.: Market-based multirobot
+  coordination: A survey and analysis. Proceedings of the IEEE  \textbf{94}(7),
+   1257--1270 (2006). \doi{10.1109/JPROC.2006.876939}
+
+\bibitem{Driess2023PalmE}
+Driess, D., Xia, F., Sajjadi, M.S.M., Lynch, C., Chowdhery, A., Ichter, B.,
+  Wahid, A., Tompson, J., Vuong, Q., Yu, T., Huang, W., et~al.: Palm-e: An
+  embodied multimodal language model. arXiv preprint arXiv:2303.03378  (2023).
+  \doi{10.48550/arXiv.2303.03378}
+
+\bibitem{Fox1997DWA}
+Fox, D., Burgard, W., Thrun, S.: The dynamic window approach to collision
+  avoidance. IEEE Robotics \& Automation Magazine  \textbf{4}(1),  23--33
+  (1997). \doi{10.1109/100.580977}
+
+\bibitem{Fragapane2021AMR}
+Fragapane, G., de~Koster, R., Sgarbossa, F., Strandhagen, J.O.: Planning and
+  control of autonomous mobile robots for intralogistics: Literature review and
+  research agenda. European Journal of Operational Research  \textbf{294}(2),
+  405--426 (2021). \doi{10.1016/j.ejor.2021.01.019}
+
+\bibitem{GerkeyMataric2004MRTA}
+Gerkey, B.P., Matari{\'c}, M.J.: A formal analysis and taxonomy of task
+  allocation in multi-robot systems. The International Journal of Robotics
+  Research  \textbf{23}(9),  939--954 (2004). \doi{10.1177/0278364904045564}
+
+\bibitem{Hart1968AStar}
+Hart, P.E., Nilsson, N.J., Raphael, B.: A formal basis for the heuristic
+  determination of minimum cost paths. IEEE Transactions on Systems Science and
+  Cybernetics  \textbf{4}(2),  100--107 (1968). \doi{10.1109/TSSC.1968.300136}
+
+\bibitem{Khatib1986PotentialFields}
+Khatib, O.: Real-time obstacle avoidance for manipulators and mobile robots.
+  The International Journal of Robotics Research  \textbf{5}(1),  90--98
+  (1986). \doi{10.1177/027836498600500106}
+
+\bibitem{LaValle2006Planning}
+LaValle, S.M.: Planning Algorithms. Cambridge University Press (2006),
+  \url{http://planning.cs.uiuc.edu/}
+
+\bibitem{LeAnhDeKoster2006AGV}
+Le-Anh, T., De~Koster, M.B.M.: A review of design and control of automated
+  guided vehicle systems. European Journal of Operational Research
+  \textbf{171}(1),  1--23 (2006). \doi{10.1016/j.ejor.2005.01.036}
+
+\bibitem{Lewis2020RAG}
+Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N.,
+  K{\"u}ttler, H., Lewis, M., Yih, W.t., Rockt{\"a}schel, T., Riedel, S.,
+  Kiela, D.: Retrieval-augmented generation for knowledge-intensive nlp tasks.
+  In: Advances in Neural Information Processing Systems. vol.~33, pp.
+  9459--9474 (2020)
+
+\bibitem{Liang2022CodeAsPolicies}
+Liang, J., Huang, W., Xia, F., Xu, P., Hausman, K., Ichter, B., Florence, P.,
+  Zeng, A.: Code as policies: Language model programs for embodied control.
+  arXiv preprint arXiv:2209.07753  (2022). \doi{10.48550/arXiv.2209.07753}
+
+\bibitem{MondererShapley1996Potential}
+Monderer, D., Shapley, L.S.: Potential games. Games and Economic Behavior
+  \textbf{14}(1),  124--143 (1996). \doi{10.1006/game.1996.0044}
+
+\bibitem{Rosenthal1973Congestion}
+Rosenthal, R.W.: A class of games possessing pure-strategy nash equilibria.
+  International Journal of Game Theory  \textbf{2},  65--67 (1973).
+  \doi{10.1007/BF01737559}
+
+\bibitem{RoughgardenTardos2002SelfishRouting}
+Roughgarden, T., Tardos, {\'E}.: How bad is selfish routing? Journal of the ACM
+   \textbf{49}(2),  236--259 (2002). \doi{10.1145/506147.506153}
+
+\bibitem{Sharon2015CBS}
+Sharon, G., Stern, R., Felner, A., Sturtevant, N.R.: Conflict-based search for
+  optimal multi-agent pathfinding. Artificial Intelligence  \textbf{219},
+  40--66 (2015). \doi{10.1016/j.artint.2014.11.006}
+
+\bibitem{Smith1980ContractNet}
+Smith, R.G.: The contract net protocol: High-level communication and control in
+  a distributed problem solver. IEEE Transactions on Computers
+  \textbf{C-29}(12),  1104--1113 (1980). \doi{10.1109/TC.1980.1675516}
+
+\bibitem{Wei2022CoT}
+Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E.H.,
+  Le, Q.V., Zhou, D.: Chain-of-thought prompting elicits reasoning in large
+  language models. In: Advances in Neural Information Processing Systems.
+  vol.~35, pp. 24824--24837 (2022). \doi{10.48550/arXiv.2201.11903}
+
+\bibitem{Xi2023LLMAgentSurvey}
+Xi, Z., Chen, W., Guo, X., He, W., Ding, Y., Hong, B., Zhang, M., Wang, J.,
+  Jin, S., Zhou, E., Zheng, R., Fan, X., Wang, X., Xiong, L., Zhou, Y., et~al.:
+  The rise and potential of large language model based agents: A survey. arXiv
+  preprint arXiv:2309.07864  (2023). \doi{10.48550/arXiv.2309.07864}
+
+\bibitem{Yao2023ReAct}
+Yao, S., Zhao, J., Yu, D., Du, N., Shafran, I., Narasimhan, K., Cao, Y.: React:
+  Synergizing reasoning and acting in language models. In: International
+  Conference on Learning Representations (2023).
+  \doi{10.48550/arXiv.2210.03629}
+
+\bibitem{YuLaValle2013MAPF}
+Yu, J., LaValle, S.M.: Planning optimal paths for multiple robots on graphs.
+  In: Proceedings of the IEEE International Conference on Robotics and
+  Automation. pp. 3612--3617 (2013). \doi{10.1109/ICRA.2013.6630807}
+
+\bibitem{ZlotStentz2006ComplexTasks}
+Zlot, R., Stentz, A.: Market-based multirobot coordination for complex tasks.
+  The International Journal of Robotics Research  \textbf{25}(1),  73--101
+  (2006). \doi{10.1177/0278364906061160}
+
+\end{thebibliography}

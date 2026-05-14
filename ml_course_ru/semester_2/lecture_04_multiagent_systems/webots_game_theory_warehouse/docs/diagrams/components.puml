@@ -10,8 +10,8 @@ title Компоненты примера Webots MAS
 package "Webots scene" {
   [game_theory_warehouse.wbt] as world
   [WarehouseRobot.proto] as proto
-  [ROBOT_0..ROBOT_3] as robots
-  [CARGO_A..CARGO_C] as cargos
+  [ROBOT_0..ROBOT_7] as robots
+  [CARGO_A..CARGO_C3] as cargos
   [Receiver/Emitter channel 1] as network
 }
 
@@ -38,7 +38,7 @@ world --> cargos : DEF nodes
 world --> network : message bus
 robots --> agent : individual controller
 
-supervisor --> network : task board,\nstrategy,\nassignments
+supervisor --> network : task board,\nstrategy with go/hold,\nassignments
 agent --> network : status,\npickup/done,\npeer state
 agent --> robots : own translation/rotation
 agent --> cargos : own assigned cargo

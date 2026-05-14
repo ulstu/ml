@@ -22,9 +22,8 @@ WEBOTS_SCENE_PROFILE = {
     "layout_variant": "maintenance_graph",
     "center_conflicts_expected": True,
     "disrupted_edges": list(WEBOTS_DISRUPTED_EDGES),
-    "hypothesis": "LLM+RAG should shift flow from delayed center edges to bypass routes.",
+    "hypothesis": "LLM+RAG should shift flow from delayed center edges and meter robot release to pickup/dropoff zones.",
 }
-WEBOTS_RELEASE_PERIOD = 160.0
 
 
 def _p(x: float, y: float, scale: float) -> tuple[float, float]:
@@ -45,7 +44,7 @@ def make_tasks(scale: float = SCENE_SCALE) -> List[Task]:
 
 
 def _offset_task(task: Task, repeat: int) -> Task:
-    # Три волны грузов лежат рядом с одной pickup-зоной, но не накладываются.
+    # Повторные грузы лежат рядом с одной pickup-зоной, но не накладываются.
     offsets = {
         "A": ((0.0, 0.0), (0.0, -1.05), (0.0, 1.05)),
         "B": ((0.0, 0.0), (0.0, 1.05), (0.0, -1.05)),
@@ -53,9 +52,9 @@ def _offset_task(task: Task, repeat: int) -> Task:
     }
     suffix = "" if repeat == 0 else str(repeat + 1)
     dx, dy = offsets[task.task_id][repeat]
-    # Дедлайн сдвигается по волнам, чтобы Contract Net видел поток заявок.
+    # Дедлайн сдвигается по копиям, чтобы Contract Net видел разную срочность.
     deadline_shift = scaled_deadline(18.0) * repeat
-    # Малое снижение reward помогает сделать ставки разных волн неодинаковыми.
+    # Малое снижение reward помогает сделать ставки разных копий неодинаковыми.
     reward_decay = 0.35 * repeat
     return Task(
         task_id=task.task_id + suffix,
@@ -64,12 +63,12 @@ def _offset_task(task: Task, repeat: int) -> Task:
         reward=max(1.0, task.reward - reward_decay),
         deadline=task.deadline + deadline_shift,
         cargo_def=task.cargo_def + suffix,
-        status="open" if repeat == 0 else "pending",
+        status="open",
     )
 
 
 def make_repeated_tasks(repeats: int = WEBOTS_TASK_REPEATS, scale: float = SCENE_SCALE) -> List[Task]:
-    # Повторяет A/B/C несколькими волнами для плотной сцены.
+    # Повторяет A/B/C несколькими копиями для плотной сцены; все задачи открыты сразу.
     tasks: List[Task] = []
     for repeat in range(repeats):
         for task in make_tasks(scale):
@@ -85,8 +84,8 @@ def make_routes(scale: float = SCENE_SCALE, route_variant: str = "standard") -> 
             Route(
                 # A_center использует общий центральный перекресток.
                 "A_center",
-                # Waypoints идут от pickup к dropoff через центральные проходы.
-                (_p(-5.36, -2.40, scale), _p(-2.00, -2.40, scale), _p(-2.00, -0.60, scale), _p(-0.60, -0.60, scale), _p(2.00, -0.60, scale), _p(2.00, 2.48, scale), _p(5.36, 2.48, scale)),
+                # Waypoints идут по синей центральной разметке: запад -> центр -> восток.
+                (_p(-5.36, -2.40, scale), _p(-5.36, 0.00, scale), _p(-0.80, 0.00, scale), _p(0.80, 0.00, scale), _p(5.36, 0.00, scale), _p(5.36, 2.48, scale)),
                 # Edges нужны для расчета congestion cost.
                 ("west_center", "south_center", "east_center"),
             ),
@@ -102,7 +101,7 @@ def make_routes(scale: float = SCENE_SCALE, route_variant: str = "standard") -> 
             Route(
                 # B_center пересекает центральный узел склада.
                 "B_center",
-                (_p(-5.36, 2.40, scale), _p(-2.00, 2.40, scale), _p(-2.00, 0.60, scale), _p(-0.60, 0.60, scale), _p(2.00, 0.60, scale), _p(2.00, -2.48, scale), _p(5.36, -2.48, scale)),
+                (_p(-5.36, 2.40, scale), _p(-5.36, 0.00, scale), _p(-0.80, 0.00, scale), _p(0.80, 0.00, scale), _p(5.36, 0.00, scale), _p(5.36, -2.48, scale)),
                 ("west_center", "north_center", "east_center"),
             ),
             Route(
@@ -117,7 +116,7 @@ def make_routes(scale: float = SCENE_SCALE, route_variant: str = "standard") -> 
             Route(
                 # C_center проходит через самый загруженный центр склада.
                 "C_center",
-                (_p(0.0, -4.24, scale), _p(0.0, -2.00, scale), _p(0.0, 0.0, scale), _p(0.0, 2.00, scale), _p(0.0, 4.24, scale)),
+                (_p(0.0, -4.24, scale), _p(0.0, -0.80, scale), _p(0.0, 0.80, scale), _p(0.0, 4.24, scale)),
                 ("south_center", "north_center"),
             ),
             Route(
@@ -170,7 +169,7 @@ def make_repeated_routes(
         task_routes: List[Route] = []
         for route in base_routes[base_task_id]:
             route_id = route.route_id if not suffix else "%s_%s" % (route.route_id, suffix)
-            # Первая точка маршрута совпадает с конкретным crate pickup этой волны.
+            # Первая точка маршрута совпадает с конкретным crate pickup этой копии.
             waypoints = (task.pickup,) + tuple(route.waypoints[1:-1]) + (task.dropoff,)
             task_routes.append(Route(route_id, waypoints, route.edges))
         routes_by_task[task.task_id] = tuple(task_routes)
@@ -180,15 +179,3 @@ def make_repeated_routes(
 def make_webots_tasks_and_routes() -> Tuple[List[Task], Dict[str, Sequence[Route]]]:
     # Основная Webots-сцена теперь соответствует large_maintenance_9_tasks_8_robots.
     return make_repeated_tasks(WEBOTS_TASK_REPEATS), make_repeated_routes(WEBOTS_TASK_REPEATS)
-
-
-def release_time_for_task(task_id: str) -> float:
-    # A/B/C открыты сразу; A2/B2/C2 и A3/B3/C3 открываются волнами.
-    suffix = task_id[1:]
-    if not suffix:
-        return 0.0
-    try:
-        wave_index = int(suffix) - 1
-    except ValueError:
-        return 0.0
-    return WEBOTS_RELEASE_PERIOD * wave_index

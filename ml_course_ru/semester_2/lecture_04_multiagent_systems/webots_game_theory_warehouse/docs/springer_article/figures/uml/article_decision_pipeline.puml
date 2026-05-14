@@ -1,0 +1,32 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam sequenceMessageAlign center
+skinparam ParticipantPadding 14
+skinparam BoxPadding 4
+
+actor "Робот i" as Robot
+participant "Supervisor" as Sup
+database "Vector DB" as VDB
+participant "Ollama LLM" as LLM
+participant "Contract Net" as CNP
+participant "Congestion Game" as CG
+participant "Локальный контроллер" as LC
+
+Robot -> Sup : status(position, battery, task)
+Sup -> VDB : query(compact state)
+VDB --> Sup : retrieved rules
+Sup -> LLM : prompt(state, rules)
+LLM --> Sup : Strategy JSON
+Sup -> Sup : guardrails and normalization
+Sup -> CNP : agents, open tasks, Strategy
+CNP --> Sup : task winners
+Sup -> CG : candidate assignments
+CG --> Sup : route Nash profile
+Sup -> Robot : assignment(task, route)
+Robot -> LC : execute waypoints
+LC -> LC : A*, traffic priority,\nstatic/dynamic avoidance
+Robot --> Sup : pickup/done/replan
+@enduml

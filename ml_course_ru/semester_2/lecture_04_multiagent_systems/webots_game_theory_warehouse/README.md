@@ -6,15 +6,15 @@
 
 ## Что происходит на сцене
 
-Основная сцена теперь настроена как `large_maintenance_9_tasks_8_robots`: на складе есть восемь роботов `ROBOT_0` ... `ROBOT_7`, девять грузов и несколько доков. Задачи открываются тремя волнами `A/B/C`, `A2/B2/C2`, `A3/B3/C3`, чтобы показать поток заявок без физической пробки у pickup-зон.
+Основная сцена теперь настроена как `large_maintenance_9_tasks_8_robots`: на складе есть восемь роботов `ROBOT_0` ... `ROBOT_7`, девять грузов и несколько доков. Все задачи `A/B/C`, `A2/B2/C2`, `A3/B3/C3` открыты с начала симуляции. Поток регулируется не искусственными волнами, а стратегическим шлюзом: LLM/RAG возвращает, каких роботов выпустить к новым грузам сейчас, а каких оставить ждать освобождения коридора, pickup-зоны или dropoff-зоны.
 
-Каждая волна повторяет три транспортных направления:
+Три группы грузов повторяют одни и те же транспортные направления:
 
 - `A`: забрать груз в юго-западной зоне склада (`X < 0`, `Y < 0`) и доставить в северо-восточный док (`X > 0`, `Y > 0`).
 - `B`: забрать груз в северо-западной зоне (`X < 0`, `Y > 0`) и доставить в юго-восточный док (`X > 0`, `Y < 0`).
 - `C`: забрать груз у южного входа центрального коридора (`Y < 0`) и доставить к северному доку (`Y > 0`).
 
-Склад содержит стеллажи, стены, центральный перекресток, объездные коридоры, зоны pickup/dropoff и визуальные маркеры маршрутов. Центральный перекресток намеренно конфликтный: если все роботы выбирают кратчайшие пути, возникают заторы и взаимные уступания.
+Склад содержит стеллажи, стены, центральный перекресток, объездные коридоры, зоны pickup/dropoff и визуальные маркеры маршрутов. Центральный перекресток намеренно конфликтный: если все роботы выбирают кратчайшие пути, возникают заторы и взаимные уступания. Центральные ребра в основной сцене не закрываются жестко: LLM повышает штраф заторов, но `blocked_edges` обычно остается пустым, поэтому роботы могут ехать по синим центральным линиям.
 
 Текущая Webots-сцена увеличена по горизонтальным координатам в `3.4` раза относительно первого компактного прототипа. Площадь пола стала больше в `11.56` раза, а общие координаты вынесены в `controllers/warehouse_supervisor/warehouse_geometry.py`, чтобы мир, планировщик, dry-run и эксперимент использовали один масштаб.
 
@@ -65,6 +65,10 @@ LLM получает компактное состояние склада и н�
 - `battery_weight` — насколько учитывать заряд роботов;
 - `safety_margin` — запас безопасности для локальных правил движения;
 - `blocked_edges` — ребра маршрутного графа, которые стратегически лучше не использовать;
+- `go_agents` — роботы, которым сейчас можно участвовать в новом аукционе;
+- `hold_agents` — свободные роботы, которым лучше ждать освобождения зоны или коридора;
+- `max_active_tasks` — ограничение числа одновременно исполняемых доставок;
+- `max_new_assignments` — размер следующей пачки назначений Contract Net;
 - `traffic_rule` и `note` — текстовая политика и пояснение.
 
 LLM здесь не заменяет формальную модель. Она играет роль адаптивного стратегического слоя: меняет веса и ограничения, а конкретные назначения, маршруты и движение остаются проверяемыми алгоритмами.
@@ -113,6 +117,7 @@ Contract Net + congestion game + robot controllers
 - `congestion_policy`: центральный перекресток короткий, но общий; при перегрузке надо повышать штраф заторов.
 - `large_scene_policy`: в большом складе ожидание у центра может быть дороже лишних метров обхода.
 - `maintenance_center_policy`: при инспекции/ремонте центральных ребер надо распределять поток по обходам.
+- `dispatch_metering_policy`: при большом числе открытых заказов выпускать не всех роботов сразу, а возвращать `go_agents`, `hold_agents`, `max_active_tasks`, `max_new_assignments`.
 - `warehouse_axes`: координаты Webots ENU: восток `+X`, север `+Y`, высота `+Z`.
 
 #### Что входит в векторную СУБД
@@ -167,8 +172,14 @@ metadata(key, value)
     "north_center",
     "south_bypass",
     "north_bypass",
-    "east_bypass"
-  ]
+    "east_bypass",
+    "west_bypass"
+  ],
+  "dispatch_context": {
+    "open_orders": 9,
+    "idle_agents": 8,
+    "policy_need": "choose go_agents hold_agents max_active_tasks max_new_assignments for pickup dropoff aisle capacity"
+  }
 }
 ```
 
@@ -207,7 +218,8 @@ metadata(key, value)
 You are a strategic dispatcher for a multi-agent warehouse.
 Return only compact JSON with keys:
 deadline_weight, travel_weight, congestion_weight, battery_weight,
-safety_margin, traffic_rule, blocked_edges, note.
+safety_margin, traffic_rule, blocked_edges, go_agents, hold_agents,
+max_active_tasks, max_new_assignments, note.
 ...
 Retrieved rules:
 - collision_dynamic (score=0.18): ...
@@ -229,8 +241,12 @@ LLM должна вернуть JSON-объект:
   "battery_weight": 0.8,
   "safety_margin": 0.7,
   "traffic_rule": "deadline_priority_right_hand",
-  "blocked_edges": ["west_center"],
-  "note": "Prefer bypasses because the center is congested."
+  "blocked_edges": [],
+  "go_agents": ["R4", "R5", "R6"],
+  "hold_agents": ["R0", "R1", "R2", "R3", "R7"],
+  "max_active_tasks": 3,
+  "max_new_assignments": 3,
+  "note": "Prefer balanced routing because the center is congested."
 }
 ```
 
@@ -239,6 +255,8 @@ LLM должна вернуть JSON-объект:
 - веса ограничиваются диапазоном `0.3..4.0`;
 - `safety_margin` ограничивается диапазоном `0.45..1.2`;
 - `blocked_edges` фильтруется по списку известных ребер;
+- `go_agents` и `hold_agents` фильтруются по реально существующим роботам;
+- `max_active_tasks` и `max_new_assignments` ограничиваются малым безопасным диапазоном;
 - если JSON невалиден, используется `fallback_strategy`.
 
 После валидации создается `Strategy`. Именно `Strategy`, а не текст LLM, попадает в формальные модели:
@@ -249,6 +267,8 @@ LLM должна вернуть JSON-объект:
 - `battery_weight` влияет на штраф роботов с низким зарядом;
 - `safety_margin` передается в локальные правила движения;
 - `blocked_edges` добавляет большой штраф выбранным ребрам.
+- `go_agents` и `hold_agents` становятся диспетчерским шлюзом перед Contract Net.
+- `max_active_tasks` и `max_new_assignments` не дают открыть слишком много одновременных рейсов.
 
 Таким образом LLM не управляет роботами напрямую. Она меняет параметры математической модели, а все назначения, маршруты и движения остаются в детерминированном коде.
 
@@ -474,7 +494,7 @@ ml_course_ru/semester_2/lecture_04_multiagent_systems/webots_game_theory_warehou
 3. Нажать Run.
 4. Смотреть консоль:
 
-- supervisor печатает `[strategy]`, `[dispatch]`, `[assign]`, `[pickup]`, `[done]`, `[success]`;
+- supervisor печатает `[strategy]`, `[dispatch-gate]`, `[dispatch-wait]`, `[auction]`, `[pickup]`, `[done]`, `[success]`;
 - LLM-слой печатает `[vector-db]`, `[vector-query]`, `[llm-request]`, `[llm-response]`, `[llm-fallback]`;
 - роботы печатают assignment/pickup/done/replan и отправляют статусы.
 
@@ -489,7 +509,7 @@ python3 ml_course_ru/semester_2/lecture_04_multiagent_systems/webots_game_theory
 Ожидаемый финал:
 
 ```text
-SUCCESS completed=A,B,C
+SUCCESS completed=A,B,C,A2,B2,C2,A3,B3,C3
 ```
 
 ## Эксперимент LLM vs fallback
@@ -505,14 +525,14 @@ OLLAMA_MODEL=qwen2.5:0.5b \
   --timeout 18 --dt 1.5
 ```
 
-В текущем прогоне LLM дала преимущество не в базовой сцене, а в конфигурации `large_maintenance_9_tasks_8_robots`: центральные ребра `west_center` и `east_center` считаются занятыми инспекцией, а доступны обходные маршруты. Результат: `makespan 294.0 -> 252.0`, суммарное ожидание `472.5 -> 28.5`. Подробный отчет: `docs/LLM_VALUE_EXPERIMENT.md`.
+В вычислительном эксперименте LLM дала преимущество не в базовой сцене, а в конфигурации `large_maintenance_9_tasks_8_robots`, где большой склад, 8 роботов, 9 открытых задач и несколько альтернативных маршрутов делают стратегическую настройку весов полезной. В текущей Webots-сцене центральные ребра не закрываются жестко: `blocked_edges=[]`, LLM повышает `congestion_weight`, а Contract Net ограничивает одновременные рейсы вместимостью семейств зон `A/B/C`. Подробный отчет: `docs/LLM_VALUE_EXPERIMENT.md`.
 
 ## Логи LLM и векторной СУБД
 
 Обычный стратегический цикл выглядит так:
 
 ```text
-[vector-db] path=... db=.../warehouse_rules.sqlite backend=sqlite+pytorch encoder=torch_hashing_bow_v1 documents=6 dimension=192 ids=...
+[vector-db] path=... db=.../warehouse_rules.sqlite backend=sqlite+pytorch encoder=torch_hashing_bow_v1 documents=9 dimension=192 ids=...
 [vector-query] query="..." top=collision_static:0.43, congestion_policy:0.31
 [llm-request] model=qwen2.5:0.5b url=http://127.0.0.1:11434/api/generate timeout=wait ...
 [llm-response] {"deadline_weight": ..., "retrieved_rules": ...}
@@ -596,9 +616,9 @@ python3 ml_course_ru/semester_2/lecture_04_multiagent_systems/webots_game_theory
 Что показать в логах:
 
 ```text
-t=000.0 assign R2 -> A via A_south_bypass
-t=000.0 assign R3 -> B via B_center
-t=000.0 assign R0 -> C via C_center
+t=000.0 assign R6 -> C via C_center
+t=000.0 assign R4 -> A via A_south_bypass
+t=000.0 assign R5 -> B via B_center
 ```
 
 Как объяснить: supervisor собирает `AgentSnapshot`, берет открытые `Task` и запускает `contract_net_auction`. Каждый свободный робот получает оценку `bid = reward + urgency - pickup_cost - battery_penalty`; задача назначается агенту с лучшей ставкой.
@@ -607,14 +627,14 @@ t=000.0 assign R0 -> C via C_center
 
 ### 2. Congestion game меняет выбор маршрута
 
-Что сделать: запустить Webots и посмотреть строки `[assign]` в консоли supervisor. У каждой задачи есть несколько кандидатных маршрутов: центральный и объездные.
+Что сделать: запустить Webots и посмотреть строки `[auction]` в консоли supervisor. У каждой задачи есть несколько кандидатных маршрутов: центральный и объездные.
 
 Что показать в логах:
 
 ```text
-[assign] agent=R2 task=A route=A_south_bypass
-[assign] agent=R3 task=B route=B_center
-[assign] agent=R0 task=C route=C_center
+[auction] agent=R6 task=C route=C_center
+[auction] agent=R4 task=A route=A_south_bypass
+[auction] agent=R5 task=B route=B_center
 ```
 
 Как объяснить: после выбора победителей аукциона система не просто берет кратчайший путь. `choose_route_nash_equilibrium` несколько раз пересчитывает лучшие ответы агентов. Если общий коридор перегружен, растет `congestion * congestion_weight`, и одному из роботов становится выгоднее взять объезд.
@@ -631,8 +651,8 @@ t=000.0 assign R0 -> C via C_center
 
 ```text
 [llm-request] model=qwen2.5:0.5b url=http://127.0.0.1:11434/api/generate timeout=wait ...
-[llm-response] {"deadline_weight": 1.0, "travel_weight": 2.0, "congestion_weight": 3.0, ...}
-[strategy] {"deadline_weight": 1.0, "travel_weight": 2.0, "congestion_weight": 3.0, ...}
+[llm-response] {"blocked_edges": [], "congestion_weight": 3.8, "go_agents": ["R4", "R5", "R6"], ...}
+[strategy] {"blocked_edges": [], "max_active_tasks": 3, "max_new_assignments": 3, ...}
 ```
 
 Как объяснить: LLM не получает доступа к `translation`, `rotation`, моторам или прямому управлению роботами. Она возвращает только объект `Strategy`. Дальше этот объект используют формальные функции стоимости, а движение выполняют индивидуальные контроллеры.
@@ -651,7 +671,7 @@ python3 ml_course_ru/semester_2/lecture_04_multiagent_systems/webots_game_theory
 Что показать в логах Webots:
 
 ```text
-[vector-db] path=... warehouse_rules.json db=... warehouse_rules.sqlite backend=sqlite+pytorch documents=6 dimension=192 ids=...
+[vector-db] path=... warehouse_rules.json db=... warehouse_rules.sqlite backend=sqlite+pytorch documents=9 dimension=192 ids=...
 [vector-query] query="..." top=collision_dynamic:0.42, traffic_right_hand:0.31, ...
 ```
 
@@ -667,10 +687,10 @@ python3 ml_course_ru/semester_2/lecture_04_multiagent_systems/webots_game_theory
 
 ```text
 [strategy] ...
-[assign] agent=R2 task=A route=A_south_bypass
-[ack] agent=R2 task=A route=A_south_bypass
-[pickup] task=A by=R2
-[done] task=A by=R2 route=A_south_bypass
+[auction] agent=R5 task=B route=B_center
+[ack] agent=R5 task=B route=B_center
+[pickup] agent=R5 task=B
+[done] agent=R5 task=B route=B_center completed_at=...
 ```
 
 Как объяснить: supervisor отправляет сообщения `task_board`, `strategy`, `assignment`, но не выполняет покадровое движение робота. Движение, перенос груза и объезд находятся в `warehouse_robot_agent.py`. Это видно по тому, что события `pickup`, `done`, `replan` приходят обратно от роботов.
@@ -718,7 +738,7 @@ export MAS_LLM_TIMEOUT=1
 ## Возможные упражнения
 
 - Добавить четвертый груз с коротким дедлайном.
-- Заставить LLM закрывать ребро `west_center` и сравнить маршруты.
+- Временно добавить `west_center` в `blocked_edges` и сравнить маршруты с мягким штрафом центра.
 - Заменить greedy Contract Net на VCG-механизм.
 - Добавить тяжелый груз, который требует коалиции двух роботов.
 - Перевести аукцион в полностью распределенный режим, где supervisor только ретранслирует сообщения.

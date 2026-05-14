@@ -24,16 +24,17 @@ alt strategy period elapsed
   vectordb --> llm : retrieved rules
   llm -> ollama : POST /api/generate\ncompact JSON state
   alt LLM responds
-    ollama --> llm : JSON weights
+    ollama --> llm : JSON weights,\ngo_agents, hold_agents,\ncapacity limits
   else connection error, invalid JSON, or configured timeout
     llm --> llm : fallback_strategy()
   end
+  llm --> llm : validate Strategy\nand apply guardrails
   llm --> sup : Strategy
   sup -> agents : broadcast strategy
 end
 
 alt dispatch period elapsed
-  sup -> auction : contract_net_auction()
+  sup -> auction : contract_net_auction()\nwith go/hold gate
   auction --> auction : compute bids\nreward + urgency - costs
   auction -> game : choose_route_nash_equilibrium()
   loop iterated best response

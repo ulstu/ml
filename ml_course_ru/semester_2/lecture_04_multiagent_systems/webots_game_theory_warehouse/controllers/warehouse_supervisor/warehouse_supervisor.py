@@ -11,7 +11,7 @@ from controller import Supervisor
 
 from game_models import AgentSnapshot, Assignment, Point, Task, contract_net_auction
 from llm_strategy import ask_llm_strategy, strategy_to_log
-from scenario import WEBOTS_ROBOT_COUNT, WEBOTS_SCENE_PROFILE, make_webots_tasks_and_routes, release_time_for_task
+from scenario import WEBOTS_ROBOT_COUNT, WEBOTS_SCENE_PROFILE, make_webots_tasks_and_routes
 
 
 # DISPATCH_PERIOD задает, как часто coordinator запускает Contract Net.
@@ -20,6 +20,25 @@ DISPATCH_PERIOD = 5.0
 STRATEGY_PERIOD = float(os.environ.get("MAS_STRATEGY_PERIOD", "90.0"))
 # BOARD_PERIOD задает частоту рассылки task board роботам.
 BOARD_PERIOD = 0.7
+
+
+def _parse_export_times(value: str) -> List[float]:
+    # WEBOTS_EXPORT_IMAGES_TIMES задается как "0,120,260" в секундах симуляции.
+    times: List[float] = []
+    # Разбираем список вручную, чтобы не добавлять зависимостей в Webots-контроллер.
+    for item in value.split(","):
+        # Пропускаем пустые элементы, например после случайной завершающей запятой.
+        item = item.strip()
+        if not item:
+            continue
+        try:
+            # Значения могут быть целыми или вещественными.
+            times.append(float(item))
+        except ValueError:
+            # Ошибка в переменной окружения не должна останавливать демонстрацию.
+            print("[image-export] skip invalid time=%s" % item)
+    # Сортировка делает экспорт стабильным и удобным для статьи.
+    return sorted(times)
 
 
 @dataclass
@@ -54,8 +73,12 @@ class WarehouseSupervisor:
         self.receiver = self.robot.getDevice("network_receiver")
         # Emitter рассылает strategy/task_board/assignment роботам.
         self.emitter = self.robot.getDevice("network_emitter")
+        # Верхняя камера нужна только для экспортируемых кадров статьи.
+        self.article_camera = self.robot.getDevice("article_camera")
         # Включаем приемник на каждом шаге симуляции.
         self.receiver.enable(self.time_step)
+        # Камера включается всегда: без этого Camera.saveImage вернет пустой кадр.
+        self.article_camera.enable(self.time_step)
 
         # Загружаем плотную maintenance-конфигурацию: 9 задач, 8 роботов.
         self.tasks, self.routes_by_task = make_webots_tasks_and_routes()
@@ -80,6 +103,18 @@ class WarehouseSupervisor:
         self.completed_reported = False
         # WEBOTS_AUTO_QUIT=1 используется batch-тестами.
         self.auto_quit = os.environ.get("WEBOTS_AUTO_QUIT") == "1"
+        # WEBOTS_EXPORT_IMAGES_DIR включает экспорт кадров сцены для статьи.
+        self.export_images_dir = os.environ.get("WEBOTS_EXPORT_IMAGES_DIR", "")
+        # По умолчанию сохраняем начало, середину и конец демонстрации.
+        self.export_image_times = _parse_export_times(os.environ.get("WEBOTS_EXPORT_IMAGES_TIMES", "0,120,260,390"))
+        # exported_images защищает от повторной записи одного и того же кадра.
+        self.exported_images: set[float] = set()
+        # WEBOTS_STOP_AFTER_LAST_IMAGE=1 полезен для короткой генерации иллюстраций.
+        self.stop_after_last_image = os.environ.get("WEBOTS_STOP_AFTER_LAST_IMAGE") == "1"
+        # Создаем папку только если пользователь явно включил экспорт.
+        if self.export_images_dir:
+            os.makedirs(self.export_images_dir, exist_ok=True)
+            print("[image-export] dir=%s times=%s" % (self.export_images_dir, self.export_image_times))
         # Печатаем стратегию для наблюдаемости.
         print("[strategy]", strategy_to_log(self.strategy))
 
@@ -130,8 +165,9 @@ class WarehouseSupervisor:
             now = self.now()
             # Сначала принимаем все входящие сообщения от роботов.
             self.receive_messages()
-            # Открываем следующие волны заявок, когда наступает их release time.
-            self.release_pending_tasks(now)
+
+            # При необходимости сохраняем кадры сцены для отчета/статьи.
+            self.export_images_if_needed(now)
 
             # Периодически обновляем стратегию через RAG+LLM.
             if now - self.last_strategy_time >= STRATEGY_PERIOD:
@@ -159,6 +195,37 @@ class WarehouseSupervisor:
         payload["from"] = "SUPERVISOR"
         # JSON используется как простой сетевой протокол поверх Emitter/Receiver.
         self.emitter.send(json.dumps(payload, ensure_ascii=True).encode("utf-8"))
+
+    def export_images_if_needed(self, now: float) -> None:
+        # Если переменная окружения не задана, Webots работает как обычно.
+        if not self.export_images_dir:
+            return
+        # Проверяем все заданные моменты времени.
+        for target_time in self.export_image_times:
+            # Уже сохраненный кадр не перезаписываем.
+            if target_time in self.exported_images:
+                continue
+            # Кадр сохраняется при первом tick после указанного времени.
+            if now < target_time:
+                continue
+            # Имя файла содержит целевой момент времени, чтобы его легко цитировать.
+            filename = "webots_scene_%04d.png" % int(round(target_time))
+            # Полный путь находится в папке статьи или отчета.
+            path = os.path.join(self.export_images_dir, filename)
+            # Supervisor.exportImage экспортирует текущий вид активной сцены Webots.
+            self.article_camera.saveImage(path, 95)
+            # Помечаем кадр сохраненным.
+            self.exported_images.add(target_time)
+            # Лог нужен для воспроизводимости экспериментальных иллюстраций.
+            print("[image-export] path=%s time=%.1f" % (path, now))
+        # Для статей можно остановить Webots после последнего запланированного кадра.
+        if (
+            self.stop_after_last_image
+            and self.export_image_times
+            and len(self.exported_images) == len(self.export_image_times)
+        ):
+            print("[image-export] completed all requested frames")
+            self.robot.simulationQuit(0)
 
     def receive_messages(self) -> None:
         # За один tick могло прийти несколько сообщений.
@@ -224,6 +291,22 @@ class WarehouseSupervisor:
         agent.last_seen = self.now()
 
     def dispatch(self, now: float) -> None:
+        # Логируем диспетчерский шлюз, чтобы было видно, кто едет, а кто ждет.
+        active_count = sum(1 for task in self.tasks if task.status not in ("open", "completed"))
+        idle_agents = [agent.agent_id for agent in self.agents.values() if agent.status == "idle"]
+        if self.strategy.go_agents or self.strategy.hold_agents:
+            print(
+                "[dispatch-gate] active=%d/%d max_new=%d go=%s hold=%s idle=%s blocked=%s"
+                % (
+                    active_count,
+                    self.strategy.max_active_tasks,
+                    self.strategy.max_new_assignments,
+                    list(self.strategy.go_agents),
+                    list(self.strategy.hold_agents),
+                    idle_agents,
+                    list(self.strategy.blocked_edges),
+                )
+            )
         # Запускаем формальную модель Contract Net + congestion game.
         assignments = contract_net_auction(
             agents=self.snapshots(),
@@ -232,18 +315,14 @@ class WarehouseSupervisor:
             now=now,
             strategy=self.strategy,
         )
+        if not assignments and any(task.status == "open" for task in self.tasks):
+            print(
+                "[dispatch-wait] reason=zone_capacity_or_hold active=%d max_active=%d idle=%s hold=%s"
+                % (active_count, self.strategy.max_active_tasks, idle_agents, list(self.strategy.hold_agents))
+            )
         # Каждое назначение превращаем в сетевое assignment-сообщение.
         for assignment in assignments:
             self.apply_assignment(assignment, now)
-
-    def release_pending_tasks(self, now: float) -> None:
-        # Волны A2/B2/C2 и A3/B3/C3 видны на складе сразу, но становятся
-        # доступными аукциону позже, чтобы визуальная сцена не превращалась
-        # в физическую пробку у pickup-зон.
-        for task in self.tasks:
-            if task.status == "pending" and now >= release_time_for_task(task.task_id):
-                task.status = "open"
-                print("[release] task=%s time=%.1f" % (task.task_id, now))
 
     def apply_assignment(self, assignment: Assignment, now: float) -> None:
         # Находим сетевое состояние агента-победителя.
@@ -284,6 +363,19 @@ class WarehouseSupervisor:
             "[auction] agent=%s task=%s route=%s bid=%.2f utility=%.2f audit=%s"
             % (agent.agent_id, task.task_id, route.route_id, assignment.bid, assignment.utility, assignment.audit)
         )
+        # go_agents — это разрешение на ближайший batch, а не постоянная роль робота.
+        self.consume_go_agent(agent.agent_id)
+
+    def consume_go_agent(self, agent_id: str) -> None:
+        # Если стратегический уровень не задавал go_agents, менять нечего.
+        if not self.strategy.go_agents:
+            return
+        # Удаляем назначенного робота из одноразового окна допуска.
+        self.strategy.go_agents = tuple(item for item in self.strategy.go_agents if item != agent_id)
+        # hold_agents тоже очищаем от уже занятого робота, чтобы лог не вводил в заблуждение.
+        self.strategy.hold_agents = tuple(item for item in self.strategy.hold_agents if item != agent_id)
+        # Лог показывает, что последующие аукционы не будут прикованы к старому списку.
+        print("[dispatch-gate-consume] agent=%s remaining_go=%s" % (agent_id, list(self.strategy.go_agents)))
 
     def broadcast_strategy(self) -> None:
         # Strategy broadcast отправляется всем роботам через общий канал.
@@ -298,6 +390,10 @@ class WarehouseSupervisor:
                     "safety_margin": self.strategy.safety_margin,
                     "traffic_rule": self.strategy.traffic_rule,
                     "blocked_edges": list(self.strategy.blocked_edges),
+                    "go_agents": list(self.strategy.go_agents),
+                    "hold_agents": list(self.strategy.hold_agents),
+                    "max_active_tasks": self.strategy.max_active_tasks,
+                    "max_new_assignments": self.strategy.max_new_assignments,
                     "retrieved_rules": list(self.strategy.retrieved_rules),
                     "note": self.strategy.note,
                 },

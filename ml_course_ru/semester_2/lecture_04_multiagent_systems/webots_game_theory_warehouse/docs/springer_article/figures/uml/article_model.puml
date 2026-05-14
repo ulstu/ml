@@ -1,0 +1,57 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam nodesep 16
+skinparam ranksep 16
+skinparam padding 2
+left to right direction
+
+class Agent {
+  id
+  position
+  battery
+  status
+}
+
+class Task {
+  id
+  pickup
+  dropoff
+  reward
+  deadline
+  status
+}
+
+class Route {
+  id
+  waypoints
+  edges
+}
+
+class Strategy {
+  deadline_weight
+  travel_weight
+  congestion_weight
+  safety_margin
+  go_agents
+  hold_agents
+}
+
+class Assignment {
+  agent_id
+  task_id
+  route_id
+  bid
+  utility
+}
+
+Agent "1" -- "0..1" Task : выполняет
+Task "1" -- "1..*" Route : имеет кандидаты
+Strategy "1" ..> Assignment : параметризует
+Agent "1" ..> Assignment : ставка
+Task "1" ..> Assignment : контракт
+Route "1" ..> Assignment : равновесный маршрут
+@enduml

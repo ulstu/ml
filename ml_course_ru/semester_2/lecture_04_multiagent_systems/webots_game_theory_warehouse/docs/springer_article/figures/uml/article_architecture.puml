@@ -1,0 +1,52 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+skinparam componentStyle rectangle
+skinparam defaultFontName Helvetica
+skinparam defaultFontSize 11
+skinparam wrapWidth 180
+skinparam nodesep 16
+skinparam ranksep 18
+skinparam padding 2
+left to right direction
+
+package "Webots-среда" {
+  [Складская сцена\nстеллажи, доки, грузы] as World
+  [Роботы WarehouseRobot\nлокальные контроллеры] as Robots
+}
+
+package "Координационный слой" {
+  [Supervisor\nкоординатор сети] as Supervisor
+  [Task board\nсостояния заявок] as Board
+  [Emitter/Receiver\nсообщения агентов] as Net
+}
+
+package "Формальные модели" {
+  [Contract Net\nаукцион задач] as CNP
+  [Congestion game\nвыбор маршрутов] as Game
+  [Traffic rules + A*\nлокальное движение] as Local
+}
+
+package "Стратегический слой" {
+  database "SQLite vector DB\nправила склада" as VDB
+  [RAG retrieval\nпоиск правил] as RAG
+  [Ollama LLM\nстратегические веса] as LLM
+  [Guardrails\nвалидация JSON] as Guard
+}
+
+World --> Robots : физика и столкновения
+Robots --> Net : status, pickup, done
+Net --> Supervisor : сообщения
+Supervisor --> Board : обновление заявок
+Supervisor --> RAG : compact state
+VDB --> RAG : top-k rules
+RAG --> LLM : prompt
+LLM --> Guard : JSON strategy
+Guard --> CNP : веса, go/hold, лимиты
+Board --> CNP : открытые задачи
+CNP --> Game : победители аукциона
+Game --> Net : assignment(route)
+Net --> Robots : задание и маршрут
+Robots --> Local : локальное планирование
+Local --> Robots : скорость колес, уступание
+@enduml
