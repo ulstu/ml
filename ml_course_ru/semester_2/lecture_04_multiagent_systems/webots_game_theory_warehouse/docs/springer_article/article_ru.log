@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.10)  13 MAY 2026 13:44
+This is XeTeX, Version 3.141592653-2.6-0.999994 (TeX Live 2022) (preloaded format=xelatex 2023.1.10)  15 MAY 2026 07:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -738,1163 +738,756 @@ LaTeX Info: Redefining \ttfamily on input line 31.
 LaTeX Info: Redefining \rmfamily on input line 31.
 LaTeX Info: Redefining \sffamily on input line 31.
 LaTeX Info: Redefining \ttfamily on input line 31.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 42.
 
 
 (/usr/local/texlive/2022basic/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 42.
 
 
 (/usr/local/texlive/2022basic/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 2903) in paragraph at lines 44--45
-[]\TU/TimesNewRoman(1)/m/n/9 Объектом исследования является складская многоаген
-тная
+Underfull \hbox (badness 4779) in paragraph at lines 45--46
+[]\TU/TimesNewRoman(1)/m/n/9 Исследуется simulation-based warehouse-like многоа
+гентная
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 робототехническая система, в которой группа мобильны
-х роботов
+Underfull \hbox (badness 1895) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 эксплуатационных правил. Проблема состоит в том, что
+ классические
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 выполняет транспортные заявки при наличии общих кори
-доров,
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 модели назначения задач и выбора маршрутов требуют ч
+исленных
  []
 
 
-Underfull \hbox (badness 1946) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 связывающий текстовые правила эксплуатации склада с 
-формальными
+Underfull \hbox (badness 1881) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 параметров, тогда как часть контекста задается естес
+твенным языком:
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 моделями распределения задач и выбора маршрутов. Рас
-сматриваемая
+Underfull \hbox (badness 3439) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 инспекционный трафик, дозирование выпуска роботов, п
+риоритеты и
  []
 
 
-Underfull \hbox (badness 4378) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 численных параметров, тогда как часть эксплуатационн
-ого контекста
+Underfull \hbox (badness 5460) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 ограничения зон погрузки. Предложен подход, в которо
+м локальная
  []
 
 
-Underfull \hbox (badness 3281) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 формулируется в текстовом виде: инспекционный трафик
-, временные
+Underfull \hbox (badness 5036) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 LLM не управляет роботами напрямую, а формирует огра
+ниченный
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 роботов. Предложен подход RAG-LLM-параметризации: ло
-кальная
- []
-
-
-Underfull \hbox (badness 4416) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 через RAG, формирует не действия роботов, а проверяе
-мый вектор
- []
-
-
-Underfull \hbox (badness 6173) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 ограничения на активные задания и штрафы перегруженн
-ых ребер.
- []
-
-
-Underfull \hbox (badness 2150) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 Далее этот вектор используется формальными уровнями:
- Contract Net
- []
-
-
-Underfull \hbox (badness 5954) in paragraph at lines 44--45
+Underfull \hbox (badness 5954) in paragraph at lines 45--46
 \TU/TimesNewRoman(1)/m/n/9 назначает заявки, конечная игра с заторами выбирает 
 маршруты, а
  []
 
 
-Underfull \hbox (badness 3148) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 индивидуальные контроллеры Webots выполняют локально
-е движение
+Underfull \hbox (badness 3536) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 индивидуальные Webots-контроллеры выполняют локально
+е движение.
  []
 
 
-Underfull \hbox (badness 2469) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 с A* и предотвращением столкновений. Новизна работы 
-заключается
+Underfull \hbox (badness 10000) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 совместимого с нейросимвольной и когнитивно-автомати
+зационной
  []
 
 
-Underfull \hbox (badness 5741) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 а также в логико-алгебраической модели, где LLM расс
-матривается
+Underfull \hbox (badness 3657) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 парадигмами, но отделенного от физического контура у
+правления. В
  []
 
 
-Underfull \hbox (badness 7981) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 как ограниченный параметризатор формальных процедур,
- а не как
+Underfull \hbox (badness 1097) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 неотличима ($\OT1/cmr/m/n/9 645\OML/cmm/m/it/9 :\OT1
+/cmr/m/n/9 7 \OMS/cmsy/m/n/9 ^^F \OT1/cmr/m/n/9 83\OML/cmm/m/it/9 :\OT1/cmr/m/n
+/9 3$ \TU/TimesNewRoman(1)/m/n/9 с), а специализированное static-rule правило
  []
 
 
-Underfull \hbox (badness 2368) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 управляющий контур. Эксперименты показывают, что эфф
-ект подхода
+Underfull \hbox (badness 1253) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 replay снизил makespan относительно LLM no RAG с $\O
+T1/cmr/m/n/9 1882\OML/cmm/m/it/9 :\OT1/cmr/m/n/9 9 \OMS/cmsy/m/n/9 ^^F \OT1/cmr
+/m/n/9 254\OML/cmm/m/it/9 :\OT1/cmr/m/n/9 1$
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 проявляется не в малых сценах, а в конфликтной конфи
-гурации с 8
+Underfull \hbox (badness 1635) in paragraph at lines 45--46
+\TU/TimesNewRoman(1)/m/n/9 с. Это показывает, что embedding/RAG дает измеримый 
+эффект, когда
  []
 
 
-Underfull \hbox (badness 1817) in paragraph at lines 44--45
-\TU/TimesNewRoman(1)/m/n/9 роботами и 9 заявками: makespan уменьшается с 294.0 
-до 252.0 с, а
+Underfull \hbox (badness 2478) in paragraph at lines 52--53
+[]\TU/TimesNewRoman(1)/m/n/10 Складские робототехнические системы являются хара
+ктерным примером
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--52
-[]\TU/TimesNewRoman(1)/m/n/10 Складская робототехническая система с несколькими
- мобильными
+Underfull \hbox (badness 10000) in paragraph at lines 52--53
+\TU/TimesNewRoman(1)/m/n/10 многоагентных систем, где производительность опреде
+ляется не только
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 51--52
-\TU/TimesNewRoman(1)/m/n/10 производительность определяется не только локальной
- скоростью движения,
+Underfull \hbox (badness 2503) in paragraph at lines 52--53
+\TU/TimesNewRoman(1)/m/n/10 скоростью отдельных роботов, но и согласованностью 
+решений на разных
  []
 
 
-Underfull \hbox (badness 4441) in paragraph at lines 51--52
-\TU/TimesNewRoman(1)/m/n/10 локального движения. Поэтому простая централизованн
-ая диспетчеризация
- []
+Underfull \vbox (badness 3417) has occurred while \output is active []
 
-[1
+ [1
 
 ]
-Underfull \hbox (badness 1852) in paragraph at lines 53--54
-\TU/TimesNewRoman(1)/m/n/10 задачи. Протокол Contract Net естественно описывает
- распределение заявок
+Underfull \hbox (badness 6792) in paragraph at lines 54--55
+\TU/TimesNewRoman(1)/m/n/10 задачи. Contract Net Protocol формализует распредел
+ение заявок, игры с
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 53--54
-\TU/TimesNewRoman(1)/m/n/10 таблицами. Часть правил эксплуатации склада имеет т
-екстовую форму:
+Underfull \hbox (badness 2165) in paragraph at lines 54--55
+\TU/TimesNewRoman(1)/m/n/10 заторами описывают выбор маршрутов в общей сети, а 
+алгоритмы поиска
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 53--54
-\TU/TimesNewRoman(1)/m/n/10 приоритетов действует правостороннее движение, а вы
-пуск роботов следует
+Underfull \hbox (badness 3291) in paragraph at lines 54--55
+\TU/TimesNewRoman(1)/m/n/10 пути и локального объезда обеспечивают операционное
+ движение. Однако
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-\TU/TimesNewRoman(1)/m/n/10 робототехническая система, выполняющая поток трансп
-ортных заявок.
+Underfull \hbox (badness 1924) in paragraph at lines 54--55
+\TU/TimesNewRoman(1)/m/n/10 сервиса надо продолжать движение по последней валид
+ной стратегии. Для
  []
 
 
-Underfull \hbox (badness 3815) in paragraph at lines 55--56
-\TU/TimesNewRoman(1)/m/n/10 Предмет исследования -- механизм многоуровневого пр
-инятия решений, в
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+[]\TU/TimesNewRoman(1)/m/n/10 Объектом исследования является simulation-based w
+arehouse-like
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 55--56
-\TU/TimesNewRoman(1)/m/n/10 котором текстовые правила склада преобразуются в па
-раметры формальных
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+\TU/TimesNewRoman(1)/m/n/10 многоагентная транспортная система. Предмет исследо
+вания -- механизм
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-\TU/TimesNewRoman(1)/m/n/10 моделей назначения задач, выбора маршрутов и локаль
-ного движения.
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+\TU/TimesNewRoman(1)/m/n/10 преобразования текстовых эксплуатационных правил в 
+параметры
  []
 
 
-Underfull \hbox (badness 4168) in paragraph at lines 57--58
-\TU/TimesNewRoman(1)/m/n/10 могут оставаться формальными: Contract Net распреде
-ляет задачи, игра с
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+\TU/TimesNewRoman(1)/m/n/10 вопрос формулируется так: можно ли включить LLM в м
+ногоагентную
  []
 
 
-Underfull \hbox (badness 3375) in paragraph at lines 57--58
-\TU/TimesNewRoman(1)/m/n/10 движение и предотвращение столкновений. В такой арх
-итектуре выигрыш
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+\TU/TimesNewRoman(1)/m/n/10 робототехническую систему так, чтобы использовать е
+е способность
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 59--60
-[]\TU/TimesNewRoman(1)/m/n/10 Цель работы состоит в разработке и эксперименталь
-ной оценке такого
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+\TU/TimesNewRoman(1)/m/n/10 интерпретировать текстовые правила, но сохранить пр
+оверяемость,
  []
 
 
-Underfull \hbox (badness 3724) in paragraph at lines 59--60
-\TU/TimesNewRoman(1)/m/n/10 многоуровневого подхода. Для достижения цели решают
-ся четыре задачи:
+Underfull \hbox (badness 7326) in paragraph at lines 64--65
+[]\TU/TimesNewRoman(1)/m/n/10 Вклад работы состоит в следующем. Во-первых, пред
+ложена логико-
  []
 
 
-Underfull \hbox (badness 3884) in paragraph at lines 59--60
-\TU/TimesNewRoman(1)/m/n/10 формализовать складскую транспортную задачу как лог
-ико-алгебраическую
+Underfull \hbox (badness 3108) in paragraph at lines 64--65
+\TU/TimesNewRoman(1)/m/n/10 проект с индивидуальными контроллерами роботов и ко
+ординатором сети,
  []
 
 
-Underfull \hbox (badness 5260) in paragraph at lines 59--60
-\TU/TimesNewRoman(1)/m/n/10 модель; определить поток данных между RAG-LLM, Cont
-ract Net, игрой
+Underfull \hbox (badness 8075) in paragraph at lines 64--65
+\TU/TimesNewRoman(1)/m/n/10 который не является ручным водителем роботов. В-чет
+вертых, проведен
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 59--60
-\TU/TimesNewRoman(1)/m/n/10 с заторами и локальными контроллерами; реализовать 
-систему в Webots с
+Underfull \hbox (badness 7256) in paragraph at lines 64--65
+\TU/TimesNewRoman(1)/m/n/10 абляцией SOP-правил, baseline-сравнениями, доверите
+льными интервалами,
+ []
+
+[2]
+Underfull \hbox (badness 3189) in paragraph at lines 68--69
+\TU/TimesNewRoman(1)/m/n/10 Multi-Robot Task Allocation. Gerkey и Matarić [8] п
+редложили таксономию
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 61--62
-\TU/TimesNewRoman(1)/m/n/10 формальных многоагентных процедур. В отличие от под
-ходов, где языковая
+Underfull \hbox (badness 5175) in paragraph at lines 68--69
+\TU/TimesNewRoman(1)/m/n/10 MRTA, связывающую типы задач, роботов и оптимизацио
+нные критерии.
  []
 
 
-Underfull \hbox (badness 1953) in paragraph at lines 61--62
-\TU/TimesNewRoman(1)/m/n/10 к колесным скоростям и траекториям. Она формирует т
-олько проверяемый
+Underfull \hbox (badness 1831) in paragraph at lines 68--69
+\TU/TimesNewRoman(1)/m/n/10 параметров ограничений. В складских AGV/AMR-система
+х эта зависимость
  []
 
 
-Underfull \hbox (badness 1137) in paragraph at lines 61--62
-\OML/cmm/m/it/10 A[]$\TU/TimesNewRoman(1)/m/n/10 , ограничения на число активны
-х назначений и мягкие запреты ребер.
+Underfull \hbox (badness 6428) in paragraph at lines 70--71
+\TU/TimesNewRoman(1)/m/n/10 Игры с заторами Rosenthal [22] описывают ресурсы, с
+тоимость которых
  []
 
 
-Underfull \vbox (badness 2158) has occurred while \output is active []
-
- [2]
-Underfull \hbox (badness 1097) in paragraph at lines 65--66
-[]\TU/TimesNewRoman(1)/m/n/10 Исследование опирается на три группы работ. Перва
-я группа посвящена
+Underfull \hbox (badness 6188) in paragraph at lines 70--71
+\TU/TimesNewRoman(1)/m/n/10 растет с числом пользователей. Monderer и Shapley [
+19] показали связь
  []
 
 
-Underfull \hbox (badness 1895) in paragraph at lines 65--66
-\TU/TimesNewRoman(1)/m/n/10 распределению задач в многоагентных робототехническ
-их системах. Вторая
+Underfull \hbox (badness 7433) in paragraph at lines 70--71
+\TU/TimesNewRoman(1)/m/n/10 таких моделей с потенциальными играми, а Roughgarde
+n и Tardos [23]
  []
 
 
-Underfull \hbox (badness 2237) in paragraph at lines 67--68
-[]\TU/TimesNewRoman(1)/m/n/10 Первая группа относится к Multi-Robot Task Alloca
-tion (MRTA). Работа
+Underfull \hbox (badness 3701) in paragraph at lines 70--71
+\TU/TimesNewRoman(1)/m/n/10 исследовали неэффективность эгоистичной маршрутизац
+ии. Для складского
  []
 
 
-Underfull \hbox (badness 4608) in paragraph at lines 67--68
-\TU/TimesNewRoman(1)/m/n/10 Gerkey и Matarić [6] задала таксономию MRTA и связа
-ла распределение
+Underfull \hbox (badness 1072) in paragraph at lines 70--71
+\TU/TimesNewRoman(1)/m/n/10 ресурс с возрастающей стоимостью. На операционном у
+ровне используются
  []
 
 
-Underfull \hbox (badness 2050) in paragraph at lines 67--68
-\TU/TimesNewRoman(1)/m/n/10 оценивает задачу локально, а координатор выбирает п
-обедителя. Обзоры и
+Underfull \hbox (badness 6792) in paragraph at lines 72--73
+\TU/TimesNewRoman(1)/m/n/10 позволяет подключать внешние документы к генерации 
+ответа. Chain-of-
  []
 
 
-Underfull \hbox (badness 4205) in paragraph at lines 67--68
-\TU/TimesNewRoman(1)/m/n/10 хорошо масштабируются и допускают децентрализованну
-ю интерпретацию
+Underfull \hbox (badness 4144) in paragraph at lines 72--73
+\TU/TimesNewRoman(1)/m/n/10 thought [28], ReAct [30] и обзоры LLM-агентов [29] 
+показывают переход
  []
 
 
-Underfull \hbox (badness 1292) in paragraph at lines 67--68
-\TU/TimesNewRoman(1)/m/n/10 полезности, но качество результата критически завис
-ит от состава функции
+Underfull \hbox (badness 1371) in paragraph at lines 74--75
+[]\TU/TimesNewRoman(1)/m/n/10 Четвертая линия связана с нейросимвольным ИИ и co
+gnitive automation.
  []
 
 
-Underfull \hbox (badness 5924) in paragraph at lines 67--68
-\TU/TimesNewRoman(1)/m/n/10 ставки. Для складских транспортных систем это согла
-суется с обзорами
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+\TU/TimesNewRoman(1)/m/n/10 Нейросимвольные подходы стремятся объединить интерп
+ретируемые
  []
 
 
-Underfull \hbox (badness 1009) in paragraph at lines 67--68
-\TU/TimesNewRoman(1)/m/n/10 сети. Следовательно, нерешенным остается вопрос, ка
-к адаптировать веса и
+Underfull \hbox (badness 3780) in paragraph at lines 74--75
+\TU/TimesNewRoman(1)/m/n/10 символические структуры с гибкостью нейронных модел
+ей [24]. Cognitive
  []
 
 
-Underfull \hbox (badness 4886) in paragraph at lines 67--68
-\TU/TimesNewRoman(1)/m/n/10 ограничения функции ставки при изменении эксплуатац
-ионного контекста
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
+\TU/TimesNewRoman(1)/m/n/10 automation рассматривает автоматизацию как перенос 
+части когнитивных
  []
 
 
-Underfull \hbox (badness 4441) in paragraph at lines 69--70
-\TU/TimesNewRoman(1)/m/n/10 Игры с заторами, введенные Rosenthal [14], моделиру
-ют ситуацию, когда
- []
-
-
-Underfull \hbox (badness 1540) in paragraph at lines 69--70
-\TU/TimesNewRoman(1)/m/n/10 стоимость ресурса растет с числом пользователей. Mo
-nderer и Shapley [13]
- []
-
-
-Underfull \hbox (badness 1097) in paragraph at lines 69--70
-\TU/TimesNewRoman(1)/m/n/10 склада эти результаты означают, что общий коридор м
-ожет рассматриваться
- []
-
-
-Underfull \hbox (badness 1983) in paragraph at lines 69--70
-\TU/TimesNewRoman(1)/m/n/10 связан с классическими задачами планирования движен
-ия [9], поиска пути
- []
-
-
-Underfull \hbox (badness 1924) in paragraph at lines 69--70
-\TU/TimesNewRoman(1)/m/n/10 и предотвращения столкновений: A* [7], потенциальны
-е поля [8], Dynamic
- []
-
-
-Underfull \hbox (badness 4518) in paragraph at lines 69--70
-\TU/TimesNewRoman(1)/m/n/10 инспекция центрального прохода, временное обслужива
-ние стеллажей или
+Underfull \hbox (badness 4686) in paragraph at lines 74--75
+\TU/TimesNewRoman(1)/m/n/10 pipeline. Работы по guardrails [3] и безопасному LL
+M-планированию [20]
  []
 
 [3]
-Underfull \hbox (badness 10000) in paragraph at lines 71--72
-[]\TU/TimesNewRoman(1)/m/n/10 Третья группа связана с LLM и RAG. Подход Retriev
-al-Augmented
+Underfull \hbox (badness 2961) in paragraph at lines 76--77
+\TU/TimesNewRoman(1)/m/n/10 для назначения, congestion games и MAPF для маршрут
+изации, RAG/LLM
  []
 
 
-Underfull \hbox (badness 2359) in paragraph at lines 71--72
-\TU/TimesNewRoman(1)/m/n/10 использовать промежуточные рассуждения и связывать 
-их с действиями, а
+Underfull \hbox (badness 1286) in paragraph at lines 76--77
+\TU/TimesNewRoman(1)/m/n/10 для интерпретации текста, guardrails для ограничени
+я вывода. Недостаточно
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--84
-[]|\TU/TimesNewRoman(1)/m/n/7 Ограничение для данной
+Underfull \hbox (badness 10000) in paragraph at lines 76--77
+\TU/TimesNewRoman(1)/m/n/10 разработан именно связующий механизм, в котором LLM
+ переводит
  []
 
 
-Underfull \hbox (badness 1048) in paragraph at lines 86--86
-[]|\TU/TimesNewRoman(1)/m/n/7 Распределение задач между
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 86--86
-\TU/TimesNewRoman(1)/m/n/7 роботами по ставкам и
- []
-
-
-Underfull \hbox (badness 4595) in paragraph at lines 86--86
-[]|\TU/TimesNewRoman(1)/m/n/7 Требует заданной функции
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 86--87
-[]|\TU/TimesNewRoman(1)/m/n/7 Тактическое назначение
- []
-
-
-Underfull \hbox (badness 6110) in paragraph at lines 87--87
-\TU/TimesNewRoman(1)/m/n/7 ресурсов при конкуренции
+Underfull \hbox (badness 2726) in paragraph at lines 76--77
+\TU/TimesNewRoman(1)/m/n/10 эксплуатационный текст в параметры формальных модел
+ей, а не заменяет
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 87--87
-[]|\TU/TimesNewRoman(1)/m/n/7 Не интерпретируют
+[]|\TU/TimesNewRoman(1)/m/n/7 Выбор параметров ставки из
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 87--88
-[]|\TU/TimesNewRoman(1)/m/n/7 Выбор маршрутов и
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 87--88
-\TU/TimesNewRoman(1)/m/n/7 штраф перегруженных
+[]|\TU/TimesNewRoman(1)/m/n/7 Тактический
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 88--88
-[]|\TU/TimesNewRoman(1)/m/n/7 MAPF и локальное
+[]|\TU/TimesNewRoman(1)/m/n/7 Интерпретация
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--88
-[]|\TU/TimesNewRoman(1)/m/n/7 Конфликты траекторий,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--88
-\TU/TimesNewRoman(1)/m/n/7 поиск пути, объезд
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--88
-[]|\TU/TimesNewRoman(1)/m/n/7 Слабо описывают
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--88
-\TU/TimesNewRoman(1)/m/n/7 эксплуатационные правила
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
-[]|\TU/TimesNewRoman(1)/m/n/7 Операционное
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--89
-\TU/TimesNewRoman(1)/m/n/7 исполнение и
+Underfull \hbox (badness 3291) in paragraph at lines 89--89
+[]|\TU/TimesNewRoman(1)/m/n/7 Инструкции, планы, cost/reward
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 89--89
-[]|\TU/TimesNewRoman(1)/m/n/7 Нужны ограничения на
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 89--89
-\TU/TimesNewRoman(1)/m/n/7 выход и запрет прямого
+[]|\TU/TimesNewRoman(1)/m/n/7 Риск прямого управления и
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 89--90
-[]|\TU/TimesNewRoman(1)/m/n/7 Стратегическая
+[]|\TU/TimesNewRoman(1)/m/n/7 Стратегический
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 89--90
-\TU/TimesNewRoman(1)/m/n/7 параметризация
+Overfull \hbox (7.0167pt too wide) in paragraph at lines 90--91
+[]|\TU/TimesNewRoman(1)/m/n/7 Методологическая
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--90
-[]|\TU/TimesNewRoman(1)/m/n/7 Диспетчеризация,
+Underfull \hbox (badness 10000) in paragraph at lines 91--91
+[]|\TU/TimesNewRoman(1)/m/n/7 Не определяет MRTA/MAPF-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--90
-\TU/TimesNewRoman(1)/m/n/7 маршрутизация и
+Underfull \hbox (badness 10000) in paragraph at lines 91--92
+[]|\TU/TimesNewRoman(1)/m/n/7 Runtime-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 90--90
-\TU/TimesNewRoman(1)/m/n/7 управление транспортным
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--90
-[]|\TU/TimesNewRoman(1)/m/n/7 Часто разделяют правила
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--90
-\TU/TimesNewRoman(1)/m/n/7 эксплуатации и модель
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
-[]|\TU/TimesNewRoman(1)/m/n/7 Интегральный
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
-\TU/TimesNewRoman(1)/m/n/7 сценарий Webots
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 90--91
-\TU/TimesNewRoman(1)/m/n/7 и вычислительный
- []
-
-
-Underfull \hbox (badness 1237) in paragraph at lines 97--98
-[]\TU/TimesNewRoman(1)/m/n/10 Ключевая идея подхода состоит в разделении принят
-ия решений на три
- []
-
-
-Underfull \hbox (badness 2961) in paragraph at lines 97--98
-\TU/TimesNewRoman(1)/m/n/10 сколько роботов следует выпускать одновременно и ка
-кие агенты должны
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--98
-\TU/TimesNewRoman(1)/m/n/10 подождать. Тактический уровень превращает стратегию
- в назначения и
- []
-
-
-Underfull \hbox (badness 3954) in paragraph at lines 97--98
-\TU/TimesNewRoman(1)/m/n/10 маршрут в Webots: индивидуальный контроллер робота 
-строит локальный
- []
-
-
-Underfull \hbox (badness 1014) in paragraph at lines 97--98
-\TU/TimesNewRoman(1)/m/n/10 путь, объезжает препятствия и сообщает события о по
-грузке, разгрузке или
- []
-
-
-Underfull \hbox (badness 1394) in paragraph at lines 99--100
-\TU/TimesNewRoman(1)/m/n/10 стратегия, а тактический и операционный уровни прод
-олжают работать без
+Underfull \hbox (badness 1755) in paragraph at lines 98--99
+\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 ^^\[]; [] ; ^^\[]\OMS/cmsy/m/n/10 g$\TU/Time
+sNewRoman(1)/m/n/10 , множество маршрутов для заявки $\OML/cmm/m/it/10 ^^\$ \TU
+/TimesNewRoman(1)/m/n/10 -- $\OML/cmm/m/it/10 R[]$\TU/TimesNewRoman(1)/m/n/10 .
+ Робот описывается
  []
 
 [4]
+Underfull \hbox (badness 1038) in paragraph at lines 131--133
+\TU/TimesNewRoman(1)/m/n/10 Оно заменяет искусственные волны заявок: все задачи
+ могут быть открыты
+ []
+
+
+Underfull \hbox (badness 2932) in paragraph at lines 131--133
+\TU/TimesNewRoman(1)/m/n/10 с начала, но одновременно исполняется не более одно
+й заявки на семью
+ []
+
+
+Underfull \hbox (badness 1888) in paragraph at lines 139--141
+\TU/TimesNewRoman(1)/m/n/10 Жадный Contract Net упорядочивает допустимые пары $
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a; ^^\\OT1/cmr/m/n/10 )$ \TU/TimesNewRoman(1)
+/m/n/10 по $\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a; ^^\; t\OT1/c
+mr/m/n/10 )$ \TU/TimesNewRoman(1)/m/n/10 и
+ []
+
+
+Underfull \hbox (badness 6741) in paragraph at lines 139--141
+\TU/TimesNewRoman(1)/m/n/10 глобального оптимума, но достаточен для онлайн-сцен
+ария, где решения
+ []
+
+
+Underfull \hbox (badness 4378) in paragraph at lines 142--143
+[]\TU/TimesNewRoman(1)/m/n/10 Вторая подзадача -- маршрутизация назначенных зая
+вок. Для профиля
+ []
+
+
+Underfull \hbox (badness 1838) in paragraph at lines 169--170
+[]|\TU/TimesNewRoman(1)/m/n/7 меняет цену расстояния до pickup и
+ []
+
+
+Underfull \hbox (badness 7851) in paragraph at lines 170--171
+[]|\TU/TimesNewRoman(1)/m/n/7 штрафует совместное использование
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
+[]|\TU/TimesNewRoman(1)/m/n/7 снижает ставки роботов с малым
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
+[]|\TU/TimesNewRoman(1)/m/n/7 дозирует выпуск роботов без волн
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+[]|\TU/TimesNewRoman(1)/m/n/7 задает safety margin для избегания
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+\TU/TimesNewRoman(1)/m/n/10 создать маршрут, изменить граф склада или изменить 
+низкоуровневый
+ []
+
+
+Underfull \hbox (badness 1584) in paragraph at lines 180--181
+\TU/TimesNewRoman(1)/m/n/10 контроллер. Она может только предложить значения $\
+OT1/cmr/m/n/10 ^^B$ \TU/TimesNewRoman(1)/m/n/10 в заранее заданных
+ []
+
+
+Underfull \hbox (badness 2096) in paragraph at lines 180--181
+\TU/TimesNewRoman(1)/m/n/10 полях. Guardrails удаляют неизвестные идентификатор
+ы, ограничивают веса
+ []
+
+[5]
+Underfull \hbox (badness 1521) in paragraph at lines 184--185
+\TU/TimesNewRoman(1)/m/n/10 модели \TU/ArialUnicodeMS(1)/m/n/10 qwen2.5:0.5b \T
+U/TimesNewRoman(1)/m/n/10 и guardrails. База правил содержит 19 документов со
+ []
+
+
+Underfull \hbox (badness 4634) in paragraph at lines 184--185
+\TU/ArialUnicodeMS(1)/m/n/10 sqlite+pytorch\TU/TimesNewRoman(1)/m/n/10 . Докуме
+нты описывают шесть групп правил: координатную
+ []
+
+
+Underfull \hbox (badness 7814) in paragraph at lines 186--187
+[]\TU/TimesNewRoman(1)/m/n/10 Входом vector DB является текстовый запрос $\OML/
+cmm/m/it/10 q\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 z[]\OT1/cmr/m/n/10 )$\TU/TimesNe
+wRoman(1)/m/n/10 , построенный из
+ []
+
+
+Underfull \hbox (badness 2418) in paragraph at lines 186--187
+\TU/TimesNewRoman(1)/m/n/10 edges, deadline/reward jitter, текстовое правило сц
+ены, признаки ожидаемых
+ []
+
+[6]
+Underfull \hbox (badness 7308) in paragraph at lines 226--227
+[]\TU/TimesNewRoman(1)/m/n/10 Живые ответы \TU/ArialUnicodeMS(1)/m/n/10 qwen2.5
+:0.5b \TU/TimesNewRoman(1)/m/n/10 часто содержали допустимый JSON, но
+ []
+
+
+Underfull \hbox (badness 3364) in paragraph at lines 226--227
+\TU/TimesNewRoman(1)/m/n/10 семантически шумные поля, например числовую строку 
+в \TU/ArialUnicodeMS(1)/m/n/10 traffic_rule \TU/TimesNewRoman(1)/m/n/10 или
+ []
+
+
+Underfull \hbox (badness 2080) in paragraph at lines 226--227
+\TU/TimesNewRoman(1)/m/n/10 вспомогательная инженерная деталь, а как обязательн
+ая часть метода. Они
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 230--231
+[]\TU/TimesNewRoman(1)/m/n/10 Система реализована как Webots-проект. Supervisor
+ выполняет роль
+ []
+
+
+Underfull \hbox (badness 8000) in paragraph at lines 230--231
+\TU/TimesNewRoman(1)/m/n/10 затем отправляет назначения. Каждый робот имеет соб
+ственный Python-
+ []
+
+
+Underfull \hbox (badness 4556) in paragraph at lines 230--231
+\TU/TimesNewRoman(1)/m/n/10 контроллер, получает сообщения \TU/ArialUnicodeMS(1
+)/m/n/10 assignment(task,route)\TU/TimesNewRoman(1)/m/n/10 , локально следует
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 230--231
+\TU/ArialUnicodeMS(1)/m/n/10 pickup\TU/TimesNewRoman(1)/m/n/10 , \TU/ArialUnico
+deMS(1)/m/n/10 done\TU/TimesNewRoman(1)/m/n/10 , \TU/ArialUnicodeMS(1)/m/n/10 r
+eplan\TU/TimesNewRoman(1)/m/n/10 . Supervisor не задает скорости колес и не пер
+емещает
+ []
+
 File: figures/uml/article_data_flow.png Graphic file (type bmp)
 <figures/uml/article_data_flow.png>
 
-Underfull \hbox (badness 1509) in paragraph at lines 108--109
-[]\TU/TimesNewRoman(1)/m/n/10 Диаграмма потоков данных на рис. 1[] задает основ
-ную логику системы.
+Underfull \hbox (badness 10000) in paragraph at lines 235--235
+[]\TU/TimesNewRoman(1)/b/n/9 Рис.1. \TU/TimesNewRoman(1)/m/n/9 Поток данных: те
+кстовые правила и состояние склада преобразуются в
  []
 
 
-Underfull \hbox (badness 1184) in paragraph at lines 108--109
-\TU/TimesNewRoman(1)/m/n/10 используется двумя путями. Во-первых, оно напрямую 
-поступает в Contract
- []
-
-
-Underfull \vbox (badness 2635) has occurred while \output is active []
-
- [5]
-Underfull \hbox (badness 1127) in paragraph at lines 122--123
-\TU/TimesNewRoman(1)/m/n/10 правила движения: правосторонний приоритет, уступан
-ие на перекрестках и
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 122--123
-\TU/TimesNewRoman(1)/m/n/10 заторов: при высокой нагрузке центрального коридора
- предпочтительны
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
-[]|\TU/TimesNewRoman(1)/m/n/7 Текстовые правила склада, теги,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--134
-[]|\TU/TimesNewRoman(1)/m/n/7 Top-$\OML/cmm/m/it/7 k$ \TU/TimesNewRoman(1)/m/n/
-7 релевантных правил и их
- []
-
-
-Underfull \hbox (badness 7362) in paragraph at lines 134--134
-[]|\TU/TimesNewRoman(1)/m/n/7 Компактное состояние $\OML/cmm/m/it/7 z[]$ \TU/Ti
-mesNewRoman(1)/m/n/7 и вектор
- []
-
-
-Underfull \hbox (badness 1082) in paragraph at lines 134--135
-[]|\TU/TimesNewRoman(1)/m/n/7 Список документов для prompt и журнал
- []
-
-
-Underfull \hbox (badness 4819) in paragraph at lines 135--135
-[]|$\OML/cmm/m/it/7 z[]$\TU/TimesNewRoman(1)/m/n/7 , найденные правила, JSON-сх
-ема
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 135--136
-[]|\TU/TimesNewRoman(1)/m/n/7 Ограниченный prompt без инструкций
- []
-
-
-Underfull \hbox (badness 5374) in paragraph at lines 136--137
-[]|\TU/TimesNewRoman(1)/m/n/7 JSON-кандидат стратегии: веса, лимиты,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 137--137
-[]|\TU/TimesNewRoman(1)/m/n/7 JSON-кандидат, допустимые
- []
-
-
-Underfull \hbox (badness 3138) in paragraph at lines 137--138
-[]|\TU/TimesNewRoman(1)/m/n/7 Валидный стратегический вектор $\OT1/cmr/m/n/7 ^^
-B$ \TU/TimesNewRoman(1)/m/n/7 или
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--152
-[]|\TU/TimesNewRoman(1)/m/n/7 RAG + Ollama +
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 152--152
-[]|\TU/TimesNewRoman(1)/m/n/7 Стратегия, открытые заявки,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 152--152
-[]|\TU/TimesNewRoman(1)/m/n/7 Назначения агент--задача и
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
-[]|\TU/TimesNewRoman(1)/m/n/7 Contract Net,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--153
-[]|\TU/TimesNewRoman(1)/m/n/7 Назначение, маршрут,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--153
-[]|\TU/TimesNewRoman(1)/m/n/7 Скорости колес, события
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
-[]|\TU/TimesNewRoman(1)/m/n/7 A*, правила
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 153--154
-\TU/TimesNewRoman(1)/m/n/7 движения,
- []
-
-
-Underfull \hbox (badness 4048) in paragraph at lines 158--159
-\TU/TimesNewRoman(1)/m/n/10 не как универсальный планировщик, а как адаптивный 
-интерфейс между
- []
-
-
-Underfull \hbox (badness 1509) in paragraph at lines 158--159
-\TU/TimesNewRoman(1)/m/n/10 текстовыми правилами и формальными моделями. Поэтом
-у эффект подхода
- []
-
-
-Underfull \hbox (badness 1454) in paragraph at lines 162--163
-[]\TU/TimesNewRoman(1)/m/n/10 Формальная постановка нужна для того, чтобы отдел
-ить интерпретацию
- []
-
-
-Underfull \hbox (badness 5274) in paragraph at lines 162--163
-\TU/TimesNewRoman(1)/m/n/10 напрямую; они преобразуются в стратегический вектор
-. После этого все
- []
-
-
-Underfull \hbox (badness 2799) in paragraph at lines 162--163
-\TU/TimesNewRoman(1)/m/n/10 назначения, маршруты и локальные действия вычисляют
-ся над конечными
- []
-
-
-Underfull \vbox (badness 3343) has occurred while \output is active []
-
- [6]
-[7]
-Underfull \hbox (badness 1721) in paragraph at lines 203--205
-\TU/TimesNewRoman(1)/m/n/10 Оно означает, что повторные заявки одной pickup/dro
-poff-семьи не должны
- []
-
-
-Underfull \hbox (badness 5756) in paragraph at lines 218--219
-[]\TU/TimesNewRoman(1)/m/n/10 После назначения задач возникает игра выбора марш
-рутов. Игроками
- []
-
-
-Underfull \hbox (badness 1701) in paragraph at lines 218--219
-\TU/TimesNewRoman(1)/m/n/10 являются назначенные пары $\OT1/cmr/m/n/10 (\OML/cm
-m/m/it/10 a; ^^\\OT1/cmr/m/n/10 )$\TU/TimesNewRoman(1)/m/n/10 , стратегия игрок
-а -- маршрут $\OML/cmm/m/it/10 r \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 R[]$\TU/Ti
-mesNewRoman(1)/m/n/10 .
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 223--225
-\TU/TimesNewRoman(1)/m/n/10 где $\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 (\OML/cmm/m/
-it/10 r\OT1/cmr/m/n/10 )$ \TU/TimesNewRoman(1)/m/n/10 -- геометрическая длина, 
-$\OML/cmm/m/it/10 n[]$ \TU/TimesNewRoman(1)/m/n/10 -- число выбранных маршрутов
-,
- []
-
-
-Underfull \hbox (badness 2229) in paragraph at lines 223--225
-\TU/TimesNewRoman(1)/m/n/10 использующих ребро $\OML/cmm/m/it/10 e$\TU/TimesNew
-Roman(1)/m/n/10 , $\OML/cmm/m/it/10 w[]$ \TU/TimesNewRoman(1)/m/n/10 -- вес зат
-оров, $\OML/cmm/m/it/10 E[]$ \TU/TimesNewRoman(1)/m/n/10 -- множество стратегич
-ески
- []
-
-[8]
-Underfull \hbox (badness 3646) in paragraph at lines 231--233
-\TU/TimesNewRoman(1)/m/n/10 Итерации завершаются, когда ни один агент не снижае
-т индивидуальную
- []
-
-
-Underfull \hbox (badness 1168) in paragraph at lines 237--239
-\TU/TimesNewRoman(1)/m/n/10 векторной базе, $\OML/cmm/m/it/10 L$ \TU/TimesNewRo
-man(1)/m/n/10 -- локальная языковая модель Ollama, $\OML/cmm/m/it/10 G$ \TU/Tim
-esNewRoman(1)/m/n/10 -- проверяющее
- []
-
-
-Underfull \hbox (badness 2478) in paragraph at lines 241--243
-\TU/TimesNewRoman(1)/m/n/10 и ожидания, $\OML/cmm/m/it/10 N[]$ \TU/TimesNewRoma
-n(1)/m/n/10 -- максимум активных задач, $\OML/cmm/m/it/10 N[]$ \TU/TimesNewRoma
-n(1)/m/n/10 -- максимум новых
- []
-
-
-Underfull \hbox (badness 3872) in paragraph at lines 241--243
-\TU/TimesNewRoman(1)/m/n/10 назначений. Важное свойство модели состоит в том, ч
-то $\OML/cmm/m/it/10 L$ \TU/TimesNewRoman(1)/m/n/10 не входит в
- []
-
-
-Underfull \hbox (badness 3118) in paragraph at lines 248--249
-\TU/TimesNewRoman(1)/m/n/10 Он подчеркивает, что стратегический уровень вызывае
-тся периодически, а
- []
-
-
-Underfull \hbox (badness 1735) in paragraph at lines 248--249
-\TU/TimesNewRoman(1)/m/n/10 операционный уровень работает на каждом шаге модели
-рования. Благодаря
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 274--275
-[]\TU/TimesNewRoman(1)/m/n/10 Разработанная система является программной реализ
-ацией модели,
- []
-
-
-Underfull \hbox (badness 1009) in paragraph at lines 274--275
-\TU/TimesNewRoman(1)/m/n/10 описанной выше. Она построена как Webots-проект с н
-абором независимых
+Underfull \hbox (badness 6758) in paragraph at lines 235--235
+\TU/TimesNewRoman(1)/m/n/9 стратегический вектор, после чего формальные модели 
+выполняют назначение и
  []
 
 File: figures/uml/article_architecture.png Graphic file (type bmp)
 <figures/uml/article_architecture.png>
-
-Underfull \hbox (badness 7722) in paragraph at lines 283--284
-[]\TU/TimesNewRoman(1)/m/n/10 На рис. 2[] показано соответствие программных ком
-понентов уровням
- []
-
-
-Underfull \hbox (badness 2368) in paragraph at lines 283--284
-\TU/TimesNewRoman(1)/m/n/10 поддерживает снимок состояния склада, RAG-модуль из
-влекает правила из
- []
-
-
-Underfull \hbox (badness 1142) in paragraph at lines 283--284
-\TU/TimesNewRoman(1)/m/n/10 локальной SQLite vector DB, LLM-слой возвращает стр
-атегический JSON, а
- []
-
-
-Underfull \hbox (badness 5245) in paragraph at lines 283--284
-\TU/TimesNewRoman(1)/m/n/10 возвращает некорректный JSON, используется детермин
-ированная fallback-
- []
-
-[9] [10]
 File: figures/uml/article_model.png Graphic file (type bmp)
 <figures/uml/article_model.png>
-
-Underfull \hbox (badness 10000) in paragraph at lines 292--293
-[]\TU/TimesNewRoman(1)/m/n/10 Предметная модель на рис. 3[] соответствует прогр
-аммным классам
- []
-
-
-Underfull \hbox (badness 3158) in paragraph at lines 292--293
-\TU/ArialUnicodeMS(1)/m/n/10 AgentSnapshot\TU/TimesNewRoman(1)/m/n/10 , \TU/Ari
-alUnicodeMS(1)/m/n/10 Task\TU/TimesNewRoman(1)/m/n/10 , \TU/ArialUnicodeMS(1)/m
-/n/10 Route\TU/TimesNewRoman(1)/m/n/10 , \TU/ArialUnicodeMS(1)/m/n/10 Strategy 
-\TU/TimesNewRoman(1)/m/n/10 и \TU/ArialUnicodeMS(1)/m/n/10 Assignment\TU/TimesN
-ewRoman(1)/m/n/10 . Сущность \TU/ArialUnicodeMS(1)/m/n/10 Strategy
- []
-
-
-Underfull \hbox (badness 3815) in paragraph at lines 292--293
-\TU/TimesNewRoman(1)/m/n/10 Она содержит только численные и дискретные параметр
-ы, которые затем
- []
-
 File: figures/uml/article_decision_pipeline.png Graphic file (type bmp)
 <figures/uml/article_decision_pipeline.png>
 
-Underfull \hbox (badness 3942) in paragraph at lines 297--297
+Underfull \hbox (badness 1337) in paragraph at lines 256--256
 []\TU/TimesNewRoman(1)/b/n/9 Рис.4. \TU/TimesNewRoman(1)/m/n/9 Последовательнос
-ть принятия решений от состояния склада до локального
+ть принятия решений от сообщений роботов до локального
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 301--302
-\TU/TimesNewRoman(1)/m/n/10 формирует $\OML/cmm/m/it/10 z[]$ \TU/TimesNewRoman(
-1)/m/n/10 и вызывает стратегический уровень. Если активна LLM-
- []
-
-
-Underfull \hbox (badness 4467) in paragraph at lines 301--302
-\TU/TimesNewRoman(1)/m/n/10 стратегия, RAG извлекает правила, Ollama возвращает
- JSON, а guardrails
- []
-
-
-Underfull \hbox (badness 4543) in paragraph at lines 301--302
-\TU/TimesNewRoman(1)/m/n/10 congestion game выбирает маршруты с учетом текущих 
-и стратегических
- []
-
-
-Underfull \hbox (badness 3019) in paragraph at lines 303--304
-\TU/TimesNewRoman(1)/m/n/10 Робот получает назначение, строит путь по waypoints
-, при необходимости
- []
-
-
-Underfull \hbox (badness 5189) in paragraph at lines 303--304
-\TU/TimesNewRoman(1)/m/n/10 Таким образом, архитектура является гибридной: стра
-тегический контекст
- []
-
-
-Underfull \hbox (badness 1817) in paragraph at lines 307--308
-\TU/TimesNewRoman(1)/m/n/10 эффект от ее включения в поток данных на рис. 1[]. 
-Проверяемая гипотеза
- []
-
-
-Underfull \hbox (badness 1210) in paragraph at lines 307--308
-\TU/TimesNewRoman(1)/m/n/10 состоит в следующем: LLM-слой должен ухудшать или н
-е улучшать малые
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [11]
-Underfull \hbox (badness 3281) in paragraph at lines 309--310
-[]\TU/TimesNewRoman(1)/m/n/10 Для проверки рассмотрены четыре сценария: большая
- базовая сцена с
- []
-
-
-Underfull \hbox (badness 1194) in paragraph at lines 309--310
-\TU/TimesNewRoman(1)/m/n/10 3 задачами и 4 роботами (L-3), большая сцена с 9 за
-дачами и 8 роботами
- []
-
-
-Underfull \hbox (badness 2245) in paragraph at lines 309--310
-\TU/TimesNewRoman(1)/m/n/10 (L-9), большая сцена обслуживания с 9 задачами и 8 
-роботами (LM-9), а
- []
-
-
-Underfull \hbox (badness 1616) in paragraph at lines 309--310
-\TU/TimesNewRoman(1)/m/n/10 центральный коридор не закрыт жестко, но получает в
-ысокий контекстный
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
-[]\TU/TimesNewRoman(1)/m/n/10 Сравнивались два режима. В режиме \TU/TimesNewRom
-an(1)/m/it/10 fallback \TU/TimesNewRoman(1)/m/n/10 стратегия задавалась
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 311--312
-\TU/TimesNewRoman(1)/m/n/10 детерминированными правилами без обращения к LLM. В
- режиме \TU/TimesNewRoman(1)/m/it/10 llm
- []
-
-
-Underfull \hbox (badness 1394) in paragraph at lines 311--312
-\TU/TimesNewRoman(1)/m/n/10 планировщика, а с изменением стратегического вектор
-а. Метрики включали
- []
-
-[12]
-Underfull \hbox (badness 5592) in paragraph at lines 329--331
-\TU/TimesNewRoman(1)/m/n/10 использовалась как контроль работоспособности сцена
-рия. Для сравнения
- []
-
-
-Underfull \hbox (badness 6758) in paragraph at lines 329--331
-\TU/TimesNewRoman(1)/m/n/10 режимов применялись относительные изменения $\OT1/c
-mr/m/n/10 ^^A\OML/cmm/m/it/10 M \OT1/cmr/m/n/10 = (\OML/cmm/m/it/10 M[] \OMS/cm
-sy/m/n/10 ^^@
- []
-
-
-Underfull \hbox (badness 2401) in paragraph at lines 329--331
-\OML/cmm/m/it/10 M[]\OT1/cmr/m/n/10 )/\OML/cmm/m/it/10 M[]$ \TU/TimesNewRoman(1
-)/m/n/10 и $\OT1/cmr/m/n/10 ^^A\OML/cmm/m/it/10 W \OT1/cmr/m/n/10 = (\OML/cmm/m
-/it/10 W[] \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 W[]\OT1/cmr/m/n/10 )/\OML/cmm/
-m/it/10 W[]$\TU/TimesNewRoman(1)/m/n/10 . Положительное
- []
-
-
-Underfull \hbox (badness 1264) in paragraph at lines 332--333
-\TU/TimesNewRoman(1)/m/n/10 движения совпадали. Отличались только значения $\OT
-1/cmr/m/n/10 ^^B$\TU/TimesNewRoman(1)/m/n/10 : в fallback-режиме они
- []
-
-
-Underfull \hbox (badness 3407) in paragraph at lines 332--333
-\TU/TimesNewRoman(1)/m/n/10 после RAG и guardrails. Это исключает ситуацию, при
- которой выигрыш
- []
-
-
-Underfull \hbox (badness 2035) in paragraph at lines 355--356
-\TU/TimesNewRoman(1)/m/n/10 снижается на 42.0 с, что соответствует относительно
-му улучшению 14.3%.
- []
-
-
-Underfull \hbox (badness 1178) in paragraph at lines 355--356
-\TU/TimesNewRoman(1)/m/n/10 переводе части потока с потенциально конфликтного ц
-ентра на обходы и в
- []
-
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 357--358
-\TU/TimesNewRoman(1)/m/n/10 выигрыш от меньшего ожидания. Следовательно, целесо
-образность LLM
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 357--358
-\TU/TimesNewRoman(1)/m/n/10 альтернативных маршрутов, достаточное число конкури
-рующих заявок и
- []
-
+[7] [8]
 File: figures/screenshots/webots_scene_0000.png Graphic file (type bmp)
 <figures/screenshots/webots_scene_0000.png>
-
-Underfull \hbox (badness 1817) in paragraph at lines 362--362
-[]\TU/TimesNewRoman(1)/b/n/9 Рис.5. \TU/TimesNewRoman(1)/m/n/9 Кадр Webots-сцен
-ы: склад, маршруты, грузы и восемь роботов в начальном
- []
-
 File: figures/experiment_snapshots_montage.png Graphic file (type bmp)
 <figures/experiment_snapshots_montage.png>
 
-Underfull \hbox (badness 2932) in paragraph at lines 369--369
-\TU/TimesNewRoman(1)/m/n/9 и событий Webots-лога: начальное состояние, выполнен
-ие первых заявок и запуск
+Underfull \hbox (badness 2512) in paragraph at lines 278--279
+[]\TU/TimesNewRoman(1)/m/n/10 Эксперименты проводились в headless-симуляторе, и
+спользующем те же
  []
 
 
-Underfull \hbox (badness 1117) in paragraph at lines 373--374
-\TU/TimesNewRoman(1)/m/n/10 динамику исполнения: сначала LLM/RAG разрешает выпу
-ск трех роботов к
+Underfull \hbox (badness 2884) in paragraph at lines 278--279
+\TU/TimesNewRoman(1)/m/n/10 что и Webots-контроллеры. Webots использовался для 
+проверки геометрии,
  []
 
 
-Underfull \hbox (badness 1406) in paragraph at lines 373--374
-\TU/TimesNewRoman(1)/m/n/10 семействам A/B/C, затем после завершения одной из д
-оставок Contract Net
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 377--378
-[]\TU/TimesNewRoman(1)/m/n/10 Полученные результаты подтверждают центральное пр
-едположение
- []
-
-
-Underfull \hbox (badness 1735) in paragraph at lines 377--378
-\TU/TimesNewRoman(1)/m/n/10 стратегической параметризацией. LLM интерпретирует 
-правила и состояние
- []
-
-
-Underfull \hbox (badness 1014) in paragraph at lines 377--378
-\TU/TimesNewRoman(1)/m/n/10 агент--заявка, игра с заторами выбирает маршрутный 
-профиль, а локальный
+Underfull \hbox (badness 1371) in paragraph at lines 278--279
+\TU/TimesNewRoman(1)/m/n/10 визуальной сцены и сетевого взаимодействия контролл
+еров. Такой протокол
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14]
-Underfull \hbox (badness 2903) in paragraph at lines 379--380
-[]\TU/TimesNewRoman(1)/m/n/10 Системный эффект возникает благодаря изменению пр
-ичинной цепочки
+ [9]
+Underfull \hbox (badness 1275) in paragraph at lines 282--283
+\TU/TimesNewRoman(1)/m/n/10 и избегает известных проблемных ребер. \TU/TimesNew
+Roman(1)/m/it/10 Rule parser \TU/TimesNewRoman(1)/m/n/10 извлекает правила, но
  []
 
 
-Underfull \hbox (badness 1189) in paragraph at lines 379--380
-\TU/TimesNewRoman(1)/m/n/10 Такой результат объясняет, почему рост дистанции не
- является недостатком
+Underfull \hbox (badness 1314) in paragraph at lines 284--285
+\TU/TimesNewRoman(1)/m/n/10 эксплуатационные коды SOP-C7 и DOCK-AMBER; расшифро
+вка этих кодов
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 381--382
-\TU/TimesNewRoman(1)/m/n/10 При отсутствии альтернативных маршрутов LLM не имее
-т механизма для
+Underfull \hbox (badness 7291) in paragraph at lines 286--287
+[]\TU/TimesNewRoman(1)/m/n/10 Воспроизводимость эксперимента приведена в табл. 
+4[]. Все исходные
  []
 
 
-Underfull \hbox (badness 3260) in paragraph at lines 381--382
-\TU/TimesNewRoman(1)/m/n/10 дополнительных структурных ограничений LLM может сн
-ижать ожидание,
+Underfull \hbox (badness 10000) in paragraph at lines 286--287
+\TU/ArialUnicodeMS(1)/m/n/10 retrieval_error_50\TU/TimesNewRoman(1)/m/n/10 , \T
+U/ArialUnicodeMS(1)/m/n/10 mixed_sensitivity\TU/TimesNewRoman(1)/m/n/10 , \TU/A
+rialUnicodeMS(1)/m/n/10 policy_masked_sop_embedding\TU/TimesNewRoman(1)/m/n/10 
+,
  []
 
 
-Underfull \hbox (badness 1248) in paragraph at lines 381--382
-\TU/TimesNewRoman(1)/m/n/10 но не обязательно уменьшать makespan. Наиболее целе
-сообразной областью
+Underfull \hbox (badness 10000) in paragraph at lines 299--300
+[]|\TU/TimesNewRoman(1)/m/n/7 client 0.23.2; модель \TU/ArialUnicodeMS(1)/m/n/7
+ qwen2.5:0.5b\TU/TimesNewRoman(1)/m/n/7 ; также установлена
  []
 
 
-Underfull \hbox (badness 2165) in paragraph at lines 381--382
-\TU/TimesNewRoman(1)/m/n/10 заявками, конфликтным центральным коридором и неско
-лькими обходными
+Underfull \hbox (badness 2698) in paragraph at lines 306--307
+[]|\TU/TimesNewRoman(1)/m/n/7 deterministic Strategy: bounded weights, no direc
+t motor control,
  []
 
 
-Underfull \hbox (badness 1199) in paragraph at lines 383--384
-\TU/TimesNewRoman(1)/m/n/10 системе ответ модели не используется напрямую. Он п
-роходит фильтрацию
+Underfull \hbox (badness 1331) in paragraph at lines 313--314
+\TU/TimesNewRoman(1)/m/n/10 Static rule остается лучшим по makespan, потому что
+ оно заранее кодирует
+ []
+
+[10]
+File: experiment_results/main_live/makespan_boxplot.png Graphic file (type bmp)
+
+<experiment_results/main_live/makespan_boxplot.png>
+File: experiment_results/main_live/wait_boxplot.png Graphic file (type bmp)
+<experiment_results/main_live/wait_boxplot.png>
+
+Underfull \hbox (badness 1242) in paragraph at lines 370--371
+[]\TU/TimesNewRoman(1)/m/n/10 Policy-masked абляция в табл. 7[] показывает, ког
+да RAG начинает давать
+ []
+
+[11] [12]
+Underfull \hbox (badness 1406) in paragraph at lines 392--393
+\TU/TimesNewRoman(1)/m/n/10 не потому, что заменяет маршрутизатор, а потому, чт
+о переводит текстовое
  []
 
 
-Underfull \hbox (badness 3029) in paragraph at lines 385--386
-\TU/TimesNewRoman(1)/m/n/10 является использование одного детерминированного на
-бора сценариев. Это
+Underfull \hbox (badness 2941) in paragraph at lines 392--393
+\TU/TimesNewRoman(1)/m/n/10 целесообразности: LLM полезна при изменяющихся текс
+товых правилах и
  []
 
 
-Underfull \hbox (badness 1028) in paragraph at lines 385--386
-\TU/TimesNewRoman(1)/m/n/10 статистической устойчивости эффекта. Поэтому числен
-ные значения следует
+Underfull \hbox (badness 7415) in paragraph at lines 396--397
+[]\TU/TimesNewRoman(1)/m/n/10 Качество retrieval измерялось на 13 текстовых зап
+росах: maintenance,
+ []
+
+[13]
+Underfull \hbox (badness 6961) in paragraph at lines 437--438
+[]\TU/TimesNewRoman(1)/m/n/10 Для оценки чувствительности выполнена дополнитель
+ная серия \TU/TimesNewRoman(1)/m/it/10 mixed
  []
 
 
-Underfull \hbox (badness 5908) in paragraph at lines 385--386
-\TU/TimesNewRoman(1)/m/n/10 сконструированных конфигурациях, а не как универсал
-ьную оценку всех
+Underfull \hbox (badness 7362) in paragraph at lines 457--458
+[]\TU/TimesNewRoman(1)/m/n/10 Серия подтверждает два вывода. Во-первых, при мал
+ом числе задач
+ []
+
+[14]
+Underfull \hbox (badness 1478) in paragraph at lines 461--462
+[]\TU/TimesNewRoman(1)/m/n/10 Внутренняя валидность ограничена тем, что headles
+s-симулятор ускоряет
+ []
+
+
+Underfull \hbox (badness 1708) in paragraph at lines 461--462
+\TU/TimesNewRoman(1)/m/n/10 стратегический цикл и использует route-level предст
+авление движения, хотя
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 461--462
+\TU/TimesNewRoman(1)/m/n/10 риска все baseline используют один и тот же код Con
+tract Net, congestion
+ []
+
+
+Underfull \hbox (badness 1735) in paragraph at lines 461--462
+\TU/TimesNewRoman(1)/m/n/10 времени. Конструктная валидность ограничена тем, чт
+о makespan и waiting
+ []
+
+
+Underfull \hbox (badness 1484) in paragraph at lines 465--466
+\TU/TimesNewRoman(1)/m/n/10 стабильной геометрии статическое правило, заранее з
+ашитое под bottleneck,
+ []
+
+
+Underfull \hbox (badness 3449) in paragraph at lines 469--470
+\TU/TimesNewRoman(1)/m/n/10 поскольку в \TU/ArialUnicodeMS(1)/m/n/10 scene_prof
+ile \TU/TimesNewRoman(1)/m/n/10 уже присутствовало текстовое правило, а top-k
  []
 
 [15]
-Underfull \hbox (badness 4366) in paragraph at lines 387--388
-\TU/TimesNewRoman(1)/m/n/10 локальная embedding-модель векторной базы намеренно
- проста, поскольку
+Underfull \hbox (badness 5105) in paragraph at lines 471--472
+[]\TU/TimesNewRoman(1)/m/n/10 Промышленная реалистичность остается ограниченной
+. Сцена является
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 389--390
-[]\TU/TimesNewRoman(1)/m/n/10 Тем не менее указанные ограничения не отменяют кл
-ючевой результат:
+Underfull \hbox (badness 10000) in paragraph at lines 471--472
+\TU/TimesNewRoman(1)/m/n/10 warehouse-like транспортной симуляцией, а не полной
+ моделью склада:
  []
 
 
-Underfull \hbox (badness 4316) in paragraph at lines 389--390
-\TU/TimesNewRoman(1)/m/n/10 эффект LLM проявляется только тогда, когда она влия
-ет на формальные
+Underfull \hbox (badness 10000) in paragraph at lines 471--472
+\TU/TimesNewRoman(1)/m/n/10 операции захвата, зарядки, отказов роботов, приорит
+етов заказов и
  []
 
 
-Underfull \hbox (badness 1308) in paragraph at lines 393--394
-[]\TU/TimesNewRoman(1)/m/n/10 В работе предложена и реализована многоуровневая 
-система управления
+Underfull \hbox (badness 6944) in paragraph at lines 471--472
+\TU/TimesNewRoman(1)/m/n/10 взаимодействия с реальными стеллажами упрощены. Поэ
+тому результаты
  []
 
 
-Underfull \hbox (badness 5161) in paragraph at lines 393--394
-\TU/TimesNewRoman(1)/m/n/10 -- механизм преобразования текстовых правил эксплуа
-тации в параметры
+Underfull \hbox (badness 1688) in paragraph at lines 471--472
+\TU/TimesNewRoman(1)/m/n/10 следует интерпретировать как проверку архитектуры и
+ механизма принятия
  []
 
 
-Underfull \hbox (badness 2088) in paragraph at lines 393--394
-\TU/TimesNewRoman(1)/m/n/10 формальных моделей координации. Основной результат 
-состоит в том, что
+Underfull \hbox (badness 1286) in paragraph at lines 477--478
+\TU/TimesNewRoman(1)/m/n/10 проведены 30 случайных вариантов LM-9, policy-maske
+d SOP-абляция с 15-
  []
 
 
-Underfull \hbox (badness 1735) in paragraph at lines 395--396
-\TU/TimesNewRoman(1)/m/n/10 тех же тактических и операционных алгоритмов. Однов
-ременно результаты
+Underfull \hbox (badness 2460) in paragraph at lines 477--478
+\TU/TimesNewRoman(1)/m/n/10 -18 грузами, несколько baseline, доверительные инте
+рвалы, paired sign test,
  []
 
 
-Underfull \hbox (badness 1509) in paragraph at lines 397--398
-[]\TU/TimesNewRoman(1)/m/n/10 Дальнейшие исследования целесообразно вести в чет
-ырех направлениях.
+Underfull \hbox (badness 1622) in paragraph at lines 477--478
+\TU/TimesNewRoman(1)/m/n/10 проверка retrieval-качества, 50% corrupted retrieva
+l и mixed sensitivity. RAG-
  []
 
 
-Underfull \hbox (badness 5316) in paragraph at lines 397--398
-\TU/TimesNewRoman(1)/m/n/10 верификации LLM-стратегии. Второе направление связа
-но с расширением
+Underfull \hbox (badness 3098) in paragraph at lines 479--480
+[]\TU/TimesNewRoman(1)/m/n/10 Дальнейшие исследования должны быть направлены на
+ четыре задачи:
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 397--398
-\TU/TimesNewRoman(1)/m/n/10 манипуляторы, включая KUKA youBot, с явным моделиро
-ванием операций
+Underfull \hbox (badness 1881) in paragraph at lines 479--480
+\TU/TimesNewRoman(1)/m/n/10 расширение набора случайных сцен до 100 и более зап
+усков; сравнение с
  []
 
-
-Underfull \hbox (badness 5274) in paragraph at lines 397--398
-\TU/TimesNewRoman(1)/m/n/10 захвата и разгрузки. Четвертое направление состоит 
-в проведении серии
- []
-
-
-Underfull \hbox (badness 1838) in paragraph at lines 397--398
-\TU/TimesNewRoman(1)/m/n/10 статистических экспериментов с несколькими случайны
-ми семенами, чтобы
- []
-
-[16] (./article_ru.bbl
+(./article_ru.bbl
 Underfull \hbox (badness 3612) in paragraph at lines 7--11
 []\TU/TimesNewRoman(1)/m/n/9 Ahn, M., Brohan, A., Brown, N., Chebotar, Y., Cort
 es, O., David, B., Finn, C.,
@@ -1912,7 +1505,7 @@ Underfull \hbox (badness 1859) in paragraph at lines 7--11
 print arXiv:2204.01691 (2022).
  []
 
-
+[16]
 Underfull \hbox (badness 3375) in paragraph at lines 13--16
 []\TU/TimesNewRoman(1)/m/n/9 Dias, M.B., Zlot, R., Kalra, N., Stentz, A.: Marke
 t-based multirobot coordination:
@@ -1925,74 +1518,116 @@ imesNewRoman(1)/b/n/9 94\TU/TimesNewRoman(1)/m/n/9 (7), 1257--1270 (2006).
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--33
+Underfull \hbox (badness 10000) in paragraph at lines 41--45
 []\TU/TimesNewRoman(1)/m/n/9 Fragapane, G., de Koster, R., Sgarbossa, F., Stran
 dhagen, J.O.: Planning and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 29--33
+Underfull \hbox (badness 10000) in paragraph at lines 41--45
 \TU/TimesNewRoman(1)/m/n/9 control of autonomous mobile robots for intralogisti
 cs: Literature review and
  []
 
 
-Underfull \hbox (badness 1248) in paragraph at lines 29--33
+Underfull \hbox (badness 1248) in paragraph at lines 41--45
 \TU/TimesNewRoman(1)/m/n/9 research agenda. European Journal of Operational Res
 earch \TU/TimesNewRoman(1)/b/n/9 294\TU/TimesNewRoman(1)/m/n/9 (2), 405--426 (2
 021).
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--48
+Underfull \hbox (badness 1199) in paragraph at lines 57--61
+[]\TU/TimesNewRoman(1)/m/n/9 Huang, W., Xia, F., Shah, D., Driess, D., Zeng, A.
+, Lu, Y., Florence, P., Mordatch,
+ []
+
+
+Underfull \hbox (badness 1221) in paragraph at lines 57--61
+\TU/TimesNewRoman(1)/m/n/9 I., Levine, S., Hausman, K., Ichter, B.: Grounded de
+coding: Guiding text generation
+ []
+
+
+Underfull \hbox (badness 1087) in paragraph at lines 57--61
+\TU/TimesNewRoman(1)/m/n/9 with grounded models for embodied agents. arXiv prep
+rint arXiv:2303.00855 (2023).
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 63--66
 []\TU/TimesNewRoman(1)/m/n/9 Khatib, O.: Real-time obstacle avoidance for manip
 ulators and mobile
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 45--48
+Underfull \hbox (badness 10000) in paragraph at lines 63--66
 \TU/TimesNewRoman(1)/m/n/9 robots. The International Journal of Robotics Resear
 ch \TU/TimesNewRoman(1)/b/n/9 5\TU/TimesNewRoman(1)/m/n/9 (1), 90--98 (1986).
  []
 
 
-Underfull \hbox (badness 5446) in paragraph at lines 54--57
+Underfull \hbox (badness 5446) in paragraph at lines 78--81
 []\TU/TimesNewRoman(1)/m/n/9 Le-Anh, T., De Koster, M.B.M.: A review of design 
 and control of automated
  []
 
+
+Underfull \hbox (badness 5022) in paragraph at lines 100--104
+[]\TU/TimesNewRoman(1)/m/n/9 Ma, Y.J., Liang, W., Wang, G., Huang, D.A., Bastan
+i, O., Jayaraman, D., Zhu,
+ []
+
+
+Underfull \hbox (badness 1997) in paragraph at lines 100--104
+\TU/TimesNewRoman(1)/m/n/9 Y., Fan, L., Anandkumar, A.: Eureka: Human-level rew
+ard design via coding large
+ []
+
+
+Underfull \hbox (badness 3503) in paragraph at lines 100--104
+\TU/TimesNewRoman(1)/m/n/9 language models. In: International Conference on Lea
+rning Representations (2024).
+ []
+
 [17]
-Underfull \hbox (badness 10000) in paragraph at lines 84--87
+Underfull \hbox (badness 3128) in paragraph at lines 110--114
+\TU/TimesNewRoman(1)/m/n/9 safety in llm-based robotic task planning. arXiv pre
+print arXiv:2503.06892 (2025).
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 136--139
 []\TU/TimesNewRoman(1)/m/n/9 Sharon, G., Stern, R., Felner, A., Sturtevant, N.R
 .: Conflict-based search for
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 84--87
+Underfull \hbox (badness 10000) in paragraph at lines 136--139
 \TU/TimesNewRoman(1)/m/n/9 optimal multi-agent pathfinding. Artificial Intellig
 ence \TU/TimesNewRoman(1)/b/n/9 219\TU/TimesNewRoman(1)/m/n/9 , 40--66 (2015).
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 89--92
+Underfull \hbox (badness 1796) in paragraph at lines 141--144
 []\TU/TimesNewRoman(1)/m/n/9 Smith, R.G.: The contract net protocol: High-level
  communication and control in a
  []
 
 
-Underfull \hbox (badness 2237) in paragraph at lines 106--110
+Underfull \hbox (badness 2237) in paragraph at lines 164--168
 \TU/TimesNewRoman(1)/m/n/9 reasoning and acting in language models. In: Interna
 tional Conference on Learning
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--120
+Underfull \hbox (badness 10000) in paragraph at lines 175--178
 []\TU/TimesNewRoman(1)/m/n/9 Zlot, R., Stentz, A.: Market-based multirobot coor
 dination for complex
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 117--120
+Underfull \hbox (badness 10000) in paragraph at lines 175--178
 \TU/TimesNewRoman(1)/m/n/9 tasks. The International Journal of Robotics Researc
 h \TU/TimesNewRoman(1)/b/n/9 25\TU/TimesNewRoman(1)/m/n/9 (1), 73--101 (2006).
  []
@@ -2054,12 +1689,12 @@ LaTeX Info: Redefining \sffamily on input line 3.
 LaTeX Info: Redefining \ttfamily on input line 3.
 ) ) 
 Here is how much of TeX's memory you used:
- 7193 strings out of 477696
- 170824 string characters out of 5841668
- 535344 words of memory out of 5000000
- 27683 multiletter control sequences out of 15000+600000
- 474596 words of font info for 115 fonts, out of 8000000 for 9000
+ 7229 strings out of 477696
+ 172010 string characters out of 5841668
+ 540546 words of memory out of 5000000
+ 27715 multiletter control sequences out of 15000+600000
+ 474604 words of font info for 116 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
- 73i,12n,77p,1862b,359s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 73i,13n,77p,2130b,355s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on article_ru.pdf (18 pages).

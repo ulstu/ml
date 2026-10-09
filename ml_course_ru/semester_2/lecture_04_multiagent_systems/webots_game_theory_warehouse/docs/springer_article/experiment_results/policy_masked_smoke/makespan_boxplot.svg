@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect width="100%" height="100%" fill="white"/>
+<text x="70" y="30" font-family="Arial" font-size="18" font-weight="bold">makespan by baseline</text>
+<line x1="70" y1="330" x2="870" y2="330" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="330" stroke="#333"/>
+<line x1="125" y1="250.1" x2="125" y2="92.7" stroke="#555"/>
+<rect x="102" y="132.0" width="46" height="78.7" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="100" y1="171.4" x2="150" y2="171.4" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(105,365) rotate(35)" font-family="Arial" font-size="11">cnp_only</text>
+<line x1="220" y1="283.1" x2="220" y2="220.8" stroke="#555"/>
+<rect x="197" y="236.4" width="46" height="31.1" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="195" y1="251.9" x2="245" y2="251.9" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(200,365) rotate(35)" font-family="Arial" font-size="11">embedding_rule</text>
+<line x1="315" y1="208.4" x2="315" y2="70.0" stroke="#555"/>
+<rect x="292" y="104.6" width="46" height="69.2" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="290" y1="139.2" x2="340" y2="139.2" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(295,365) rotate(35)" font-family="Arial" font-size="11">keyword_parser</text>
+<line x1="410" y1="223.6" x2="410" y2="115.4" stroke="#555"/>
+<rect x="387" y="142.4" width="46" height="54.1" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="385" y1="169.5" x2="435" y2="169.5" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(390,365) rotate(35)" font-family="Arial" font-size="11">llm_no_rag</text>
+<line x1="505" y1="325.5" x2="505" y2="291.4" stroke="#555"/>
+<rect x="482" y="299.9" width="46" height="17.0" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="480" y1="308.4" x2="530" y2="308.4" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(485,365) rotate(35)" font-family="Arial" font-size="11">rag_llm</text>
+<line x1="600" y1="330.0" x2="600" y2="312.1" stroke="#555"/>
+<rect x="577" y="316.6" width="46" height="9.0" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="575" y1="321.0" x2="625" y2="321.0" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(580,365) rotate(35)" font-family="Arial" font-size="11">static_rule</text>
+<text x="10" y="60" font-family="Arial" font-size="11">2095.0</text>
+<text x="10" y="330" font-family="Arial" font-size="11">1064.0</text>
+</svg>

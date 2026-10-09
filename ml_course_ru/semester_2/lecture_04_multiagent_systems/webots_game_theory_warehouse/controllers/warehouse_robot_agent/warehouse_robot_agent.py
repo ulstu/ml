@@ -297,6 +297,9 @@ class WarehouseRobotAgent:
 
         # Перед движением проверяем правила уступания.
         if self.traffic_rules.must_yield(self, target, self.traffic_participants(), self.task_deadline):
+            # Пустой робот рядом с загруженным освобождает место коротким шагом,
+            # иначе он может заблокировать dropoff-зону простым ожиданием.
+            self.retreat_from_loaded_peer(dt)
             return
 
         # Проверяем, можно ли идти к target без статических/динамических коллизий.
@@ -356,6 +359,44 @@ class WarehouseRobotAgent:
                 return candidate
         # Безопасного target сейчас нет.
         return None
+
+    def retreat_from_loaded_peer(self, dt: float) -> bool:
+        # Загруженный робот сам не отступает: ему нужно быстрее освободить грузовую задачу.
+        if self.status == "transporting":
+            return False
+        # Рассматриваем только активных соседей, которые реально везут груз.
+        loaded_peers = [
+            peer
+            for peer in self.peers.values()
+            if peer.status == "transporting"
+            and distance(self.position, peer.position) <= self.layout.robot_radius * 3.0
+        ]
+        # Если рядом нет загруженного соседа, обычное ожидание остается правильным.
+        if not loaded_peers:
+            return False
+        # Берем ближайшего загруженного робота как источник локального конфликта.
+        peer = min(loaded_peers, key=lambda item: distance(self.position, item.position))
+        # Вектор от соседа к себе задает направление освобождения места.
+        dx = self.position[0] - peer.position[0]
+        # dy — вторая координата того же вектора.
+        dy = self.position[1] - peer.position[1]
+        # length защищает от деления на ноль при почти совпавших центрах.
+        length = max(math.hypot(dx, dy), 1e-6)
+        # Шаг отступления равен обычному шагу движения за текущий tick.
+        step = ROBOT_SPEED * dt
+        # candidate — точка, которая увеличивает дистанцию до загруженного робота.
+        candidate = (self.position[0] + dx / length * step, self.position[1] + dy / length * step)
+        # Отступление не должно завести робота в стеллаж или за границу склада.
+        if not self.layout.point_is_free(candidate):
+            return False
+        # На этом отрезке не учитываем загруженного соседа, потому что выходим из его safety disk.
+        if not self.layout.segment_is_free(self.position, candidate, dynamic=()):
+            return False
+        # Применяем локальный шаг освобождения.
+        self.position = candidate
+        # Батарея уменьшается так же, как при обычном движении.
+        self.battery = max(0.05, self.battery - 0.00035 * step)
+        return True
 
     def update_task_state(self) -> None:
         # Без задачи нечего обновлять.

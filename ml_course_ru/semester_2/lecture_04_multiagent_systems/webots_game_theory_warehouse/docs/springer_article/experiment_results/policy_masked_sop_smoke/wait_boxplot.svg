@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect width="100%" height="100%" fill="white"/>
+<text x="70" y="30" font-family="Arial" font-size="18" font-weight="bold">total_wait by baseline</text>
+<line x1="70" y1="330" x2="870" y2="330" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="330" stroke="#333"/>
+<line x1="125" y1="328.7" x2="125" y2="251.3" stroke="#555"/>
+<rect x="102" y="270.7" width="46" height="38.7" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="100" y1="290.0" x2="150" y2="290.0" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(105,365) rotate(35)" font-family="Arial" font-size="11">embedding_rule</text>
+<line x1="220" y1="95.4" x2="220" y2="73.4" stroke="#555"/>
+<rect x="197" y="78.9" width="46" height="11.0" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="195" y1="84.4" x2="245" y2="84.4" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(200,365) rotate(35)" font-family="Arial" font-size="11">keyword_parser</text>
+<line x1="315" y1="72.7" x2="315" y2="70.0" stroke="#555"/>
+<rect x="292" y="70.7" width="46" height="1.3" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="290" y1="71.3" x2="340" y2="71.3" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(295,365) rotate(35)" font-family="Arial" font-size="11">llm_no_rag</text>
+<line x1="410" y1="330.0" x2="410" y2="329.6" stroke="#555"/>
+<rect x="387" y="329.7" width="46" height="1.0" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="385" y1="329.8" x2="435" y2="329.8" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(390,365) rotate(35)" font-family="Arial" font-size="11">rag_llm</text>
+<text x="10" y="60" font-family="Arial" font-size="11">1841.0</text>
+<text x="10" y="330" font-family="Arial" font-size="11">0.0</text>
+</svg>

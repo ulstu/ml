@@ -1,0 +1,759 @@
+{
+  "generated_at": "2026-05-14 10:03:01",
+  "elapsed_seconds": 15.134,
+  "configuration": {
+    "seeds": 2,
+    "family": "lm9",
+    "baselines": [
+      "rag_llm"
+    ],
+    "live_llm": true,
+    "top_k": 4,
+    "retrieval_error_rate": 0.0,
+    "dt": 1.0
+  },
+  "runs": [
+    {
+      "scenario": "lm9_seed_1000",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 693.0,
+      "avg_flow_time": 216.44,
+      "total_tardiness": 1095.71,
+      "late_tasks": 6,
+      "total_wait": 373.0,
+      "total_distance": 738.87,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 3,
+      "strategy": {
+        "battery_weight": 0.3,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 0.6,
+        "deadline_weight": 0.7,
+        "go_agents": [
+          "R3",
+          "R6",
+          "R7"
+        ],
+        "hold_agents": [],
+        "max_active_tasks": 3,
+        "max_new_assignments": 1,
+        "note": "",
+        "retrieved_rules": [
+          "inspection_synonyms_policy",
+          "collision_dynamic",
+          "llm_guardrails_policy",
+          "battery_aware_policy"
+        ],
+        "safety_margin": 0.45,
+        "traffic_rule": "0.28",
+        "travel_weight": 0.3
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1000,
+      "mode": "rag_llm",
+      "strategy_latency": 7.484,
+      "disruption_delay": 122.11,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.026
+    },
+    {
+      "scenario": "lm9_seed_1001",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 619.0,
+      "avg_flow_time": 160.44,
+      "total_tardiness": 644.06,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 673.13,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.45,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 0.45,
+        "deadline_weight": 0.9,
+        "go_agents": [
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [],
+        "max_active_tasks": 3,
+        "max_new_assignments": 1,
+        "note": "High deadline_weight when deadlines are close and high congestion_weight when many agents or tasks share the same central crossing.",
+        "retrieved_rules": [
+          "inspection_synonyms_policy",
+          "collision_dynamic",
+          "llm_guardrails_policy",
+          "battery_aware_policy"
+        ],
+        "safety_margin": 0.8,
+        "traffic_rule": "{'west_center': 1, 'east_center': 2, 'south_center': 3, 'north_center': 4}",
+        "travel_weight": 0.3
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1001,
+      "mode": "rag_llm",
+      "strategy_latency": 7.618,
+      "disruption_delay": 113.96,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.903
+    }
+  ],
+  "summary": [
+    {
+      "mode": "rag_llm",
+      "n": 2,
+      "makespan_mean": 656.0,
+      "makespan_std": 52.32590180780452,
+      "makespan_ci95": 72.52,
+      "total_wait_mean": 186.5,
+      "total_wait_std": 263.75082938258225,
+      "total_wait_ci95": 365.54,
+      "total_distance_mean": 706.0,
+      "total_distance_std": 46.48519979520364,
+      "total_distance_ci95": 64.4252,
+      "total_tardiness_mean": 869.885,
+      "total_tardiness_std": 319.36477772290425,
+      "total_tardiness_ci95": 442.617,
+      "bypass_routes_mean": 6.0,
+      "bypass_routes_std": 0.0,
+      "bypass_routes_ci95": 0.0,
+      "strategy_latency_mean": 7.551,
+      "strategy_latency_std": 0.0947523086789976,
+      "strategy_latency_ci95": 0.13132000000000033,
+      "success_rate": 1.0
+    }
+  ],
+  "paired_tests": [],
+  "retrieval": [
+    {
+      "case": "maintenance",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "inspection_synonyms_policy",
+        "congestion_policy",
+        "large_scene_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_paraphrase",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "large_scene_policy",
+        "maintenance_center_policy",
+        "congestion_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_conflict",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "traffic_right_hand",
+        "warehouse_axes",
+        "congestion_policy",
+        "normal_operation_policy"
+      ],
+      "expected": [
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "normal",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "maintenance_center_policy",
+        "congestion_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "normal_paraphrase",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "llm_latency_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "large_scene_policy",
+        "battery_aware_policy",
+        "three_level_control"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch_paraphrase",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "llm_latency_policy",
+        "inspection_synonyms_policy",
+        "collision_static",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "battery",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "traffic_right_hand",
+        "large_scene_policy",
+        "warehouse_axes"
+      ],
+      "expected": [
+        "battery_aware_policy",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "priority",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "traffic_right_hand",
+        "battery_aware_policy",
+        "congestion_policy",
+        "normal_operation_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "guardrails",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "llm_guardrails_policy",
+        "three_level_control",
+        "normal_operation_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "latency",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "warehouse_axes",
+        "llm_guardrails_policy",
+        "maintenance_center_policy",
+        "llm_latency_policy"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "llm_latency_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "inspection_synonyms_policy",
+        "congestion_policy",
+        "priority_orders_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_paraphrase",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "large_scene_policy",
+        "maintenance_center_policy",
+        "congestion_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_conflict",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "traffic_right_hand",
+        "warehouse_axes",
+        "congestion_policy",
+        "priority_orders_policy"
+      ],
+      "expected": [
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "normal",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "maintenance_center_policy",
+        "congestion_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "normal_paraphrase",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "traffic_right_hand"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "large_scene_policy",
+        "battery_aware_policy",
+        "three_level_control"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch_paraphrase",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "llm_latency_policy",
+        "inspection_synonyms_policy",
+        "collision_static",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "battery",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "traffic_right_hand",
+        "large_scene_policy",
+        "warehouse_axes"
+      ],
+      "expected": [
+        "battery_aware_policy",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "priority",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "traffic_right_hand",
+        "battery_aware_policy",
+        "congestion_policy",
+        "normal_operation_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "guardrails",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "llm_guardrails_policy",
+        "three_level_control",
+        "normal_operation_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "latency",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "warehouse_axes",
+        "llm_guardrails_policy",
+        "maintenance_center_policy",
+        "large_scene_policy"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "llm_latency_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "inspection_synonyms_policy",
+        "congestion_policy",
+        "large_scene_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_paraphrase",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "large_scene_policy",
+        "maintenance_center_policy",
+        "congestion_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_conflict",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "traffic_right_hand",
+        "warehouse_axes",
+        "congestion_policy",
+        "llm_guardrails_policy"
+      ],
+      "expected": [
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "normal",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "maintenance_center_policy",
+        "congestion_policy",
+        "battery_aware_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "normal_paraphrase",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "dispatch_metering_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "large_scene_policy",
+        "battery_aware_policy",
+        "three_level_control"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch_paraphrase",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "llm_latency_policy",
+        "inspection_synonyms_policy",
+        "collision_static",
+        "priority_orders_policy"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "battery",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "traffic_right_hand",
+        "large_scene_policy",
+        "warehouse_axes"
+      ],
+      "expected": [
+        "battery_aware_policy",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "priority",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "traffic_right_hand",
+        "battery_aware_policy",
+        "congestion_policy",
+        "collision_dynamic"
+      ],
+      "expected": [
+        "contract_net",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "guardrails",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "llm_guardrails_policy",
+        "three_level_control",
+        "normal_operation_policy",
+        "dispatch_metering_policy"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "latency",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "warehouse_axes",
+        "llm_guardrails_policy",
+        "maintenance_center_policy",
+        "llm_latency_policy"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "llm_latency_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": false
+    }
+  ]
+}

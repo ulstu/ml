@@ -1,0 +1,4420 @@
+{
+  "generated_at": "2026-05-15 00:30:44",
+  "elapsed_seconds": 1.226,
+  "configuration": {
+    "seeds": 30,
+    "family": "lm9",
+    "baselines": [
+      "rule_parser",
+      "rag_llm"
+    ],
+    "live_llm": false,
+    "top_k": 4,
+    "retrieval_error_rate": 0.5,
+    "dt": 1.0
+  },
+  "runs": [
+    {
+      "scenario": "lm9_seed_1000",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 909.0,
+      "avg_flow_time": 242.78,
+      "total_tardiness": 1434.71,
+      "late_tasks": 6,
+      "total_wait": 752.0,
+      "total_distance": 667.02,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "maintenance_center_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1000,
+      "mode": "rule_parser",
+      "strategy_latency": 0.013,
+      "disruption_delay": 122.11,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.026
+    },
+    {
+      "scenario": "lm9_seed_1000",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 909.0,
+      "avg_flow_time": 276.78,
+      "total_tardiness": 1947.71,
+      "late_tasks": 6,
+      "total_wait": 1118.0,
+      "total_distance": 634.47,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 9,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "congestion_policy",
+          "llm_latency_policy",
+          "retrieval_conflict_resolution",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1000,
+      "mode": "rag_llm",
+      "strategy_latency": 0.014,
+      "disruption_delay": 122.11,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.026
+    },
+    {
+      "scenario": "lm9_seed_1001",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 884.0,
+      "avg_flow_time": 209.78,
+      "total_tardiness": 1298.06,
+      "late_tasks": 4,
+      "total_wait": 456.0,
+      "total_distance": 664.8,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R6",
+          "R5"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "large_scene_policy",
+          "llm_guardrails_policy",
+          "priority_orders_policy",
+          "three_level_control"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1001,
+      "mode": "rule_parser",
+      "strategy_latency": 0.008,
+      "disruption_delay": 113.96,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.903
+    },
+    {
+      "scenario": "lm9_seed_1001",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 889.0,
+      "avg_flow_time": 231.0,
+      "total_tardiness": 1676.06,
+      "late_tasks": 4,
+      "total_wait": 689.0,
+      "total_distance": 642.36,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R6",
+          "R5"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "dispatch_metering_policy",
+          "normal_operation_policy",
+          "priority_orders_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1001,
+      "mode": "rag_llm",
+      "strategy_latency": 0.034,
+      "disruption_delay": 113.96,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.903
+    },
+    {
+      "scenario": "lm9_seed_1002",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 822.0,
+      "avg_flow_time": 185.33,
+      "total_tardiness": 1134.25,
+      "late_tasks": 4,
+      "total_wait": 315.0,
+      "total_distance": 628.71,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 3,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "congestion_policy",
+          "maintenance_center_policy",
+          "normal_operation_policy",
+          "warehouse_axes"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1002,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 104.97,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.892
+    },
+    {
+      "scenario": "lm9_seed_1002",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 832.0,
+      "avg_flow_time": 214.33,
+      "total_tardiness": 1575.25,
+      "late_tasks": 4,
+      "total_wait": 636.0,
+      "total_distance": 597.29,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "contract_net",
+          "large_scene_policy",
+          "llm_guardrails_policy",
+          "normal_operation_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1002,
+      "mode": "rag_llm",
+      "strategy_latency": 0.011,
+      "disruption_delay": 104.97,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.892
+    },
+    {
+      "scenario": "lm9_seed_1003",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 915.0,
+      "avg_flow_time": 205.33,
+      "total_tardiness": 1128.31,
+      "late_tasks": 4,
+      "total_wait": 365.0,
+      "total_distance": 693.9,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 3,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "congestion_policy",
+          "inspection_synonyms_policy",
+          "priority_orders_policy",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1003,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 120.2,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.0
+    },
+    {
+      "scenario": "lm9_seed_1003",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 920.0,
+      "avg_flow_time": 238.0,
+      "total_tardiness": 1615.31,
+      "late_tasks": 4,
+      "total_wait": 731.0,
+      "total_distance": 658.71,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "contract_net",
+          "dispatch_metering_policy",
+          "llm_guardrails_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1003,
+      "mode": "rag_llm",
+      "strategy_latency": 0.011,
+      "disruption_delay": 120.2,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.0
+    },
+    {
+      "scenario": "lm9_seed_1004",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 974.0,
+      "avg_flow_time": 223.89,
+      "total_tardiness": 1331.16,
+      "late_tasks": 4,
+      "total_wait": 578.0,
+      "total_distance": 670.53,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "maintenance_center_policy",
+          "three_level_control"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1004,
+      "mode": "rule_parser",
+      "strategy_latency": 0.05,
+      "disruption_delay": 142.37,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.018
+    },
+    {
+      "scenario": "lm9_seed_1004",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 587.0,
+      "avg_flow_time": 158.78,
+      "total_tardiness": 526.16,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 668.84,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5323738095180952,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "maintenance_center_policy",
+          "normal_operation_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.6674579365060318,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1004,
+      "mode": "rag_llm",
+      "strategy_latency": 0.019,
+      "disruption_delay": 142.37,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.018
+    },
+    {
+      "scenario": "lm9_seed_1005",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1025.0,
+      "avg_flow_time": 229.11,
+      "total_tardiness": 1389.09,
+      "late_tasks": 4,
+      "total_wait": 667.0,
+      "total_distance": 648.03,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "contract_net",
+          "large_scene_policy",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1005,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 164.87,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.06
+    },
+    {
+      "scenario": "lm9_seed_1005",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1030.0,
+      "avg_flow_time": 261.67,
+      "total_tardiness": 1973.09,
+      "late_tasks": 4,
+      "total_wait": 1002.0,
+      "total_distance": 626.15,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "dispatch_metering_policy",
+          "large_scene_policy",
+          "retrieval_conflict_resolution",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1005,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 164.87,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.06
+    },
+    {
+      "scenario": "lm9_seed_1006",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 830.0,
+      "avg_flow_time": 191.33,
+      "total_tardiness": 954.76,
+      "late_tasks": 4,
+      "total_wait": 300.0,
+      "total_distance": 663.11,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 3,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "congestion_policy",
+          "maintenance_center_policy",
+          "normal_operation_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1006,
+      "mode": "rule_parser",
+      "strategy_latency": 0.025,
+      "disruption_delay": 98.46,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.041
+    },
+    {
+      "scenario": "lm9_seed_1006",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 835.0,
+      "avg_flow_time": 217.78,
+      "total_tardiness": 1341.76,
+      "late_tasks": 4,
+      "total_wait": 604.0,
+      "total_distance": 629.92,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "collision_static",
+          "priority_orders_policy",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1006,
+      "mode": "rag_llm",
+      "strategy_latency": 0.006,
+      "disruption_delay": 98.46,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.041
+    },
+    {
+      "scenario": "lm9_seed_1007",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1019.0,
+      "avg_flow_time": 270.56,
+      "total_tardiness": 1989.35,
+      "late_tasks": 6,
+      "total_wait": 918.0,
+      "total_distance": 708.15,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "normal_operation_policy",
+          "warehouse_axes"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1007,
+      "mode": "rule_parser",
+      "strategy_latency": 0.034,
+      "disruption_delay": 152.88,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.924
+    },
+    {
+      "scenario": "lm9_seed_1007",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 641.0,
+      "avg_flow_time": 189.89,
+      "total_tardiness": 863.79,
+      "late_tasks": 5,
+      "total_wait": 2.0,
+      "total_distance": 798.8,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 0,
+      "bypass_routes": 9,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "south_center",
+          "north_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.542879033505618,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "battery_aware_policy",
+          "congestion_policy",
+          "large_scene_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.6709596778352059,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1007,
+      "mode": "rag_llm",
+      "strategy_latency": 0.011,
+      "disruption_delay": 152.88,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.924
+    },
+    {
+      "scenario": "lm9_seed_1008",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 967.0,
+      "avg_flow_time": 297.11,
+      "total_tardiness": 2758.49,
+      "late_tasks": 8,
+      "total_wait": 1369.0,
+      "total_distance": 604.16,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 9,
+      "strategy": {
+        "battery_weight": 0.7,
+        "blocked_edges": [],
+        "congestion_weight": 1.4,
+        "deadline_weight": 1.2,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: fallback because relevant rules were missed",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "normal_operation_policy",
+          "retrieval_conflict_resolution",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 1.0
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1008,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 149.0,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.884
+    },
+    {
+      "scenario": "lm9_seed_1008",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 967.0,
+      "avg_flow_time": 297.11,
+      "total_tardiness": 2758.49,
+      "late_tasks": 8,
+      "total_wait": 1369.0,
+      "total_distance": 604.16,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 9,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "collision_static",
+          "dispatch_metering_policy",
+          "large_scene_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1008,
+      "mode": "rag_llm",
+      "strategy_latency": 0.012,
+      "disruption_delay": 149.0,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.884
+    },
+    {
+      "scenario": "lm9_seed_1009",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1034.0,
+      "avg_flow_time": 276.0,
+      "total_tardiness": 1845.07,
+      "late_tasks": 6,
+      "total_wait": 894.0,
+      "total_distance": 742.15,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "battery_aware_policy",
+          "congestion_policy",
+          "large_scene_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1009,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 146.52,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.008
+    },
+    {
+      "scenario": "lm9_seed_1009",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 690.0,
+      "avg_flow_time": 210.56,
+      "total_tardiness": 888.54,
+      "late_tasks": 5,
+      "total_wait": 2.0,
+      "total_distance": 888.87,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 0,
+      "bypass_routes": 9,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "south_center",
+          "north_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.536521907352142,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "dispatch_metering_policy",
+          "large_scene_policy",
+          "maintenance_center_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.6688406357840474,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1009,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 146.52,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.008
+    },
+    {
+      "scenario": "lm9_seed_1010",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 864.0,
+      "avg_flow_time": 222.44,
+      "total_tardiness": 1711.17,
+      "late_tasks": 4,
+      "total_wait": 726.0,
+      "total_distance": 590.46,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.7,
+        "blocked_edges": [],
+        "congestion_weight": 1.4,
+        "deadline_weight": 1.2,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: fallback because relevant rules were missed",
+        "retrieved_rules": [
+          "collision_static",
+          "congestion_policy",
+          "dispatch_metering_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 1.0
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1010,
+      "mode": "rule_parser",
+      "strategy_latency": 0.012,
+      "disruption_delay": 119.08,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 0.904
+    },
+    {
+      "scenario": "lm9_seed_1010",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 575.0,
+      "avg_flow_time": 157.44,
+      "total_tardiness": 729.17,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 661.08,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5090823699317595,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "dispatch_metering_policy",
+          "llm_guardrails_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.6596941233105865,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.590611753378827
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1010,
+      "mode": "rag_llm",
+      "strategy_latency": 0.012,
+      "disruption_delay": 119.08,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 0.904
+    },
+    {
+      "scenario": "lm9_seed_1011",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 950.0,
+      "avg_flow_time": 217.89,
+      "total_tardiness": 1389.74,
+      "late_tasks": 4,
+      "total_wait": 567.0,
+      "total_distance": 648.41,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "maintenance_center_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1011,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 139.39,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.982
+    },
+    {
+      "scenario": "lm9_seed_1011",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 566.0,
+      "avg_flow_time": 153.67,
+      "total_tardiness": 590.74,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 646.6,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center",
+          "east_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5293926319464388,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "battery_aware_policy",
+          "large_scene_policy",
+          "llm_latency_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.6664642106488129,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1011,
+      "mode": "rag_llm",
+      "strategy_latency": 0.012,
+      "disruption_delay": 139.39,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.982
+    },
+    {
+      "scenario": "lm9_seed_1012",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 935.0,
+      "avg_flow_time": 215.89,
+      "total_tardiness": 1404.52,
+      "late_tasks": 4,
+      "total_wait": 547.0,
+      "total_distance": 647.4,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "dock_amber_metering_policy",
+          "large_scene_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1012,
+      "mode": "rule_parser",
+      "strategy_latency": 0.012,
+      "disruption_delay": 134.5,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.964
+    },
+    {
+      "scenario": "lm9_seed_1012",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 566.0,
+      "avg_flow_time": 154.0,
+      "total_tardiness": 635.52,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 646.05,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center",
+          "east_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5245014874091762,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "maintenance_center_policy",
+          "priority_orders_policy"
+        ],
+        "safety_margin": 0.6648338291363921,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.5803323417272159
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1012,
+      "mode": "rag_llm",
+      "strategy_latency": 0.009,
+      "disruption_delay": 134.5,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.964
+    },
+    {
+      "scenario": "lm9_seed_1013",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1012.0,
+      "avg_flow_time": 232.56,
+      "total_tardiness": 1218.49,
+      "late_tasks": 4,
+      "total_wait": 601.0,
+      "total_distance": 694.06,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "maintenance_center_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1013,
+      "mode": "rule_parser",
+      "strategy_latency": 0.011,
+      "disruption_delay": 148.29,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.135
+    },
+    {
+      "scenario": "lm9_seed_1013",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 605.0,
+      "avg_flow_time": 165.22,
+      "total_tardiness": 414.65,
+      "late_tasks": 3,
+      "total_wait": 0.0,
+      "total_distance": 693.11,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5382931961492377,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "dock_amber_metering_policy",
+          "inspection_synonyms_policy",
+          "priority_orders_policy",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.6694310653830792,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1013,
+      "mode": "rag_llm",
+      "strategy_latency": 0.019,
+      "disruption_delay": 148.29,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.135
+    },
+    {
+      "scenario": "lm9_seed_1014",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 874.0,
+      "avg_flow_time": 204.33,
+      "total_tardiness": 1081.57,
+      "late_tasks": 4,
+      "total_wait": 481.0,
+      "total_distance": 630.2,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "contract_net",
+          "large_scene_policy",
+          "maintenance_center_policy",
+          "normal_operation_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1014,
+      "mode": "rule_parser",
+      "strategy_latency": 0.008,
+      "disruption_delay": 118.0,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.073
+    },
+    {
+      "scenario": "lm9_seed_1014",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 551.0,
+      "avg_flow_time": 149.33,
+      "total_tardiness": 410.57,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 628.66,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center",
+          "east_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.508001457144707,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "inspection_synonyms_policy",
+          "large_scene_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.6593338190482356,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.5913323619035287
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1014,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 118.0,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.073
+    },
+    {
+      "scenario": "lm9_seed_1015",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1002.0,
+      "avg_flow_time": 265.78,
+      "total_tardiness": 1755.3,
+      "late_tasks": 6,
+      "total_wait": 926.0,
+      "total_distance": 682.52,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "collision_static",
+          "large_scene_policy",
+          "normal_operation_policy",
+          "priority_orders_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1015,
+      "mode": "rule_parser",
+      "strategy_latency": 0.006,
+      "disruption_delay": 152.47,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.073
+    },
+    {
+      "scenario": "lm9_seed_1015",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1015.0,
+      "avg_flow_time": 311.22,
+      "total_tardiness": 2437.3,
+      "late_tasks": 6,
+      "total_wait": 1390.0,
+      "total_distance": 652.53,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 9,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "congestion_policy",
+          "dock_amber_metering_policy",
+          "large_scene_policy",
+          "priority_orders_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1015,
+      "mode": "rag_llm",
+      "strategy_latency": 0.006,
+      "disruption_delay": 152.47,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.073
+    },
+    {
+      "scenario": "lm9_seed_1016",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 924.0,
+      "avg_flow_time": 237.0,
+      "total_tardiness": 1650.25,
+      "late_tasks": 4,
+      "total_wait": 791.0,
+      "total_distance": 619.19,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.7,
+        "blocked_edges": [],
+        "congestion_weight": 1.4,
+        "deadline_weight": 1.2,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: fallback because relevant rules were missed",
+        "retrieved_rules": [
+          "congestion_policy",
+          "llm_latency_policy",
+          "sop_c7_center_policy",
+          "three_level_control"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 1.0
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1016,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 130.42,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.062
+    },
+    {
+      "scenario": "lm9_seed_1016",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 559.0,
+      "avg_flow_time": 152.0,
+      "total_tardiness": 452.25,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 639.41,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5204244842036387,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "congestion_policy",
+          "maintenance_center_policy",
+          "retrieval_conflict_resolution",
+          "warehouse_axes"
+        ],
+        "safety_margin": 0.6634748280678796,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.5830503438642408
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1016,
+      "mode": "rag_llm",
+      "strategy_latency": 0.008,
+      "disruption_delay": 130.42,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.062
+    },
+    {
+      "scenario": "lm9_seed_1017",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 900.0,
+      "avg_flow_time": 216.0,
+      "total_tardiness": 1386.64,
+      "late_tasks": 4,
+      "total_wait": 454.0,
+      "total_distance": 692.5,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=True",
+        "retrieved_rules": [
+          "collision_static",
+          "inspection_synonyms_policy",
+          "large_scene_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1017,
+      "mode": "rule_parser",
+      "strategy_latency": 0.006,
+      "disruption_delay": 111.79,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.884
+    },
+    {
+      "scenario": "lm9_seed_1017",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 905.0,
+      "avg_flow_time": 236.78,
+      "total_tardiness": 1751.72,
+      "late_tasks": 5,
+      "total_wait": 689.0,
+      "total_distance": 668.98,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "large_scene_policy",
+          "llm_latency_policy",
+          "retrieval_conflict_resolution",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1017,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 111.79,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 0.884
+    },
+    {
+      "scenario": "lm9_seed_1018",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 799.0,
+      "avg_flow_time": 191.56,
+      "total_tardiness": 978.04,
+      "late_tasks": 4,
+      "total_wait": 406.0,
+      "total_distance": 613.02,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "retrieval_conflict_resolution",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1018,
+      "mode": "rule_parser",
+      "strategy_latency": 0.009,
+      "disruption_delay": 99.85,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.045
+    },
+    {
+      "scenario": "lm9_seed_1018",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 536.0,
+      "avg_flow_time": 145.56,
+      "total_tardiness": 438.04,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 611.17,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.4898547711281045,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "inspection_synonyms_policy",
+          "priority_orders_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.6532849237093682,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.6034301525812636
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1018,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 99.85,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.045
+    },
+    {
+      "scenario": "lm9_seed_1019",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 806.0,
+      "avg_flow_time": 191.89,
+      "total_tardiness": 1047.71,
+      "late_tasks": 4,
+      "total_wait": 409.0,
+      "total_distance": 613.29,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "llm_guardrails_policy",
+          "three_level_control"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1019,
+      "mode": "rule_parser",
+      "strategy_latency": 0.011,
+      "disruption_delay": 101.62,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.051
+    },
+    {
+      "scenario": "lm9_seed_1019",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 811.0,
+      "avg_flow_time": 210.44,
+      "total_tardiness": 1388.71,
+      "late_tasks": 4,
+      "total_wait": 618.0,
+      "total_distance": 592.61,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "large_scene_policy",
+          "normal_operation_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1019,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 101.62,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.051
+    },
+    {
+      "scenario": "lm9_seed_1020",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 973.0,
+      "avg_flow_time": 260.89,
+      "total_tardiness": 1830.43,
+      "late_tasks": 6,
+      "total_wait": 809.0,
+      "total_distance": 716.64,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "congestion_policy",
+          "maintenance_center_policy",
+          "normal_operation_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1020,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 132.41,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.948
+    },
+    {
+      "scenario": "lm9_seed_1020",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 979.0,
+      "avg_flow_time": 297.56,
+      "total_tardiness": 2385.43,
+      "late_tasks": 6,
+      "total_wait": 1208.0,
+      "total_distance": 681.57,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 9,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "dock_amber_metering_policy",
+          "large_scene_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1020,
+      "mode": "rag_llm",
+      "strategy_latency": 0.011,
+      "disruption_delay": 132.41,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.948
+    },
+    {
+      "scenario": "lm9_seed_1021",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 822.0,
+      "avg_flow_time": 214.22,
+      "total_tardiness": 1394.64,
+      "late_tasks": 4,
+      "total_wait": 623.0,
+      "total_distance": 607.3,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.7,
+        "blocked_edges": [],
+        "congestion_weight": 1.4,
+        "deadline_weight": 1.2,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: fallback because relevant rules were missed",
+        "retrieved_rules": [
+          "battery_aware_policy",
+          "congestion_policy",
+          "sop_c7_center_policy",
+          "three_level_control"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 1.0
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1021,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 102.69,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 0.985
+    },
+    {
+      "scenario": "lm9_seed_1021",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 822.0,
+      "avg_flow_time": 214.22,
+      "total_tardiness": 1394.64,
+      "late_tasks": 4,
+      "total_wait": 623.0,
+      "total_distance": 607.3,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "normal_operation_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1021,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 102.69,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 0.985
+    },
+    {
+      "scenario": "lm9_seed_1022",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 988.0,
+      "avg_flow_time": 222.33,
+      "total_tardiness": 1361.75,
+      "late_tasks": 4,
+      "total_wait": 616.0,
+      "total_distance": 642.69,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "large_scene_policy",
+          "priority_orders_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1022,
+      "mode": "rule_parser",
+      "strategy_latency": 0.008,
+      "disruption_delay": 153.39,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.03
+    },
+    {
+      "scenario": "lm9_seed_1022",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 564.0,
+      "avg_flow_time": 152.33,
+      "total_tardiness": 495.75,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 641.09,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5433920034408606,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "inspection_synonyms_policy",
+          "large_scene_policy",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.6711306678136202,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1022,
+      "mode": "rag_llm",
+      "strategy_latency": 0.006,
+      "disruption_delay": 153.39,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.03
+    },
+    {
+      "scenario": "lm9_seed_1023",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 950.0,
+      "avg_flow_time": 288.11,
+      "total_tardiness": 2427.53,
+      "late_tasks": 6,
+      "total_wait": 1078.0,
+      "total_distance": 705.96,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 9,
+      "strategy": {
+        "battery_weight": 0.7,
+        "blocked_edges": [],
+        "congestion_weight": 1.4,
+        "deadline_weight": 1.2,
+        "go_agents": [
+          "R4",
+          "R6",
+          "R5"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: fallback because relevant rules were missed",
+        "retrieved_rules": [
+          "congestion_policy",
+          "normal_operation_policy",
+          "retrieval_conflict_resolution",
+          "three_level_control"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 1.0
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1023,
+      "mode": "rule_parser",
+      "strategy_latency": 0.006,
+      "disruption_delay": 117.98,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.851
+    },
+    {
+      "scenario": "lm9_seed_1023",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 950.0,
+      "avg_flow_time": 288.11,
+      "total_tardiness": 2427.53,
+      "late_tasks": 6,
+      "total_wait": 1078.0,
+      "total_distance": 705.96,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 9,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R6",
+          "R5"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "congestion_policy",
+          "llm_guardrails_policy",
+          "normal_operation_policy",
+          "three_level_control"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1023,
+      "mode": "rag_llm",
+      "strategy_latency": 0.011,
+      "disruption_delay": 117.98,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 0.851
+    },
+    {
+      "scenario": "lm9_seed_1024",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 980.0,
+      "avg_flow_time": 260.11,
+      "total_tardiness": 1796.57,
+      "late_tasks": 6,
+      "total_wait": 918.0,
+      "total_distance": 659.95,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.3,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=False large=True",
+        "retrieved_rules": [
+          "congestion_policy",
+          "contract_net",
+          "large_scene_policy",
+          "normal_operation_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1024,
+      "mode": "rule_parser",
+      "strategy_latency": 0.008,
+      "disruption_delay": 151.34,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.022
+    },
+    {
+      "scenario": "lm9_seed_1024",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 594.0,
+      "avg_flow_time": 176.11,
+      "total_tardiness": 609.15,
+      "late_tasks": 5,
+      "total_wait": 4.0,
+      "total_distance": 742.94,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 0,
+      "bypass_routes": 9,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "south_center",
+          "north_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5413364948953614,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "congestion_policy",
+          "inspection_synonyms_policy",
+          "large_scene_policy"
+        ],
+        "safety_margin": 0.6704454982984538,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1024,
+      "mode": "rag_llm",
+      "strategy_latency": 0.03,
+      "disruption_delay": 151.34,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.022
+    },
+    {
+      "scenario": "lm9_seed_1025",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1010.0,
+      "avg_flow_time": 207.22,
+      "total_tardiness": 1266.06,
+      "late_tasks": 4,
+      "total_wait": 498.0,
+      "total_distance": 635.6,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 3,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "collision_static",
+          "maintenance_center_policy",
+          "retrieval_conflict_resolution"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1025,
+      "mode": "rule_parser",
+      "strategy_latency": 0.019,
+      "disruption_delay": 165.32,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.059
+    },
+    {
+      "scenario": "lm9_seed_1025",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 591.0,
+      "avg_flow_time": 160.89,
+      "total_tardiness": 568.06,
+      "late_tasks": 4,
+      "total_wait": 0.0,
+      "total_distance": 676.26,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center",
+          "east_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.5553157930122872,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "congestion_policy",
+          "dispatch_metering_policy",
+          "large_scene_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.6751052643374291,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1025,
+      "mode": "rag_llm",
+      "strategy_latency": 0.012,
+      "disruption_delay": 165.32,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.059
+    },
+    {
+      "scenario": "lm9_seed_1026",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 851.0,
+      "avg_flow_time": 230.44,
+      "total_tardiness": 1373.38,
+      "late_tasks": 6,
+      "total_wait": 630.0,
+      "total_distance": 671.09,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "collision_static",
+          "dispatch_metering_policy",
+          "maintenance_center_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1026,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 103.82,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.04
+    },
+    {
+      "scenario": "lm9_seed_1026",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 602.0,
+      "avg_flow_time": 178.89,
+      "total_tardiness": 675.59,
+      "late_tasks": 5,
+      "total_wait": 3.0,
+      "total_distance": 752.12,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 0,
+      "bypass_routes": 9,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "south_center",
+          "north_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.4938162211319383,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "inspection_synonyms_policy",
+          "large_scene_policy",
+          "normal_operation_policy",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.6546054070439795,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.6007891859120411
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1026,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 103.82,
+      "disrupted_edges": [
+        "south_center",
+        "north_center"
+      ],
+      "deadline_factor": 1.04
+    },
+    {
+      "scenario": "lm9_seed_1027",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1021.0,
+      "avg_flow_time": 214.78,
+      "total_tardiness": 1133.48,
+      "late_tasks": 4,
+      "total_wait": 483.0,
+      "total_distance": 673.95,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 3,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "battery_aware_policy",
+          "congestion_policy",
+          "inspection_synonyms_policy",
+          "llm_guardrails_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1027,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 160.84,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.123
+    },
+    {
+      "scenario": "lm9_seed_1027",
+      "robots": 7,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 581.0,
+      "avg_flow_time": 157.44,
+      "total_tardiness": 393.06,
+      "late_tasks": 3,
+      "total_wait": 0.0,
+      "total_distance": 661.19,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 3,
+      "bypass_routes": 6,
+      "disrupted_routes": 0,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [
+          "west_center",
+          "east_center"
+        ],
+        "congestion_weight": 4.0,
+        "deadline_weight": 1.550843606951189,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6",
+          "R2"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R3"
+        ],
+        "max_active_tasks": 4,
+        "max_new_assignments": 4,
+        "note": "deterministic surrogate for guarded RAG-LLM strategy",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "collision_static",
+          "maintenance_center_policy",
+          "traffic_right_hand"
+        ],
+        "safety_margin": 0.6736145356503964,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.58
+      },
+      "route_variant": "redundant",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1027,
+      "mode": "rag_llm",
+      "strategy_latency": 0.019,
+      "disruption_delay": 160.84,
+      "disrupted_edges": [
+        "west_center",
+        "east_center"
+      ],
+      "deadline_factor": 1.123
+    },
+    {
+      "scenario": "lm9_seed_1028",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1027.0,
+      "avg_flow_time": 235.78,
+      "total_tardiness": 1576.52,
+      "late_tasks": 4,
+      "total_wait": 607.0,
+      "total_distance": 705.29,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 7,
+      "bypass_routes": 2,
+      "disrupted_routes": 4,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "dispatch_metering_policy",
+          "llm_guardrails_policy",
+          "maintenance_center_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1028,
+      "mode": "rule_parser",
+      "strategy_latency": 0.007,
+      "disruption_delay": 149.82,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 0.915
+    },
+    {
+      "scenario": "lm9_seed_1028",
+      "robots": 8,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 1032.0,
+      "avg_flow_time": 263.56,
+      "total_tardiness": 2075.52,
+      "late_tasks": 4,
+      "total_wait": 905.0,
+      "total_distance": 681.35,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "battery_aware_policy",
+          "collision_dynamic",
+          "collision_static",
+          "llm_latency_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1028,
+      "mode": "rag_llm",
+      "strategy_latency": 0.007,
+      "disruption_delay": 149.82,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 0.915
+    },
+    {
+      "scenario": "lm9_seed_1029",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 826.0,
+      "avg_flow_time": 193.78,
+      "total_tardiness": 945.16,
+      "late_tasks": 4,
+      "total_wait": 285.0,
+      "total_distance": 682.3,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 6,
+      "bypass_routes": 3,
+      "disrupted_routes": 3,
+      "strategy": {
+        "battery_weight": 0.8,
+        "blocked_edges": [],
+        "congestion_weight": 3.8,
+        "deadline_weight": 1.35,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "rule_parser: maintenance=True large=False",
+        "retrieved_rules": [
+          "collision_dynamic",
+          "congestion_policy",
+          "inspection_synonyms_policy",
+          "warehouse_axes"
+        ],
+        "safety_margin": 0.66,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.65
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1029,
+      "mode": "rule_parser",
+      "strategy_latency": 0.01,
+      "disruption_delay": 94.6,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.026
+    },
+    {
+      "scenario": "lm9_seed_1029",
+      "robots": 9,
+      "tasks": 9,
+      "completed": 9,
+      "success": true,
+      "makespan": 831.0,
+      "avg_flow_time": 218.78,
+      "total_tardiness": 1311.16,
+      "late_tasks": 4,
+      "total_wait": 576.0,
+      "total_distance": 648.65,
+      "replans": 0,
+      "assignments": 9,
+      "center_routes": 9,
+      "bypass_routes": 0,
+      "disrupted_routes": 6,
+      "strategy": {
+        "battery_weight": 0.75,
+        "blocked_edges": [],
+        "congestion_weight": 2.0,
+        "deadline_weight": 1.25,
+        "go_agents": [
+          "R4",
+          "R5",
+          "R6"
+        ],
+        "hold_agents": [
+          "R0",
+          "R1",
+          "R2",
+          "R3",
+          "R7",
+          "R8"
+        ],
+        "max_active_tasks": 3,
+        "max_new_assignments": 3,
+        "note": "guarded RAG-LLM degraded because maintenance rule was missed",
+        "retrieved_rules": [
+          "congestion_policy",
+          "dock_amber_metering_policy",
+          "large_scene_policy",
+          "sop_c7_center_policy"
+        ],
+        "safety_margin": 0.62,
+        "traffic_rule": "deadline_priority_right_hand",
+        "travel_weight": 0.9
+      },
+      "route_variant": "wide_ring",
+      "layout_variant": "standard",
+      "expected_llm_advantage": "Adaptive strategy should help when central edges are delayed and bypasses exist.",
+      "seed": 1029,
+      "mode": "rag_llm",
+      "strategy_latency": 0.019,
+      "disruption_delay": 94.6,
+      "disrupted_edges": [
+        "west_center"
+      ],
+      "deadline_factor": 1.026
+    }
+  ],
+  "summary": [
+    {
+      "mode": "rag_llm",
+      "n": 30,
+      "makespan_mean": 751.1666666666666,
+      "makespan_std": 177.38990433764695,
+      "makespan_ci95": 63.47816202521633,
+      "total_wait_mean": 441.56666666666666,
+      "total_wait_std": 491.51789410954825,
+      "total_wait_ci95": 175.88741950720697,
+      "total_distance_mean": 666.2733333333333,
+      "total_distance_std": 62.27811168783379,
+      "total_distance_ci95": 22.285936052031765,
+      "total_tardiness_mean": 1225.024,
+      "total_tardiness_std": 739.3501908997172,
+      "total_tardiness_ci95": 264.5730679349969,
+      "bypass_routes_mean": 3.4,
+      "bypass_routes_std": 3.587334040376137,
+      "bypass_routes_ci95": 1.2837109998105034,
+      "strategy_latency_mean": 0.011833333333333333,
+      "strategy_latency_std": 0.006873654518288041,
+      "strategy_latency_ci95": 0.002459705679680262,
+      "success_rate": 1.0
+    },
+    {
+      "mode": "rule_parser",
+      "n": 30,
+      "makespan_mean": 929.7666666666667,
+      "makespan_std": 76.50408298021537,
+      "makespan_ci95": 27.376634499813864,
+      "total_wait_mean": 635.6333333333333,
+      "total_wait_std": 248.20451569058005,
+      "total_wait_ci95": 88.81884525067208,
+      "total_distance_mean": 660.746,
+      "total_distance_std": 37.731571121679316,
+      "total_distance_ci95": 13.502069320523452,
+      "total_tardiness_mean": 1466.4066666666668,
+      "total_tardiness_std": 418.0338181612066,
+      "total_tardiness_ci95": 149.5914806445117,
+      "bypass_routes_mean": 2.1,
+      "bypass_routes_std": 1.0618786215460558,
+      "bypass_routes_ci95": 0.3799883845774672,
+      "strategy_latency_mean": 0.011333333333333334,
+      "strategy_latency_std": 0.009506198824554115,
+      "strategy_latency_ci95": 0.0034017495611270905,
+      "success_rate": 1.0
+    }
+  ],
+  "paired_tests": [
+    {
+      "baseline": "rule_parser",
+      "reference": "rag_llm",
+      "metric": "makespan",
+      "mean_baseline_minus_reference": 178.6,
+      "positive_pairs": 15,
+      "negative_pairs": 11,
+      "p_value_sign_test": 0.557197093963623
+    }
+  ],
+  "retrieval": [
+    {
+      "case": "maintenance",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "large_scene_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "large_scene_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.5,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_paraphrase",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "inspection_synonyms_policy",
+        "sop_c7_center_policy",
+        "battery_aware_policy",
+        "large_scene_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.3333333333333333,
+      "top1_correct": true
+    },
+    {
+      "case": "maintenance_conflict",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "retrieval_conflict_resolution",
+        "congestion_policy",
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "normal",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "retrieval_conflict_resolution",
+        "maintenance_center_policy",
+        "congestion_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "normal_paraphrase",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "large_scene_policy",
+        "contract_net",
+        "sop_c7_center_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch_paraphrase",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "llm_latency_policy",
+        "collision_static",
+        "sop_c7_center_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.3333333333333333,
+      "top1_correct": true
+    },
+    {
+      "case": "battery",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "traffic_right_hand",
+        "large_scene_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "battery_aware_policy",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "priority",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "priority_orders_policy",
+        "traffic_right_hand",
+        "battery_aware_policy",
+        "normal_operation_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "guardrails",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "llm_guardrails_policy",
+        "three_level_control",
+        "dock_amber_metering_policy",
+        "contract_net"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "latency",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "llm_latency_policy",
+        "warehouse_axes",
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "llm_latency_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "masked_sop_c7",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "dispatch_metering_policy",
+        "battery_aware_policy"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "dock_amber_metering_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "sop_c7_center_policy"
+      ],
+      "precision_at_k": 0.75,
+      "recall_at_k": 0.6,
+      "top1_correct": true
+    },
+    {
+      "case": "masked_human_check",
+      "error_rate": 0.0,
+      "top_k": 4,
+      "retrieved": [
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "battery_aware_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "dock_amber_metering_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "sop_c7_center_policy"
+      ],
+      "precision_at_k": 0.75,
+      "recall_at_k": 0.75,
+      "top1_correct": true
+    },
+    {
+      "case": "maintenance",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "traffic_right_hand",
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "warehouse_axes"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "large_scene_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.25,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_paraphrase",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "inspection_synonyms_policy",
+        "warehouse_axes",
+        "battery_aware_policy",
+        "large_scene_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.3333333333333333,
+      "top1_correct": true
+    },
+    {
+      "case": "maintenance_conflict",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "retrieval_conflict_resolution",
+        "congestion_policy",
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "normal",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "inspection_synonyms_policy",
+        "retrieval_conflict_resolution",
+        "maintenance_center_policy",
+        "congestion_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "normal_paraphrase",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "priority_orders_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "large_scene_policy",
+        "contract_net",
+        "dock_amber_metering_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.6666666666666666,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch_paraphrase",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "llm_latency_policy",
+        "collision_static",
+        "sop_c7_center_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.3333333333333333,
+      "top1_correct": true
+    },
+    {
+      "case": "battery",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "inspection_synonyms_policy",
+        "traffic_right_hand",
+        "large_scene_policy",
+        "llm_guardrails_policy"
+      ],
+      "expected": [
+        "battery_aware_policy",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "priority",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "sop_c7_center_policy",
+        "traffic_right_hand",
+        "battery_aware_policy",
+        "normal_operation_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "guardrails",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "llm_guardrails_policy",
+        "three_level_control",
+        "dock_amber_metering_policy",
+        "contract_net"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "latency",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "llm_latency_policy",
+        "warehouse_axes",
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "llm_latency_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "masked_sop_c7",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "dispatch_metering_policy",
+        "battery_aware_policy"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "dock_amber_metering_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "sop_c7_center_policy"
+      ],
+      "precision_at_k": 0.75,
+      "recall_at_k": 0.6,
+      "top1_correct": true
+    },
+    {
+      "case": "masked_human_check",
+      "error_rate": 0.25,
+      "top_k": 4,
+      "retrieved": [
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "battery_aware_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "dock_amber_metering_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "sop_c7_center_policy"
+      ],
+      "precision_at_k": 0.75,
+      "recall_at_k": 0.75,
+      "top1_correct": true
+    },
+    {
+      "case": "maintenance",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "sop_c7_center_policy",
+        "dock_amber_metering_policy",
+        "battery_aware_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "large_scene_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_paraphrase",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "dispatch_metering_policy",
+        "sop_c7_center_policy",
+        "llm_latency_policy",
+        "large_scene_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "maintenance_conflict",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "dispatch_metering_policy",
+        "normal_operation_policy",
+        "dock_amber_metering_policy"
+      ],
+      "expected": [
+        "congestion_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "retrieval_conflict_resolution"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "normal",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "retrieval_conflict_resolution",
+        "large_scene_policy",
+        "congestion_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "normal_paraphrase",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "normal_operation_policy",
+        "priority_orders_policy",
+        "inspection_synonyms_policy",
+        "dock_amber_metering_policy"
+      ],
+      "expected": [
+        "normal_operation_policy",
+        "traffic_right_hand"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "dispatch",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "dock_amber_metering_policy",
+        "large_scene_policy",
+        "warehouse_axes",
+        "inspection_synonyms_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "dispatch_paraphrase",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "congestion_policy",
+        "llm_guardrails_policy",
+        "maintenance_center_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "dispatch_metering_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "top1_correct": false
+    },
+    {
+      "case": "battery",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "battery_aware_policy",
+        "traffic_right_hand",
+        "large_scene_policy",
+        "contract_net"
+      ],
+      "expected": [
+        "battery_aware_policy",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "priority",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "priority_orders_policy",
+        "traffic_right_hand",
+        "maintenance_center_policy",
+        "normal_operation_policy"
+      ],
+      "expected": [
+        "contract_net",
+        "priority_orders_policy"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "guardrails",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "llm_guardrails_policy",
+        "llm_latency_policy",
+        "dock_amber_metering_policy",
+        "contract_net"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "precision_at_k": 0.25,
+      "recall_at_k": 0.5,
+      "top1_correct": true
+    },
+    {
+      "case": "latency",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "llm_latency_policy",
+        "collision_dynamic",
+        "llm_guardrails_policy",
+        "three_level_control"
+      ],
+      "expected": [
+        "llm_guardrails_policy",
+        "llm_latency_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "top1_correct": true
+    },
+    {
+      "case": "masked_sop_c7",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "collision_dynamic",
+        "inspection_synonyms_policy",
+        "dispatch_metering_policy",
+        "battery_aware_policy"
+      ],
+      "expected": [
+        "dispatch_metering_policy",
+        "dock_amber_metering_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "sop_c7_center_policy"
+      ],
+      "precision_at_k": 0.5,
+      "recall_at_k": 0.4,
+      "top1_correct": false
+    },
+    {
+      "case": "masked_human_check",
+      "error_rate": 0.5,
+      "top_k": 4,
+      "retrieved": [
+        "sop_c7_center_policy",
+        "inspection_synonyms_policy",
+        "dispatch_metering_policy",
+        "maintenance_center_policy"
+      ],
+      "expected": [
+        "dock_amber_metering_policy",
+        "inspection_synonyms_policy",
+        "maintenance_center_policy",
+        "sop_c7_center_policy"
+      ],
+      "precision_at_k": 0.75,
+      "recall_at_k": 0.75,
+      "top1_correct": true
+    }
+  ]
+}

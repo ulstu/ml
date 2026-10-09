@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect width="100%" height="100%" fill="white"/>
+<text x="70" y="30" font-family="Arial" font-size="18" font-weight="bold">total_wait by baseline</text>
+<line x1="70" y1="330" x2="870" y2="330" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="330" stroke="#333"/>
+<line x1="125" y1="329.1" x2="125" y2="70.0" stroke="#555"/>
+<rect x="102" y="219.6" width="46" height="107.3" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="100" y1="278.5" x2="150" y2="278.5" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(105,365) rotate(35)" font-family="Arial" font-size="11">cnp_only</text>
+<line x1="220" y1="330.0" x2="220" y2="236.4" stroke="#555"/>
+<rect x="197" y="299.9" width="46" height="30.1" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="195" y1="329.1" x2="245" y2="329.1" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(200,365) rotate(35)" font-family="Arial" font-size="11">hand_tuned</text>
+<line x1="315" y1="330.0" x2="315" y2="326.4" stroke="#555"/>
+<rect x="292" y="328.7" width="46" height="1.3" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="290" y1="330.0" x2="340" y2="330.0" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(295,365) rotate(35)" font-family="Arial" font-size="11">prioritized_planning</text>
+<line x1="410" y1="330.0" x2="410" y2="326.4" stroke="#555"/>
+<rect x="387" y="329.3" width="46" height="1.0" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="385" y1="330.0" x2="435" y2="330.0" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(390,365) rotate(35)" font-family="Arial" font-size="11">rag_llm</text>
+<line x1="505" y1="330.0" x2="505" y2="324.4" stroke="#555"/>
+<rect x="482" y="328.8" width="46" height="1.2" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="480" y1="330.0" x2="530" y2="330.0" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(485,365) rotate(35)" font-family="Arial" font-size="11">static_rule</text>
+<text x="10" y="60" font-family="Arial" font-size="11">1167.0</text>
+<text x="10" y="330" font-family="Arial" font-size="11">0.0</text>
+</svg>

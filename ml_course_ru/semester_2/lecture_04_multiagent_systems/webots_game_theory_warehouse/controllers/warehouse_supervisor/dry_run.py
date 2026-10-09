@@ -65,6 +65,47 @@ def dynamic_obstacles(agent: DryAgent, agents: List[DryAgent], layout) -> List[D
     ]
 
 
+def retreat_from_loaded_peer(agent: DryAgent, agents: List[DryAgent], layout, dt: float) -> bool:
+    # Пустой робот может оказаться прямо в зоне разгрузки загруженного робота.
+    if agent.status == "transporting":
+        return False
+    # Ищем ближайшего загруженного робота в локальной safety-зоне.
+    loaded_peers = [
+        other
+        for other in agents
+        if other.agent_id != agent.agent_id
+        and other.status == "transporting"
+        and distance(agent.position, other.position) <= layout.robot_radius * 3.0
+    ]
+    # Если рядом нет загруженного робота, обычное ожидание корректно.
+    if not loaded_peers:
+        return False
+    # Ближайший загруженный робот определяет направление освобождения.
+    peer = min(loaded_peers, key=lambda other: distance(agent.position, other.position))
+    # Вектор направлен от загруженного робота к текущему пустому роботу.
+    dx = agent.position[0] - peer.position[0]
+    dy = agent.position[1] - peer.position[1]
+    # Если центры почти совпали, используем устойчивое направление вверх по Y.
+    length = max((dx * dx + dy * dy) ** 0.5, 1e-6)
+    # Отступление короткое: это не новый маршрут, а освобождение локального конфликта.
+    step = ROBOT_SPEED * dt
+    # candidate — точка, где пустой робот даст загруженному больше пространства.
+    candidate = (agent.position[0] + dx / length * step, agent.position[1] + dy / length * step)
+    # Проверяем статическую безопасность точки отступления.
+    if not layout.point_is_free(candidate):
+        return False
+    # Не учитываем самого загруженного робота на отрезке: цель именно увеличить дистанцию от него.
+    if not layout.segment_is_free(agent.position, candidate, dynamic=()):
+        return False
+    # Применяем короткий шаг освобождения зоны.
+    agent.position = candidate
+    # Батарея расходуется так же, как при обычном движении.
+    agent.battery = max(0.05, agent.battery - 0.00035 * step)
+    # Сброс wait_timer показывает, что агент активно освободил конфликт.
+    agent.wait_timer = 0.0
+    return True
+
+
 def plan_operational_waypoints(layout, start: Point, goals: List[Point]) -> List[Point]:
     # cursor хранит начало следующего сегмента.
     cursor = start
@@ -92,6 +133,9 @@ def move_towards(agent: DryAgent, agents: List[DryAgent], layout, traffic: Traff
 
     # Правила движения могут заставить агента ждать.
     if traffic.must_yield(agent, target, agents, task_deadline):
+        # Если пустой робот блокирует загруженного, он должен освободить место, а не стоять.
+        if retreat_from_loaded_peer(agent, agents, layout, dt):
+            return
         agent.wait_timer += dt
         return
 

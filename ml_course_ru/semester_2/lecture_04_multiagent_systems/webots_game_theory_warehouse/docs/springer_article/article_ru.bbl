@@ -14,11 +14,23 @@ Dias, M.B., Zlot, R., Kalra, N., Stentz, A.: Market-based multirobot
   coordination: A survey and analysis. Proceedings of the IEEE  \textbf{94}(7),
    1257--1270 (2006). \doi{10.1109/JPROC.2006.876939}
 
+\bibitem{Dong2024Guardrails}
+Dong, Y., Mu, R., Jin, G., Qi, Y., Hu, J., Zhao, X., Meng, J., Ruan, W., Huang,
+  X.: Building guardrails for large language models. Proceedings of Machine
+  Learning Research  \textbf{235},  11765--11787 (2024).
+  \doi{10.48550/arXiv.2402.01822}
+
 \bibitem{Driess2023PalmE}
 Driess, D., Xia, F., Sajjadi, M.S.M., Lynch, C., Chowdhery, A., Ichter, B.,
   Wahid, A., Tompson, J., Vuong, Q., Yu, T., Huang, W., et~al.: Palm-e: An
   embodied multimodal language model. arXiv preprint arXiv:2303.03378  (2023).
   \doi{10.48550/arXiv.2303.03378}
+
+\bibitem{Engel2024CognitiveAutomation}
+Engel, C., Elshan, E., Ebel, P., Leimeister, J.M.: Stairway to heaven or
+  highway to hell: A model for assessing cognitive automation use cases.
+  Journal of Information Technology  \textbf{39}(1),  53--78 (2024).
+  \doi{10.1177/02683962231185599}
 
 \bibitem{Fox1997DWA}
 Fox, D., Burgard, W., Thrun, S.: The dynamic window approach to collision
@@ -41,10 +53,22 @@ Hart, P.E., Nilsson, N.J., Raphael, B.: A formal basis for the heuristic
   determination of minimum cost paths. IEEE Transactions on Systems Science and
   Cybernetics  \textbf{4}(2),  100--107 (1968). \doi{10.1109/TSSC.1968.300136}
 
+\bibitem{Huang2023GroundedDecoding}
+Huang, W., Xia, F., Shah, D., Driess, D., Zeng, A., Lu, Y., Florence, P.,
+  Mordatch, I., Levine, S., Hausman, K., Ichter, B.: Grounded decoding: Guiding
+  text generation with grounded models for embodied agents. arXiv preprint
+  arXiv:2303.00855  (2023). \doi{10.48550/arXiv.2303.00855}
+
 \bibitem{Khatib1986PotentialFields}
 Khatib, O.: Real-time obstacle avoidance for manipulators and mobile robots.
   The International Journal of Robotics Research  \textbf{5}(1),  90--98
   (1986). \doi{10.1177/027836498600500106}
+
+\bibitem{Kumar2024OWLTAMP}
+Kumar, N., Shen, W., Ramos, F., Fox, D., Lozano-P{\'e}rez, T., Kaelbling, L.P.,
+  Garrett, C.R.: Open-world task and motion planning via vision-language model
+  generated constraints. arXiv preprint arXiv:2411.08253  (2024).
+  \doi{10.48550/arXiv.2411.08253}
 
 \bibitem{LaValle2006Planning}
 LaValle, S.M.: Planning Algorithms. Cambridge University Press (2006),
@@ -62,14 +86,37 @@ Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N.,
   In: Advances in Neural Information Processing Systems. vol.~33, pp.
   9459--9474 (2020)
 
+\bibitem{Li2025LLMMultiRobotSurvey}
+Li, P., An, Z., Abrar, S., Zhou, L.: Large language models for multi-robot
+  systems: A survey. arXiv preprint arXiv:2502.03814  (2025).
+  \doi{10.48550/arXiv.2502.03814}
+
 \bibitem{Liang2022CodeAsPolicies}
 Liang, J., Huang, W., Xia, F., Xu, P., Hausman, K., Ichter, B., Florence, P.,
   Zeng, A.: Code as policies: Language model programs for embodied control.
   arXiv preprint arXiv:2209.07753  (2022). \doi{10.48550/arXiv.2209.07753}
 
+\bibitem{Ma2024Eureka}
+Ma, Y.J., Liang, W., Wang, G., Huang, D.A., Bastani, O., Jayaraman, D., Zhu,
+  Y., Fan, L., Anandkumar, A.: Eureka: Human-level reward design via coding
+  large language models. In: International Conference on Learning
+  Representations (2024). \doi{10.48550/arXiv.2310.12931}
+
 \bibitem{MondererShapley1996Potential}
 Monderer, D., Shapley, L.S.: Potential games. Games and Economic Behavior
   \textbf{14}(1),  124--143 (1996). \doi{10.1006/game.1996.0044}
+
+\bibitem{Obi2025SafePlan}
+Obi, I., Venkatesh, V.L.N., Wang, W., Wang, R., Suh, D., Amosa, T.I., Jo, W.,
+  Min, B.C.: Safeplan: Leveraging formal logic and chain-of-thought reasoning
+  for enhanced safety in llm-based robotic task planning. arXiv preprint
+  arXiv:2503.06892  (2025). \doi{10.48550/arXiv.2503.06892}
+
+\bibitem{Rana2023SayPlan}
+Rana, K., Haviland, J., Garg, S., Abou-Chakra, J., Reid, I., S{\"u}nderhauf,
+  N.: Sayplan: Grounding large language models using 3d scene graphs for
+  scalable robot task planning. arXiv preprint arXiv:2307.06135  (2023).
+  \doi{10.48550/arXiv.2307.06135}
 
 \bibitem{Rosenthal1973Congestion}
 Rosenthal, R.W.: A class of games possessing pure-strategy nash equilibria.
@@ -80,6 +127,11 @@ Rosenthal, R.W.: A class of games possessing pure-strategy nash equilibria.
 Roughgarden, T., Tardos, {\'E}.: How bad is selfish routing? Journal of the ACM
    \textbf{49}(2),  236--259 (2002). \doi{10.1145/506147.506153}
 
+\bibitem{Sarker2021NeuroSymbolic}
+Sarker, M.K., Zhou, L., Eberhart, A., Hitzler, P.: Neuro-symbolic artificial
+  intelligence: Current trends. AI Communications  \textbf{34}(3),  197--209
+  (2021). \doi{10.3233/AIC-210084}
+
 \bibitem{Sharon2015CBS}
 Sharon, G., Stern, R., Felner, A., Sturtevant, N.R.: Conflict-based search for
   optimal multi-agent pathfinding. Artificial Intelligence  \textbf{219},
@@ -89,6 +141,12 @@ Sharon, G., Stern, R., Felner, A., Sturtevant, N.R.: Conflict-based search for
 Smith, R.G.: The contract net protocol: High-level communication and control in
   a distributed problem solver. IEEE Transactions on Computers
   \textbf{C-29}(12),  1104--1113 (1980). \doi{10.1109/TC.1980.1675516}
+
+\bibitem{Wang2024LLMRoboticsSurvey}
+Wang, J., Wu, Z., Li, Y., Jiang, H., Shu, P., Shi, E., Hu, H., Ma, C., Liu, Y.,
+  Wang, X., et~al.: Large language models for robotics: Opportunities,
+  challenges, and perspectives. arXiv preprint arXiv:2401.04334  (2024).
+  \doi{10.48550/arXiv.2401.04334}
 
 \bibitem{Wei2022CoT}
 Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E.H.,

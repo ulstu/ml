@@ -147,6 +147,18 @@ def cosine(a: Sequence[float], b: Sequence[float]) -> float:
     return sum(left * right for left, right in zip(a, b))
 
 
+def lexical_overlap(query_text: str, document_text: str) -> float:
+    # Берем те же токены, что и embedding, чтобы lexical score был воспроизводимым.
+    query_tokens = set(_tokenize(query_text))
+    # Документ тоже приводится к множеству токенов.
+    document_tokens = set(_tokenize(document_text))
+    # Пустой запрос или пустой документ не должны влиять на итоговую оценку.
+    if not query_tokens or not document_tokens:
+        return 0.0
+    # Sørensen-Dice score стабилен на коротких правилах и понятен для inspect-логов.
+    return 2.0 * len(query_tokens & document_tokens) / (len(query_tokens) + len(document_tokens))
+
+
 def _vector_to_blob(vector: Sequence[float]) -> bytes:
     # array('f') хранит float32 компактнее JSON и без внешних зависимостей.
     return array.array("f", vector).tobytes()
@@ -341,6 +353,17 @@ class LocalVectorStore:
                 )
                 for document in self.documents
             ]
+        # Маленькая база правил выигрывает от гибридного ранжирования: dense/hash
+        # vector score ловит близость контекста, а lexical overlap стабилизирует
+        # выбор при коротких эксплуатационных формулировках.
+        scored = [
+            RetrievedRule(
+                rule.rule_id,
+                0.68 * rule.score + 0.32 * lexical_overlap(text, rule.text),
+                rule.text,
+            )
+            for rule in scored
+        ]
         # Сортируем по убыванию релевантности.
         scored.sort(key=lambda item: item.score, reverse=True)
         # Возвращаем top-k правил для prompt.

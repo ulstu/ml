@@ -167,6 +167,7 @@ def choose_route_nash_equilibrium(
     routes_by_task: Mapping[str, Sequence[Route]],
     strategy: Strategy,
     max_rounds: int = 12,
+    fixed_edge_counts: Optional[Mapping[str, int]] = None,
 ) -> List[Assignment]:
     """Iterated best response for a finite congestion game.
 
@@ -195,6 +196,10 @@ def choose_route_nash_equilibrium(
             others = current[:index] + current[index + 1 :]
             # Считаем загруженность ребер, создаваемую остальными агентами.
             counts = edge_counts(others, route_index)
+            # Уже активные маршруты считаются фиксированной нагрузкой склада.
+            if fixed_edge_counts:
+                for edge, count in fixed_edge_counts.items():
+                    counts[edge] = counts.get(edge, 0) + count
             # Доступные варианты маршрутов зависят от задачи.
             options = routes_by_task[assignment.task_id]
             # Лучший ответ — маршрут с минимальной стоимостью при фиксированных others.
@@ -209,6 +214,10 @@ def choose_route_nash_equilibrium(
 
     # Финально считаем загруженность уже выбранного устойчивого профиля.
     final_counts = edge_counts(current, route_index)
+    # Для audit тоже добавляем фон от активных роботов прошлых dispatch-циклов.
+    if fixed_edge_counts:
+        for edge, count in fixed_edge_counts.items():
+            final_counts[edge] = final_counts.get(edge, 0) + count
     # Обогащаем каждое назначение итоговой полезностью и audit-метриками.
     for assignment in current:
         # Достаем выбранный маршрут.
@@ -328,5 +337,25 @@ def contract_net_auction(
         if len(winners) >= max_new_assignments:
             break
 
-    # После аукциона решаем отдельную игру выбора маршрутов.
-    return choose_route_nash_equilibrium(winners, routes_by_task, strategy)
+    # route_index нужен, чтобы учесть уже активные маршруты как фон заторов.
+    route_index = {
+        route.route_id: route
+        for routes in routes_by_task.values()
+        for route in routes
+    }
+    # fixed_counts хранит ребра, занятые роботами из прошлых dispatch-циклов.
+    fixed_counts: Dict[str, int] = {}
+    # Активные выбранные маршруты повышают стоимость тех же ребер для новых победителей.
+    for task in active_tasks:
+        if not task.selected_route or task.selected_route not in route_index:
+            continue
+        for edge in route_index[task.selected_route].edges:
+            fixed_counts[edge] = fixed_counts.get(edge, 0) + 1
+
+    # После аукциона решаем отдельную игру выбора маршрутов с учетом активного трафика.
+    return choose_route_nash_equilibrium(
+        winners,
+        routes_by_task,
+        strategy,
+        fixed_edge_counts=fixed_counts,
+    )

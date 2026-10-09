@@ -73,7 +73,7 @@ LLM получает компактное состояние склада и н�
 
 LLM здесь не заменяет формальную модель. Она играет роль адаптивного стратегического слоя: меняет веса и ограничения, а конкретные назначения, маршруты и движение остаются проверяемыми алгоритмами.
 
-Если Ollama недоступна, вернула невалидный JSON или заданный `MAS_LLM_TIMEOUT` истек, используется `fallback_strategy`. Поэтому сценарий остается работоспособным без LLM.
+По умолчанию запрос к Ollama выполняется асинхронно: supervisor сразу публикует `fallback_strategy`, продолжает Webots-loop, запускает RAG+LLM в фоновом worker-потоке и применяет новую стратегию только после готового ответа. Если Ollama недоступна, вернула невалидный JSON или заданный timeout истек, используется `fallback_strategy`. Поэтому сценарий остается работоспособным без LLM и не "замораживает" симуляцию во время ожидания модели.
 
 ### Контракт данных RAG и LLM
 
@@ -464,21 +464,33 @@ export OLLAMA_MODEL=smollm2:135m
 
 `smollm2:135m` меньше, но в тестах хуже держит строгий JSON для полного prompt. Поэтому текущий рекомендуемый вариант для этого проекта — `qwen2.5:0.5b` на нативной Apple Silicon Ollama.
 
-По умолчанию контроллер дожидается ответа Ollama:
+По умолчанию supervisor не останавливает симуляцию ради Ollama. Он стартует с fallback-стратегией, отправляет LLM-запрос в фоновый поток и продолжает аукционы, маршрутизацию и обмен сообщениями на последней валидной стратегии:
 
 ```bash
+export MAS_ASYNC_LLM=1
+export MAS_ASYNC_LLM_TIMEOUT=35
+```
+
+`MAS_ASYNC_LLM_TIMEOUT` задает верхнюю границу фонового запроса в секундах. Следующий стратегический запрос не ставится в очередь, пока предыдущий не завершился: устаревшая стратегия хуже, чем спокойная работа на последней валидной.
+
+Для отладки старого блокирующего режима можно явно выключить async. В этом случае Webots-loop будет ждать ответ Ollama, а `MAS_LLM_TIMEOUT=0` означает ждать без короткого лимита:
+
+```bash
+export MAS_ASYNC_LLM=0
 export MAS_LLM_TIMEOUT=0
 ```
 
-Чтобы не блокировать симуляцию слишком долго, можно задать верхний предел:
+Чтобы в blocking-режиме не ждать слишком долго, можно задать числовой предел:
 
 ```bash
+export MAS_ASYNC_LLM=0
 export MAS_LLM_TIMEOUT=10
 ```
 
-Для демонстрации fallback-режима:
+Для демонстрации fallback-режима в blocking-режиме:
 
 ```bash
+export MAS_ASYNC_LLM=0
 export MAS_LLM_TIMEOUT=1
 ```
 
@@ -494,7 +506,7 @@ ml_course_ru/semester_2/lecture_04_multiagent_systems/webots_game_theory_warehou
 3. Нажать Run.
 4. Смотреть консоль:
 
-- supervisor печатает `[strategy]`, `[dispatch-gate]`, `[dispatch-wait]`, `[auction]`, `[pickup]`, `[done]`, `[success]`;
+- supervisor печатает `[strategy]`, `[strategy-async]`, `[dispatch-gate]`, `[dispatch-wait]`, `[auction]`, `[pickup]`, `[done]`, `[success]`;
 - LLM-слой печатает `[vector-db]`, `[vector-query]`, `[llm-request]`, `[llm-response]`, `[llm-fallback]`;
 - роботы печатают assignment/pickup/done/replan и отправляют статусы.
 
@@ -707,11 +719,11 @@ python3 ml_course_ru/semester_2/lecture_04_multiagent_systems/webots_game_theory
 [replan] agent=R0 target=[...] detour=...
 ```
 
-Как объяснить: каждый робот получает статусы соседей, строит `DynamicObstacle`, проверяет следующий сегмент через `segment_is_free`, применяет `TrafficRuleEngine.must_yield`, а при необходимости перестраивает путь через A*.
+Как объяснить: каждый робот получает статусы соседей, строит `DynamicObstacle`, проверяет следующий сегмент через `segment_is_free`, применяет `TrafficRuleEngine.must_yield`, а при необходимости перестраивает путь через A*. Если пустой робот оказался в зоне разгрузки загруженного, он делает короткий безопасный шаг освобождения через `retreat_from_loaded_peer`, чтобы не превратить уступание в deadlock.
 
 Если хочется сделать эффект заметнее, можно временно уменьшить свободное пространство в мире или добавить роботу конфликтный маршрут через центральный коридор. Тогда чаще появляются остановки и `replan`.
 
-Где смотреть код: `ensure_collision_free_target`, `peer_obstacles`, `step_motion` в `warehouse_robot_agent.py`; `WarehouseLayout.plan_path` в `planner.py`.
+Где смотреть код: `ensure_collision_free_target`, `retreat_from_loaded_peer`, `peer_obstacles`, `step_motion` в `warehouse_robot_agent.py`; `WarehouseLayout.plan_path` и `segment_is_free` в `planner.py`.
 
 ### 7. Fallback сохраняет работоспособность без LLM
 

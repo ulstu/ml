@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 import sys
 import time
 from dataclasses import dataclass, field
@@ -58,13 +59,24 @@ class ScenarioSpec:
     max_time: float
     disrupted_edges: Tuple[str, ...] = ()
     disruption_delay: float = 0.0
+    random_seed: Optional[int] = None
+    deadline_factor: float = 1.0
+    deadline_jitter: float = 0.0
+    reward_jitter: float = 0.0
+    start_jitter: float = 0.0
 
 
-def make_agents(count: int, scale: float) -> List[ExperimentAgent]:
-    return [
-        ExperimentAgent("R%d" % index, position)
-        for index, position in enumerate(make_agent_start_positions(count, scale))
-    ]
+def make_agents(count: int, scale: float, seed: Optional[int] = None, jitter: float = 0.0) -> List[ExperimentAgent]:
+    rng = random.Random(seed)
+    agents: List[ExperimentAgent] = []
+    for index, position in enumerate(make_agent_start_positions(count, scale)):
+        if jitter > 0.0:
+            position = (
+                round(position[0] + rng.uniform(-jitter, jitter), 3),
+                round(position[1] + rng.uniform(-jitter, jitter), 3),
+            )
+        agents.append(ExperimentAgent("R%d" % index, position))
+    return agents
 
 
 def snapshots(agents: Sequence[ExperimentAgent]) -> List[AgentSnapshot]:
@@ -75,6 +87,7 @@ def snapshots(agents: Sequence[ExperimentAgent]) -> List[AgentSnapshot]:
 
 
 def expand_tasks_and_routes(spec: ScenarioSpec) -> Tuple[List[Task], Dict[str, Sequence[Route]]]:
+    rng = random.Random(spec.random_seed)
     base_tasks = make_tasks(spec.scale)
     base_routes = make_routes(spec.scale, spec.route_variant)
     tasks: List[Task] = []
@@ -86,13 +99,19 @@ def expand_tasks_and_routes(spec: ScenarioSpec) -> Tuple[List[Task], Dict[str, S
         reward_decay = repeat * 0.35
         for task in base_tasks:
             task_id = task.task_id + suffix
+            deadline = (task.deadline + deadline_shift) * spec.deadline_factor
+            if spec.deadline_jitter > 0.0:
+                deadline += rng.uniform(-spec.deadline_jitter, spec.deadline_jitter)
+            reward = max(1.0, task.reward - reward_decay)
+            if spec.reward_jitter > 0.0:
+                reward = max(1.0, reward + rng.uniform(-spec.reward_jitter, spec.reward_jitter))
             tasks.append(
                 Task(
                     task_id=task_id,
                     pickup=task.pickup,
                     dropoff=task.dropoff,
-                    reward=max(1.0, task.reward - reward_decay),
-                    deadline=task.deadline + deadline_shift,
+                    reward=reward,
+                    deadline=max(20.0, deadline),
                     cargo_def=task.cargo_def + suffix,
                 )
             )
@@ -188,7 +207,7 @@ def run_simulation(
     route_index = {route.route_id: route for routes in routes_by_task.values() for route in routes}
     layout = make_warehouse_layout(spec.scale, spec.layout_variant)
     traffic = TrafficRuleEngine(strategy.safety_margin)
-    agents = make_agents(spec.robots, spec.scale)
+    agents = make_agents(spec.robots, spec.scale, spec.random_seed, spec.start_jitter)
     task_deadline = lambda task_id: next(item.deadline for item in tasks if item.task_id == task_id)
 
     now = 0.0
@@ -285,10 +304,19 @@ def run_simulation(
         "route_variant": spec.route_variant,
         "layout_variant": spec.layout_variant,
         "expected_llm_advantage": spec.expected_llm_advantage,
+        "seed": spec.random_seed,
     }
 
 
 def scene_profile(spec: ScenarioSpec) -> dict:
+    textual_rule = (
+        "Inspection or maintenance traffic occupies the central crossing; "
+        "robots should meter dispatch and prefer redundant bypass corridors "
+        "until pickup and dropoff slots are free."
+        if spec.disrupted_edges
+        else "Normal warehouse operation: the central crossing is open, "
+        "right-hand traffic rules and deadline priority are sufficient."
+    )
     return {
         "name": spec.name,
         "scale": spec.scale,
@@ -299,7 +327,12 @@ def scene_profile(spec: ScenarioSpec) -> dict:
         "layout_variant": spec.layout_variant,
         "center_conflicts_expected": spec.task_repeats >= 2,
         "disrupted_edges": list(spec.disrupted_edges),
+        "textual_rule": textual_rule,
         "hypothesis": spec.expected_llm_advantage,
+        "deadline_factor": spec.deadline_factor,
+        "deadline_jitter": spec.deadline_jitter,
+        "reward_jitter": spec.reward_jitter,
+        "start_jitter": spec.start_jitter,
     }
 
 

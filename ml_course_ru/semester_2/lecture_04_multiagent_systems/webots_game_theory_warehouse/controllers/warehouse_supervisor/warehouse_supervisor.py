@@ -4,13 +4,15 @@ from __future__ import annotations
 
 import json
 import os
+import time
+from concurrent.futures import Future, ThreadPoolExecutor
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Optional
 
 from controller import Supervisor
 
 from game_models import AgentSnapshot, Assignment, Point, Task, contract_net_auction
-from llm_strategy import ask_llm_strategy, strategy_to_log
+from llm_strategy import ask_llm_strategy, fallback_strategy, strategy_to_log
 from scenario import WEBOTS_ROBOT_COUNT, WEBOTS_SCENE_PROFILE, make_webots_tasks_and_routes
 
 
@@ -18,8 +20,31 @@ from scenario import WEBOTS_ROBOT_COUNT, WEBOTS_SCENE_PROFILE, make_webots_tasks
 DISPATCH_PERIOD = 5.0
 # STRATEGY_PERIOD задает, как часто запрашивается LLM/RAG стратегия.
 STRATEGY_PERIOD = float(os.environ.get("MAS_STRATEGY_PERIOD", "90.0"))
+# ASYNC_LLM включает фоновый вызов Ollama, чтобы Webots-loop не останавливался.
+ASYNC_LLM = os.environ.get("MAS_ASYNC_LLM", "1") != "0"
+# ASYNC_LLM_TIMEOUT задает верхнюю границу фонового запроса, чтобы worker не завис навсегда.
+ASYNC_LLM_TIMEOUT_ENV = os.environ.get("MAS_ASYNC_LLM_TIMEOUT", "35")
+# LLM_PENDING_NOTICE_PERIOD ограничивает частоту логов о долгом ожидании LLM.
+LLM_PENDING_NOTICE_PERIOD = float(os.environ.get("MAS_LLM_PENDING_NOTICE_PERIOD", "10.0"))
 # BOARD_PERIOD задает частоту рассылки task board роботам.
 BOARD_PERIOD = 0.7
+
+
+def _parse_optional_timeout(value: str) -> Optional[float]:
+    # 0/none/wait разрешают явно ждать без лимита, но для async по умолчанию стоит 35 секунд.
+    normalized = value.strip().lower()
+    if normalized in ("", "0", "none", "wait", "blocking", "inf", "infinite"):
+        return None
+    try:
+        number = float(normalized)
+    except ValueError:
+        return 35.0
+    if number <= 0.0:
+        return None
+    return number
+
+
+ASYNC_LLM_TIMEOUT = _parse_optional_timeout(ASYNC_LLM_TIMEOUT_ENV)
 
 
 def _parse_export_times(value: str) -> List[float]:
@@ -92,8 +117,17 @@ class WarehouseSupervisor:
         self.agents = self._load_agents()
         # Стартовое время используем и для LLM, и для расписания, чтобы не делать второй запрос сразу.
         initial_now = self.now()
-        # Получаем начальную стратегию от LLM/RAG или fallback.
-        self.strategy = ask_llm_strategy(self.tasks, self.snapshots(), initial_now, scene_profile=WEBOTS_SCENE_PROFILE)
+        # Стартуем мгновенно с deterministic fallback: Webots-loop не ждет Ollama.
+        self.strategy = fallback_strategy(self.tasks, self.snapshots(), initial_now, WEBOTS_SCENE_PROFILE)
+        # Один фоновый worker вызывает Ollama/RAG вне Webots-loop.
+        self.strategy_executor = ThreadPoolExecutor(max_workers=1, thread_name_prefix="warehouse-llm")
+        # strategy_future хранит единственный активный запрос; новые не запускаются, пока он не завершился.
+        self.strategy_future: Optional[Future] = None
+        # request_* нужны для логов и контроля периода.
+        self.strategy_request_sim_time: Optional[float] = None
+        self.strategy_request_wall_time: Optional[float] = None
+        # last_pending_notice_time ограничивает частоту сообщений о долгом запросе.
+        self.last_pending_notice_time = -LLM_PENDING_NOTICE_PERIOD
         # last_strategy_time равен времени запроса, поэтому следующий запрос будет через STRATEGY_PERIOD.
         self.last_strategy_time = initial_now
         # Отрицательные last_* заставляют выполнить публикацию доски и аукцион сразу после старта.
@@ -117,6 +151,10 @@ class WarehouseSupervisor:
             print("[image-export] dir=%s times=%s" % (self.export_images_dir, self.export_image_times))
         # Печатаем стратегию для наблюдаемости.
         print("[strategy]", strategy_to_log(self.strategy))
+        # Роботы сразу получают fallback-стратегию, пока фоновая LLM готовит улучшение.
+        self.broadcast_strategy()
+        # Первый LLM/RAG-запрос запускается в фоне сразу после инициализации.
+        self.request_strategy_update(initial_now, reason="startup")
 
     def _load_agents(self) -> Dict[str, NetworkAgent]:
         # agents — словарь сетевых состояний роботов.
@@ -158,37 +196,266 @@ class WarehouseSupervisor:
             for agent in self.agents.values()
         ]
 
+    def task_snapshots(self) -> List[Task]:
+        # LLM вызывается в отдельном потоке, поэтому передаем ему копии задач.
+        return [
+            Task(
+                task_id=task.task_id,
+                pickup=task.pickup,
+                dropoff=task.dropoff,
+                reward=task.reward,
+                deadline=task.deadline,
+                cargo_def=task.cargo_def,
+                status=task.status,
+                assigned_agent=task.assigned_agent,
+                selected_route=task.selected_route,
+                assigned_at=task.assigned_at,
+                completed_at=task.completed_at,
+            )
+            for task in self.tasks
+        ]
+
+    def request_strategy_update(self, now: float, reason: str) -> None:
+        # Если async выключен переменной окружения, оставляем старый blocking-режим для отладки.
+        if not ASYNC_LLM:
+            print("[strategy-sync] request reason=%s time=%.1f" % (reason, now))
+            self.strategy = ask_llm_strategy(
+                self.task_snapshots(),
+                self.snapshots(),
+                now,
+                scene_profile=WEBOTS_SCENE_PROFILE,
+            )
+            # Даже в sync-режиме обновляем go/hold по текущему состоянию прямо перед публикацией.
+            self.refresh_strategy_gate(self.strategy)
+            self.last_strategy_time = now
+            print("[strategy]", strategy_to_log(self.strategy))
+            self.broadcast_strategy()
+            return
+
+        # Не создаем очередь запросов: устаревшие LLM-ответы для движущихся роботов вреднее, чем пауза.
+        if self.strategy_future is not None and not self.strategy_future.done():
+            pending_since = self.strategy_request_sim_time if self.strategy_request_sim_time is not None else now
+            print("[strategy-async] skip reason=%s pending_since=%.1f" % (reason, pending_since))
+            self.last_strategy_time = now
+            return
+
+        # Webots API нельзя дергать из фонового потока, поэтому все данные копируются здесь.
+        task_snapshot = self.task_snapshots()
+        agent_snapshot = self.snapshots()
+        scene_profile = dict(WEBOTS_SCENE_PROFILE)
+        # submit возвращает Future; основной цикл продолжит работать с текущей стратегией.
+        self.strategy_future = self.strategy_executor.submit(
+            ask_llm_strategy,
+            task_snapshot,
+            agent_snapshot,
+            now,
+            ASYNC_LLM_TIMEOUT,
+            scene_profile,
+        )
+        self.strategy_request_sim_time = now
+        self.strategy_request_wall_time = time.perf_counter()
+        self.last_pending_notice_time = now
+        self.last_strategy_time = now
+        print(
+            "[strategy-async] submitted reason=%s time=%.1f current=%s"
+            % (reason, now, self.strategy.note)
+        )
+
+    def poll_strategy_update(self, now: float) -> None:
+        # Нет активного запроса — нечего применять.
+        if self.strategy_future is None:
+            return
+        # Если запрос еще выполняется, основной цикл продолжает dispatch на старой стратегии.
+        if not self.strategy_future.done():
+            if now - self.last_pending_notice_time >= LLM_PENDING_NOTICE_PERIOD:
+                request_wall_time = (
+                    self.strategy_request_wall_time
+                    if self.strategy_request_wall_time is not None
+                    else time.perf_counter()
+                )
+                request_sim_time = self.strategy_request_sim_time if self.strategy_request_sim_time is not None else now
+                wall_age = time.perf_counter() - request_wall_time
+                print(
+                    "[strategy-async] pending sim_age=%.1f wall_age=%.1f using_last_strategy=%s"
+                    % (now - request_sim_time, wall_age, self.strategy.note)
+                )
+                self.last_pending_notice_time = now
+            return
+
+        try:
+            # result() не блокирует, потому что done() уже true.
+            next_strategy = self.strategy_future.result()
+        except Exception as error:  # pragma: no cover - защита демонстрации от любых фоновых сбоев.
+            print("[strategy-async] failed reason=%s: %s" % (error.__class__.__name__, error))
+            self.strategy_future = None
+            self.strategy_request_sim_time = None
+            self.strategy_request_wall_time = None
+            self.last_strategy_time = now
+            return
+
+        # Применяем LLM-ответ только в основном Webots-потоке.
+        request_wall_time = (
+            self.strategy_request_wall_time
+            if self.strategy_request_wall_time is not None
+            else time.perf_counter()
+        )
+        wall_latency = time.perf_counter() - request_wall_time
+        # Async-ответ мог считаться по старому снимку, поэтому gate пересчитывается здесь.
+        self.refresh_strategy_gate(next_strategy)
+        self.strategy = next_strategy
+        self.strategy_future = None
+        self.strategy_request_sim_time = None
+        self.strategy_request_wall_time = None
+        self.last_strategy_time = now
+        print("[strategy-async] applied time=%.1f wall_latency=%.2f" % (now, wall_latency))
+        print("[strategy]", strategy_to_log(self.strategy))
+        # Рассылаем новую стратегию всем robot-agent контроллерам.
+        self.broadcast_strategy()
+
+    def refresh_strategy_gate(self, strategy) -> None:
+        # active_count показывает, сколько задач уже занимают pickup/dropoff/corridor capacity.
+        active_count = sum(1 for task in self.tasks if task.status not in ("open", "completed"))
+        # capacity_left не дает выпустить больше роботов, чем разрешает стратегия.
+        capacity_left = max(strategy.max_active_tasks - active_count, 0)
+        # allowed_new — сколько новых назначений можно выдать в ближайшем аукционе.
+        allowed_new = max(0, min(strategy.max_new_assignments, capacity_left))
+        # Если емкости нет, очищаем go_agents: contract_net сам ничего не назначит при active cap.
+        if allowed_new <= 0:
+            strategy.go_agents = ()
+            strategy.hold_agents = tuple(agent.agent_id for agent in self.agents.values() if agent.status == "idle")
+            return
+        # Свободные роботы могут получить новый контракт.
+        idle_agents = [agent for agent in self.agents.values() if agent.status == "idle"]
+        # Семьи уже активных задач занимают те же зоны погрузки/разгрузки и коридоры.
+        active_families = {
+            task.task_id.rstrip("0123456789")
+            for task in self.tasks
+            if task.status not in ("open", "completed")
+        }
+        # Открытые задачи сортируются так, чтобы сначала покрывать разные свободные семьи A/B/C.
+        open_tasks = sorted(
+            (
+                task
+                for task in self.tasks
+                if task.status == "open"
+                and task.task_id.rstrip("0123456789") not in active_families
+            ),
+            key=lambda task: (
+                0 if task.task_id.rstrip("0123456789") == task.task_id else 1,
+                task.deadline,
+                -task.reward,
+                task.task_id,
+            ),
+        )
+        # chosen хранит актуальных роботов, которых можно выпустить прямо сейчас.
+        chosen: List[str] = []
+        # selected_families не дает забить одну pickup/dropoff-семью первой пачкой.
+        selected_families = set()
+        # Первый проход выбирает ближайших роботов для разных семейств задач.
+        for task in open_tasks:
+            if len(chosen) >= allowed_new:
+                break
+            family = task.task_id.rstrip("0123456789")
+            if family in selected_families:
+                continue
+            candidates = [agent for agent in idle_agents if agent.agent_id not in chosen]
+            if not candidates:
+                break
+            # Для вертикальной C-линии повторную заявку устойчивее отдавать последнему C-шаттлу.
+            best_agent = self.reuse_family_shuttle(family, candidates)
+            # Если подходящего shuttle-робота нет, выбираем ближайшего к pickup.
+            if best_agent is None:
+                best_agent = min(
+                    candidates,
+                    key=lambda agent: (
+                        (agent.position[0] - task.pickup[0]) ** 2 + (agent.position[1] - task.pickup[1]) ** 2,
+                        agent.agent_id,
+                    ),
+                )
+            chosen.append(best_agent.agent_id)
+            selected_families.add(family)
+        # Второй проход добирает емкость, если разных семейств меньше, чем allowed_new.
+        for task in open_tasks:
+            if len(chosen) >= allowed_new:
+                break
+            candidates = [agent for agent in idle_agents if agent.agent_id not in chosen]
+            if not candidates:
+                break
+            family = task.task_id.rstrip("0123456789")
+            # Повторное shuttle-назначение применяем и при дозаполнении емкости.
+            best_agent = self.reuse_family_shuttle(family, candidates)
+            # Для остальных задач достаточно ближайшего свободного агента.
+            if best_agent is None:
+                best_agent = min(
+                    candidates,
+                    key=lambda agent: (
+                        (agent.position[0] - task.pickup[0]) ** 2 + (agent.position[1] - task.pickup[1]) ** 2,
+                        agent.agent_id,
+                    ),
+                )
+            if best_agent.agent_id not in chosen:
+                chosen.append(best_agent.agent_id)
+        # go/hold теперь соответствуют текущему состоянию, а не старому LLM snapshot.
+        strategy.go_agents = tuple(chosen)
+        strategy.hold_agents = tuple(agent.agent_id for agent in idle_agents if agent.agent_id not in strategy.go_agents)
+
+    def reuse_family_shuttle(self, family: str, candidates: List[NetworkAgent]) -> Optional[NetworkAgent]:
+        # C-задачи используют узкий юг-северный поток, где стабильнее повторять того же shuttle-робота.
+        if family != "C":
+            return None
+        # candidate_ids ускоряет проверку, свободен ли робот, завершивший предыдущую C-задачу.
+        candidate_ids = {agent.agent_id for agent in candidates}
+        # completed_family_tasks — уже закрытые C-задачи с временем завершения.
+        completed_family_tasks = [
+            task
+            for task in self.tasks
+            if task.task_id.rstrip("0123456789") == family
+            and task.status == "completed"
+            and task.completed_at is not None
+            and task.assigned_agent in candidate_ids
+        ]
+        # Если C-задач еще не закрывали, shuttle-предпочтения нет.
+        if not completed_family_tasks:
+            return None
+        # Берем робота, который последним освободил C dropoff.
+        last_task = max(completed_family_tasks, key=lambda task: task.completed_at or -1.0)
+        # Возвращаем соответствующего свободного агента из candidates.
+        return next((agent for agent in candidates if agent.agent_id == last_task.assigned_agent), None)
+
     def run(self) -> None:
         # Главный цикл coordinator живет до остановки Webots.
-        while self.robot.step(self.time_step) != -1:
-            # now используется для периодических действий.
-            now = self.now()
-            # Сначала принимаем все входящие сообщения от роботов.
-            self.receive_messages()
+        try:
+            while self.robot.step(self.time_step) != -1:
+                # now используется для периодических действий.
+                now = self.now()
+                # Сначала принимаем все входящие сообщения от роботов.
+                self.receive_messages()
 
-            # При необходимости сохраняем кадры сцены для отчета/статьи.
-            self.export_images_if_needed(now)
+                # Если фоновый LLM-запрос готов, применяем результат без блокировки.
+                self.poll_strategy_update(now)
 
-            # Периодически обновляем стратегию через RAG+LLM.
-            if now - self.last_strategy_time >= STRATEGY_PERIOD:
-                self.strategy = ask_llm_strategy(self.tasks, self.snapshots(), now, scene_profile=WEBOTS_SCENE_PROFILE)
-                self.last_strategy_time = now
-                print("[strategy]", strategy_to_log(self.strategy))
-                # Рассылаем новую стратегию всем robot-agent контроллерам.
-                self.broadcast_strategy()
+                # При необходимости сохраняем кадры сцены для отчета/статьи.
+                self.export_images_if_needed(now)
 
-            # Периодически публикуем task board.
-            if now - self.last_board_time >= BOARD_PERIOD:
-                self.broadcast_task_board()
-                self.last_board_time = now
+                # Периодически обновляем стратегию через RAG+LLM, но запрос уходит в фон.
+                if now - self.last_strategy_time >= STRATEGY_PERIOD:
+                    self.request_strategy_update(now, reason="periodic")
 
-            # Периодически запускаем аукцион по открытым задачам.
-            if now - self.last_dispatch_time >= DISPATCH_PERIOD:
-                self.dispatch(now)
-                self.last_dispatch_time = now
+                # Периодически публикуем task board.
+                if now - self.last_board_time >= BOARD_PERIOD:
+                    self.broadcast_task_board()
+                    self.last_board_time = now
 
-            # Проверяем, завершены ли все задачи.
-            self.report_completion_if_needed()
+                # Периодически запускаем аукцион по открытым задачам.
+                if now - self.last_dispatch_time >= DISPATCH_PERIOD:
+                    self.dispatch(now)
+                    self.last_dispatch_time = now
+
+                # Проверяем, завершены ли все задачи.
+                self.report_completion_if_needed()
+        finally:
+            # Завершаем worker без ожидания долгого Ollama-запроса при закрытии Webots.
+            self.strategy_executor.shutdown(wait=False)
 
     def send(self, payload: dict) -> None:
         # Все сообщения coordinator помечаются отправителем SUPERVISOR.
@@ -291,6 +558,8 @@ class WarehouseSupervisor:
         agent.last_seen = self.now()
 
     def dispatch(self, now: float) -> None:
+        # Перед каждым аукционом обновляем go/hold, потому что емкость зон меняется между LLM-вызовами.
+        self.refresh_strategy_gate(self.strategy)
         # Логируем диспетчерский шлюз, чтобы было видно, кто едет, а кто ждет.
         active_count = sum(1 for task in self.tasks if task.status not in ("open", "completed"))
         idle_agents = [agent.agent_id for agent in self.agents.values() if agent.status == "idle"]

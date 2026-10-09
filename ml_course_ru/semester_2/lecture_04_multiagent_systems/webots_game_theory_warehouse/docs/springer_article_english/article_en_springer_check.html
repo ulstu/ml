@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="K. V. Svyatov" />
+  <title>Bounded Large Language Model Parameterization of Formal Control Models for a Robot Group in Transport Tasks</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Bounded Large Language Model Parameterization of
+Formal Control Models for a Robot Group in Transport Tasks</h1>
+<p class="author">K. V. Svyatov</p>
+</header>
+<p><strong>Affiliation.</strong> Ulyanovsk State Technical University,
+Ulyanovsk, Russia<br />
+<strong>Corresponding author.</strong> K. V. Svyatov</p>
+<p><strong>Abstract</strong><br />
+This paper studies a simulation-based warehouse-like transport system in
+which a group of mobile robots executes delivery requests in an
+environment with shared corridors, alternative routes, and operating
+rules stated in natural language. The proposed approach uses a local
+large language model not as a motion planner or a low-level controller,
+but as a bounded strategic parameterizer of formal coordination models.
+Relevant rules are retrieved from a local vector knowledge base,
+interpreted by the language model, and validated by strict run-time
+constraints before they affect task allocation or routing. The validated
+strategy modifies only a limited set of weights, admissible robot sets,
+route penalties, and dispatch limits. Task allocation is performed by a
+contract-based protocol, route selection is modeled as a finite
+congestion game, and each robot executes its route using an individual
+controller. Experiments show that the language-model layer is useful
+when the operational rule is not directly encoded in the program or in
+the prompt, but must be retrieved and transformed into formal
+parameters. In a policy-masked series with 15–18 transport requests,
+retrieval-augmented parameterization reduced the mean completion time
+from 1882.9 ± 254.1 s to 1315.4 ± 159.2 s compared with the same
+language model without retrieval. The results support the conclusion
+that the contribution of a language model in such systems lies in safe
+interpretation of contextual rules, not in direct robot control.</p>
+<p><strong>Keywords</strong> Large language model; Robot group;
+Multi-agent transport system; Formal control model; Congestion game;
+Task allocation; Vector knowledge base; Safe artificial intelligence</p>
+<h1 id="introduction">1. Introduction</h1>
+<p>Warehouse transport systems are a representative class of multi-agent
+robotic systems. Their performance depends not only on the speed of
+individual robots, but also on coordination between task allocation,
+route choice, local collision avoidance, and operating constraints. A
+robot group may compete for requests, share narrow corridors, wait for
+loading zones, and adapt to temporary maintenance or inspection traffic.
+In such conditions, a single monolithic dispatcher is either too rigid
+for changing rules or too difficult to verify.</p>
+<p>Formal coordination methods solve important parts of this problem.
+Contract-based allocation provides a reproducible mechanism for
+assigning requests to robots [1–3]. Traffic-aware routing and
+multi-agent path finding address shared resources and route conflicts
+[4, 5]. Congestion games describe situations in which the cost of a
+route grows with the number of agents using the same edges [6–8].
+However, many operational rules in real facilities are not introduced as
+numerical coefficients. They are written or spoken as natural-language
+statements: an inspection cart is using the central crossing; the number
+of robots entering a loading area must be limited; urgent requests may
+use a shorter route; robots must continue with the last valid strategy
+if a strategic service is delayed.</p>
+<p>The research problem is therefore not only to allocate tasks or
+compute paths, but to connect textual operating knowledge with formal
+coordination models. Direct use of a large language model as a robot
+controller is unsafe because it may generate unverified actions,
+non-existing objects, or inconsistent plans. The paper proposes a more
+restricted architecture: the language model is allowed to output only a
+bounded strategic vector. This vector is then checked by guard
+conditions and used by deterministic algorithms. The language model
+never sets wheel velocities, never creates new routes, and never
+modifies the local controller.</p>
+<p>The object of study is a simulation-based warehouse-like multi-agent
+transport system. The subject of study is the mechanism that transforms
+natural-language operating rules into parameters of task allocation and
+route selection. The contribution of the paper is fourfold. First, a
+formal model is given that separates task allocation, congestion-game
+routing, and local execution. Second, a retrieval-augmented
+language-model pipeline is specified as a bounded parameterization layer
+rather than as a planner. Third, the architecture is implemented in
+Webots with individual robot controllers and a network coordinator.
+Fourth, the approach is evaluated against rule-based and non-retrieval
+baselines, including a policy-masked setting where the meaning of
+operating codes is available only through retrieval.</p>
+<h1 id="related-work">2. Related Work</h1>
+<p>Task allocation in robot groups is commonly studied within
+multi-robot task allocation. Early formal work defined taxonomies that
+relate robot capabilities, task structures, and optimization criteria
+[2]. The Contract Net Protocol remains one of the most natural models
+for transport tasks because it represents assignment as a distributed
+bidding process [1]. Market-based coordination methods extend this idea
+and provide scalable mechanisms for complex robot tasks [3]. In
+warehouse automation, allocation interacts strongly with route design,
+waiting policies, and traffic management; surveys of automated guided
+vehicles and autonomous mobile robots show that dispatching and routing
+policies influence throughput, waiting time, and deadlock risk [4,
+5].</p>
+<p>Route coordination is often represented as a graph problem.
+Search-based methods such as A* are used for shortest paths [9], while
+conflict-based search and related multi-agent path finding methods
+provide stronger guarantees for discrete route conflicts [10].
+Congestion games offer a complementary abstraction: routes are
+strategies, graph edges are shared resources, and each robot’s route
+cost depends on edge load [6]. The existence of a potential function for
+such games explains why best-response dynamics can converge to a pure
+Nash equilibrium under finite route sets [7]. These methods are
+mathematically clear, but they do not interpret textual changes in
+operating policy.</p>
+<p>Retrieval-augmented generation connects language models with external
+documents [11]. Related prompting and agent methods show that language
+models can combine reasoning with tool use [12, 13]. In robotics,
+language models have been used for grounding high-level instructions,
+generating programs, or linking language to robot affordances [14–16].
+Recent reviews emphasize both the opportunity and the risk: language
+models can adapt task-level behavior, but their output must be
+constrained and monitored before it affects physical systems [17, 18].
+This motivates guarded architectures in which a model may propose only
+symbolic parameters or constraints.</p>
+<p>The proposed approach is close to neuro-symbolic artificial
+intelligence and cognitive automation. Neuro-symbolic systems combine
+flexible neural interpretation with explicit symbolic structures [19].
+Cognitive automation studies the transfer of human cognitive work into
+software while preserving case suitability and risk control [20]. In
+this paper, natural-language interpretation is neural, but execution
+remains symbolic and formally bounded. Guardrail methods for language
+models further support this design by validating schema, ranges, and
+identifiers before execution [21]. Webots is used as a simulation
+environment for validating the robot scene and controller interaction
+[22].</p>
+<h1 id="problem-statement-and-formal-model">3. Problem Statement and
+Formal Model</h1>
+<p>The warehouse is represented as a directed graph (G=(V,E)). The set
+(V) contains intersections, loading zones, unloading zones, and service
+points. The set (E) contains admissible directed passages. The robot
+group is (A={a_1,,a_m}), and the set of transport requests is
+(T={_1,,<em>n}). For each request (), the finite set (R</em>) contains
+route candidates generated from the warehouse graph.</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span
+class="math display">\[\Theta=(w_d,w_l,w_c,w_b,\mu,E_b,A^{go},A^{hold},N^{act},N^{new})\]</span></td>
+<td style="text-align: right;">(1)</td>
+</tr>
+</tbody>
+</table>
+<p>Equation (1) defines the strategic vector produced by the
+language-model layer after validation. The parameters (w_d,w_l,w_c,w_b)
+are non-negative weights for deadline urgency, travel length,
+congestion, and battery reserve. The parameter () is a safety margin
+used by local avoidance. The set (E_bE) contains edges with an
+additional strategic penalty. The sets (A^{go}A) and (A^{hold}A)
+determine which robots may receive new assignments. The integers
+(N^{act}) and (N^{new}) limit the number of active tasks and the number
+of new assignments per dispatch cycle.</p>
+<p>The binary variable (y_{a}) is equal to 1 if robot (a) is assigned to
+request (), and 0 otherwise. The assignment constraints are</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span class="math display">\[\sum_{\tau\in T}y_{a\tau}\leq 1,\qquad
+\sum_{a\in A}y_{a\tau}\leq 1,\qquad y_{a\tau}\in\{0,1\}.\]</span></td>
+<td style="text-align: right;">(2)</td>
+</tr>
+</tbody>
+</table>
+<p>The first inequality in (2) means that one robot may execute at most
+one current request. The second inequality means that one request may be
+assigned to at most one robot. The binary condition states that partial
+assignment is not allowed.</p>
+<p>To avoid artificial waves of requests, all requests may be available
+from the beginning. Loading and unloading conflicts are controlled by a
+family mapping (:T{1,,g}), where each family corresponds to a shared
+pickup or drop-off resource:</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span
+class="math display">\[\sum_{\tau:\phi(\tau)=j}\mathbb{I}\!\left(s_\tau\notin\{\mathrm{open},\mathrm{completed}\}\right)\leq
+1,\qquad j=1,\ldots,g.\]</span></td>
+<td style="text-align: right;">(3)</td>
+</tr>
+</tbody>
+</table>
+<p>In (3), (s_) is the state of request (), and (()) is the indicator
+function. The constraint permits all requests to exist, but allows only
+one active request per shared loading family. This models waiting for
+the release of a physical area rather than opening requests in manually
+defined waves.</p>
+<p>The contract-based allocation layer computes a bid for each
+admissible robot-request pair:</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span
+class="math display">\[b(a,\tau,t)=\rho_\tau+w_d\frac{\rho_\tau}{\max(\delta_\tau-t,\varepsilon)}-w_l\,d(x_a,p_\tau)-w_b(1-\beta_a).\]</span></td>
+<td style="text-align: right;">(4)</td>
+</tr>
+</tbody>
+</table>
+<p>In (4), (<em>) is the reward or priority of request (), (</em>) is
+its deadline, (t) is current time, and (&gt;0) prevents division by
+zero. The function (d(x_a,p_)) estimates the distance from the current
+robot position (x_a) to the pickup point (p_). The value (_a) is the
+normalized battery level. Thus, the bid increases for urgent and
+valuable requests, but decreases for distant robots and robots with low
+battery reserve. The greedy allocation cycle sorts bids and selects
+winners subject to (2), (3), (A^{go}), (A^{hold}), (N^{act}), and
+(N^{new}). Its dominant complexity is (O(mn(mn))) because all feasible
+bids are sorted.</p>
+<p>For route selection, each assigned robot chooses one route from a
+finite route set. Let ({r}=(r_1,,r_q)) be the profile of selected
+routes, and let (n_e({r})) be the number of selected routes that use
+edge (e). The route cost for robot (i) is</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span class="math display">\[c_i(r_i,{\mathbf
+r}_{-i})=w_lL(r_i)+w_c\sum_{e\in r_i}n_e({\mathbf r})+M\sum_{e\in
+r_i}\mathbb{I}(e\in E_b).\]</span></td>
+<td style="text-align: right;">(5)</td>
+</tr>
+</tbody>
+</table>
+<p>In (5), (L(r_i)) is the geometric length of route (r_i), the second
+term penalizes edge sharing, and (M) is a large constant assigned to
+strategically undesirable edges. The vector ({r}_{-i}) denotes routes
+selected by all robots except robot (i).</p>
+<p>The route game is a finite congestion game. Its potential function
+is</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span class="math display">\[\Phi({\mathbf r})=\sum_i
+w_lL(r_i)+w_c\sum_{e\in E}\sum_{k=1}^{n_e({\mathbf
+r})}k+M\sum_i\sum_{e\in r_i}\mathbb{I}(e\in E_b).\]</span></td>
+<td style="text-align: right;">(6)</td>
+</tr>
+</tbody>
+</table>
+<p>The first term of (6) accumulates route lengths, the second term
+accumulates congestion cost over all shared edges, and the third term
+accumulates penalties for blocked or discouraged edges. A unilateral
+route change changes () by the same amount as the individual cost in
+(5). Therefore, best-response dynamics over the finite route sets
+converges to a pure Nash equilibrium. In the implementation, the number
+of best-response rounds is limited because route sets are small and the
+decision must remain online.</p>
+<p>The retrieval layer ranks rule documents by a hybrid score:</p>
+<table>
+<colgroup>
+<col style="width: 42%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><span
+class="math display">\[score(q,d)=0.68\cos(v_q,v_d)+0.32\,Dice(tokens(q),tokens(d)).\]</span></td>
+<td style="text-align: right;">(7)</td>
+</tr>
+</tbody>
+</table>
+<p>In (7), (q) is the state-dependent textual query, (d) is a document
+from the local rule base, (v_q) and (v_d) are normalized PyTorch
+vectors, and (Dice(,)) is the token-overlap coefficient. The cosine term
+captures vector similarity, while the token term stabilizes short
+operational codes.</p>
+<p>The main performance metric is makespan:</p>
+<table>
+<tbody>
+<tr class="odd">
+<td><span class="math display">\[M=\max_{\tau\in T}
+t_\tau^{done}-t_0.\]</span></td>
+<td style="text-align: right;">(8)</td>
+</tr>
+</tbody>
+</table>
+<p>In (8), (t_^{done}) is the completion time of request (), and (t_0)
+is the start time of the experiment. Additional metrics include total
+waiting time, total distance, number of bypass routes, success rate, and
+latency of the strategic layer.</p>
+<h1 id="retrieval-augmented-parameterization-pipeline">4.
+Retrieval-Augmented Parameterization Pipeline</h1>
+<p>The language-model pipeline contains a local vector knowledge base, a
+prompt builder, a local language model, and a guard layer. The knowledge
+base is implemented as SQLite with PyTorch vectorization. It contains 19
+short documents describing coordinate conventions, collision avoidance,
+congestion rules, dispatch gating, standard operating procedure codes,
+guard rules, and fallback behavior. The input to the knowledge base is
+not a free-form conversation. It is a compact textual query built from
+the current warehouse state: number of robots, number of requests, route
+variant, disrupted edges, deadline jitter, active policy codes, and a
+short description of the operational situation.</p>
+<p>The retrieved documents are inserted into a constrained prompt. The
+model is instructed to return only a compact structured object with
+predefined fields: deadline weight, travel weight, congestion weight,
+battery weight, safety margin, traffic rule name, blocked edges, robots
+allowed to move, robots that must wait, and limits on active and new
+assignments. The output is then parsed and validated. Unknown robot
+identifiers, unknown edge identifiers, out-of-range weights, excessive
+assignment limits, and malformed values are removed or replaced by safe
+defaults.</p>
+<p>This separation is essential. The language model may influence the
+values in (), but it cannot generate a path, command a motor, add a new
+graph edge, or bypass the local robot controller. If the model times
+out, returns invalid structured output, or produces semantically unsafe
+values, the system uses the last valid strategy or a deterministic
+fallback. Consequently, the physical behavior is always produced by
+formal algorithms acting on validated data.</p>
+<figure>
+<img src="../springer_article/figures/uml/article_data_flow.png"
+style="width:5.6in"
+alt="Fig. 1. Data flow from operating rules and warehouse state to validated strategy and formal coordination models." />
+<figcaption aria-hidden="true">Fig. 1. Data flow from operating rules
+and warehouse state to validated strategy and formal coordination
+models.</figcaption>
+</figure>
+<h1 id="system-implementation">5. System Implementation</h1>
+<p>The system is implemented as a Webots project. A supervisor process
+acts as a network coordinator: it receives robot messages, maintains the
+state of requests, invokes the strategic layer, runs contract-based
+allocation and the congestion game, and sends assignments. It is not a
+manual driver. Each robot has its own Python controller, receives
+messages of the form <code>assignment(task, route)</code>, follows
+waypoint routes, performs local avoidance, and reports
+<code>pickup</code>, <code>done</code>, and <code>replan</code>
+events.</p>
+<p>The main scene contains eight mobile robots and nine requests in
+three repeated pickup and drop-off families. All requests are initially
+visible, but equation (3) and the dispatch limits prevent all robots
+from moving into the same loading zones at once. Each request has a
+central route and one or more bypass routes. The key operating rule
+states that inspection or maintenance traffic occupies the central
+crossing; therefore, the strategy should either increase the cost of
+central routes or meter the release of robots.</p>
+<figure>
+<img src="../springer_article/figures/uml/article_architecture.png"
+style="width:5.6in"
+alt="Fig. 2. Component architecture: the language-model layer parameterizes formal coordination, while individual robot controllers execute local motion." />
+<figcaption aria-hidden="true">Fig. 2. Component architecture: the
+language-model layer parameterizes formal coordination, while individual
+robot controllers execute local motion.</figcaption>
+</figure>
+<p>Table 1 summarizes how fields of () enter the formal model.</p>
+<p><em>Table 1. Mapping between validated strategy fields and formal
+coordination procedures.</em></p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Strategy field</th>
+<th>Formal use</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(w_d)</td>
+<td>Bid function (4)</td>
+<td>Increases urgency of requests with close deadlines.</td>
+</tr>
+<tr class="even">
+<td>(w_l)</td>
+<td>Bid function (4), route cost (5)</td>
+<td>Penalizes travel to pickup and route length.</td>
+</tr>
+<tr class="odd">
+<td>(w_c)</td>
+<td>Route cost (5), potential (6)</td>
+<td>Penalizes shared edges and congested corridors.</td>
+</tr>
+<tr class="even">
+<td>(w_b)</td>
+<td>Bid function (4)</td>
+<td>Reduces bids of robots with low battery reserve.</td>
+</tr>
+<tr class="odd">
+<td>(E_b)</td>
+<td>Route cost (5)</td>
+<td>Discourages selected edges without deleting them from the
+graph.</td>
+</tr>
+<tr class="even">
+<td>(A<sup>{go},A</sup>{hold})</td>
+<td>Allocation filter</td>
+<td>Meters robot release and prevents loading-zone crowding.</td>
+</tr>
+<tr class="odd">
+<td>(N<sup>{act},N</sup>{new})</td>
+<td>Allocation constraints</td>
+<td>Limits active work and new assignments per cycle.</td>
+</tr>
+<tr class="even">
+<td>()</td>
+<td>Local avoidance</td>
+<td>Changes the clearance margin used by robot controllers.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="experimental-protocol">6. Experimental Protocol</h1>
+<p>Experiments were performed in a headless simulator using the same
+Python modules for allocation, congestion-game routing, route tables,
+retrieval, and strategy validation as the Webots controllers. Webots was
+used to verify scene geometry, visual behavior, and controller
+communication. This protocol separates the algorithmic hypothesis from
+visual validation of the scene.</p>
+<p>The main benchmark contains 30 randomized variants of the LM-9
+scenario. The number of robots is varied in ({7,8,9}), and the route
+variant, disrupted edges, disruption delay, deadline factor, deadline
+jitter, reward jitter, and start jitter are randomized. All compared
+modes use the same seeds. The baselines are: contract-based allocation
+without congestion penalties; fixed congestion game; hand-tuned
+congestion penalty; prioritized planning; a rule parser without a
+generative model; the language model without retrieval;
+retrieval-augmented language-model parameterization; and a static domain
+rule that explicitly discourages the known central bottleneck.</p>
+<p>A separate policy-masked series tests the specific role of retrieval.
+In this series, the prompt does not contain a direct explanation of the
+central crossing rule and does not include disrupted edge identifiers.
+It contains only the operational codes SOP-C7 and DOCK-AMBER. Their
+meanings are available only in the vector knowledge base. The number of
+requests is increased to 15–18, and the number of robots varies from 6
+to 8; therefore, each robot performs several deliveries on average. This
+setting models a request stream rather than a single illustrative
+delivery.</p>
+<p>Table 2 lists the main reproducibility parameters.</p>
+<p><em>Table 2. Reproducibility parameters of the experimental
+protocol.</em></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Simulator</td>
+<td>Webots R2023b for scene validation; headless Python simulator for
+statistical series.</td>
+</tr>
+<tr class="even">
+<td>Language model</td>
+<td>Local Ollama model <code>qwen2.5:0.5b</code>; timeout 35 s.</td>
+</tr>
+<tr class="odd">
+<td>Vector base</td>
+<td>SQLite, 19 documents, 192 features, PyTorch hashed
+vectorization.</td>
+</tr>
+<tr class="even">
+<td>Repetitions</td>
+<td>30 seeds for LM-9 and policy-masked replay; 10 seeds for live
+policy-masked Ollama pilot.</td>
+</tr>
+<tr class="odd">
+<td>Dispatch period</td>
+<td>5.0 s in the headless model; the language model is a strategic
+service.</td>
+</tr>
+<tr class="even">
+<td>Fallback</td>
+<td>Deterministic bounded strategy with no direct motor control.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="results">7. Results</h1>
+<p>Table 3 presents the main LM-9 benchmark. Retrieval-augmented
+parameterization is substantially better than allocation without
+congestion penalties, fixed game routing, and the rule parser. The mean
+completion time decreases from 829.9 ± 75.4 s for contract-based
+allocation without congestion modeling to 645.5 ± 83.1 s. However, the
+language model without retrieval is almost identical in this scenario:
+645.7 ± 83.3 s. This indicates that the direct textual description
+already contains enough information for the model, and retrieval mostly
+improves traceability. The static rule is still stronger because it
+hard-codes the correct response for the given geometry.</p>
+<p><em>Table 3. Main LM-9 benchmark, 30 seeds, mean ± standard
+deviation.</em></p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th style="text-align: right;">Makespan, s</th>
+<th style="text-align: right;">Waiting, s</th>
+<th style="text-align: right;">Distance</th>
+<th style="text-align: right;">Strategic latency, s</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Contract allocation only</td>
+<td style="text-align: right;">829.9 ± 75.4</td>
+<td style="text-align: right;">913.5 ± 261.9</td>
+<td style="text-align: right;">514.9</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td>Fixed congestion game</td>
+<td style="text-align: right;">829.9 ± 75.4</td>
+<td style="text-align: right;">913.5 ± 261.9</td>
+<td style="text-align: right;">514.9</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td>Hand-tuned penalty</td>
+<td style="text-align: right;">684.8 ± 145.3</td>
+<td style="text-align: right;">253.0 ± 214.9</td>
+<td style="text-align: right;">577.3</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="even">
+<td>Prioritized planning</td>
+<td style="text-align: right;">686.9 ± 94.4</td>
+<td style="text-align: right;">0.0 ± 0.0</td>
+<td style="text-align: right;">590.2</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+<tr class="odd">
+<td>Rule parser</td>
+<td style="text-align: right;">928.7 ± 76.7</td>
+<td style="text-align: right;">598.2 ± 189.5</td>
+<td style="text-align: right;">663.9</td>
+<td style="text-align: right;">0.01</td>
+</tr>
+<tr class="even">
+<td>Language model without retrieval</td>
+<td style="text-align: right;">645.7 ± 83.3</td>
+<td style="text-align: right;">125.7 ± 193.4</td>
+<td style="text-align: right;">688.9</td>
+<td style="text-align: right;">7.83</td>
+</tr>
+<tr class="odd">
+<td>Retrieval-augmented language model</td>
+<td style="text-align: right;">645.5 ± 83.1</td>
+<td style="text-align: right;">124.7 ± 194.4</td>
+<td style="text-align: right;">685.4</td>
+<td style="text-align: right;">9.21</td>
+</tr>
+<tr class="even">
+<td>Static domain rule</td>
+<td style="text-align: right;">559.1 ± 103.8</td>
+<td style="text-align: right;">123.3 ± 193.7</td>
+<td style="text-align: right;">570.6</td>
+<td style="text-align: right;">0.00</td>
+</tr>
+</tbody>
+</table>
+<p>The paired sign test confirms that retrieval-augmented
+parameterization is significantly faster than contract allocation only,
+fixed game routing, prioritized planning, and the rule parser. It is not
+significantly better than the same language model without retrieval in
+the ordinary LM-9 case. It is significantly worse than the static rule,
+which acts as a manually encoded oracle for the central bottleneck. This
+negative result is important: a language model should not be used as an
+expensive replacement for a stable and already known deterministic
+rule.</p>
+<p>The policy-masked series changes this conclusion. Because the prompt
+contains only SOP-C7 and DOCK-AMBER, the non-retrieval model does not
+know the meaning of these codes. The vector search retrieves the rule
+documents that describe the central crossing and loading-zone
+restrictions. As a result, retrieval-augmented replay reduces the
+makespan from 1882.9 ± 254.1 s to 1315.4 ± 159.2 s relative to the
+non-retrieval model. A deterministic embedding-rule baseline, which uses
+retrieval without generative interpretation, obtains 1517.3 ± 240.0 s.
+Thus, retrieval alone helps, but the language model improves the
+transformation of retrieved text into a balanced strategy.</p>
+<p><em>Table 4. Policy-masked experiment with SOP codes and 15–18
+requests.</em></p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th style="text-align: right;">Seeds</th>
+<th style="text-align: right;">Makespan, s</th>
+<th style="text-align: right;">Bypass routes</th>
+<th style="text-align: right;">Success rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Keyword parser</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1932.3 ± 237.5</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.833</td>
+</tr>
+<tr class="even">
+<td>Language model without retrieval, replay</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1882.9 ± 254.1</td>
+<td style="text-align: right;">0.0</td>
+<td style="text-align: right;">0.867</td>
+</tr>
+<tr class="odd">
+<td>Embedding-rule baseline</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1517.3 ± 240.0</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">0.967</td>
+</tr>
+<tr class="even">
+<td>Retrieval-augmented replay</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1315.4 ± 159.2</td>
+<td style="text-align: right;">12.9</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr class="odd">
+<td>Static domain rule</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">1255.8 ± 160.3</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+<tr class="even">
+<td>Language model without retrieval, live</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1439.7 ± 398.7</td>
+<td style="text-align: right;">8.4</td>
+<td style="text-align: right;">0.900</td>
+</tr>
+<tr class="odd">
+<td>Retrieval-augmented live</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1331.2 ± 139.8</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">1.000</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<img src="../springer_article/figures/experiment_snapshots_montage.png"
+style="width:5.5in"
+alt="Fig. 3. Scene dynamics: initial state, execution of first requests, and redistribution of traffic to bypass routes." />
+<figcaption aria-hidden="true">Fig. 3. Scene dynamics: initial state,
+execution of first requests, and redistribution of traffic to bypass
+routes.</figcaption>
+</figure>
+<h1 id="retrieval-quality-safety-and-computational-cost">8. Retrieval
+Quality, Safety, and Computational Cost</h1>
+<p>Retrieval quality was measured on 13 state queries covering
+maintenance, paraphrases, normal operation, dispatch rules, priority
+rules, guard behavior, latency, and masked SOP cases. At top-(k=4),
+precision was 0.423, recall was 0.591, and top-1 accuracy was 0.923.
+When each retrieved document was corrupted with probability 0.5,
+precision decreased to 0.231, recall to 0.358, and top-1 accuracy to
+0.538. In the policy-masked scenario this degradation increased the
+makespan from 1315.4 ± 159.2 s to 1588.0 ± 365.2 s. The system did not
+collapse because guard rules and fallback policies still limited the
+output, but the result shows that retrieval quality is a causal factor
+when operating codes are hidden from the prompt.</p>
+<p>The computational cost of live language-model calls is also
+significant. In the LM-9 benchmark, mean latency was 9.21 ± 2.42 s with
+retrieval and 7.83 ± 2.08 s without retrieval. This is too slow for a
+low-level robot controller. Therefore, the model must be called
+asynchronously and only on the strategic level. With a 30 s strategic
+period, the delay is a noticeable but acceptable overhead; with a 60 s
+period, it becomes a smaller part of the cycle. During the delay, robots
+continue using the last valid strategy, and local control is never
+blocked by a language-model request.</p>
+<h1 id="discussion">9. Discussion</h1>
+<p>The experiments do not support a broad claim that a large language
+model is always better than deterministic rules. The static domain rule
+is faster in the stable LM-9 geometry because it already encodes the
+correct response to the central bottleneck. If the warehouse layout and
+operating policy are fixed, such a rule is cheaper, faster, and easier
+to certify.</p>
+<p>The positive result is more specific. A language model becomes useful
+when the operating rule changes, when it is written in natural language
+or encoded by an operational code, and when manual retuning of formal
+parameters is undesirable. In this case, retrieval supplies relevant
+knowledge, the language model converts it into a bounded strategy, and
+formal algorithms perform the actual allocation and routing. This is the
+intended division of responsibility. Neural interpretation handles
+contextual language; symbolic procedures preserve verifiability.</p>
+<p>The industrial realism of the current simulation is limited. The
+scene is warehouse-like rather than a complete model of an industrial
+warehouse. Loading and unloading are simplified, charging and mechanical
+failures are not modeled, and the route graph abstracts away many
+details of robot dynamics. Nevertheless, the experiment is sufficient
+for testing the architectural hypothesis: a language-model layer can
+influence a robot group safely when its output is restricted to
+validated parameters of formal models.</p>
+<h1 id="conclusion">10. Conclusion</h1>
+<p>The paper presented a bounded architecture for using a large language
+model in the control of a robot group. The model is not a direct
+controller. It is a strategic parameterization service whose output is
+retrieved, typed, range-checked, and then consumed by formal
+coordination models. Task allocation is performed by a contract-based
+protocol, route choice by a finite congestion game, and local execution
+by individual robot controllers.</p>
+<p>The results identify the conditions under which the approach is
+useful. Retrieval-augmented language-model parameterization improves
+performance over generic and non-retrieval strategies when the operating
+rule is not explicitly present in the prompt and must be retrieved from
+a local knowledge base. It does not outperform a static rule that
+already encodes the correct answer for a stable bottleneck. Future work
+should extend the number of randomized scenes, add stronger multi-agent
+path finding and optimization baselines, replace simple hashed
+vectorization with trained local embeddings, and transfer the scenario
+to a more realistic mobile manipulator model with charging, failures,
+dynamic orders, and physical loading operations.</p>
+<h1 id="references">References</h1>
+<p>1. Smith RG (1980) The Contract Net Protocol: High-level
+communication and control in a distributed problem solver. IEEE
+Transactions on Computers C-29(12):1104–1113.
+doi:10.1109/TC.1980.1675516</p>
+<p>2. Gerkey BP, Matarić MJ (2004) A formal analysis and taxonomy of
+task allocation in multi-robot systems. The International Journal of
+Robotics Research 23(9):939–954. doi:10.1177/0278364904045564</p>
+<p>3. Dias MB, Zlot R, Kalra N, Stentz A (2006) Market-based multirobot
+coordination: a survey and analysis. Proceedings of the IEEE
+94(7):1257–1270. doi:10.1109/JPROC.2006.876939</p>
+<p>4. Le-Anh T, De Koster MBM (2006) A review of design and control of
+automated guided vehicle systems. European Journal of Operational
+Research 171(1):1–23. doi:10.1016/j.ejor.2005.01.036</p>
+<p>5. Fragapane G, de Koster R, Sgarbossa F, Strandhagen JO (2021)
+Planning and control of autonomous mobile robots for intralogistics:
+literature review and research agenda. European Journal of Operational
+Research 294(2):405–426. doi:10.1016/j.ejor.2021.01.019</p>
+<p>6. Rosenthal RW (1973) A class of games possessing pure-strategy Nash
+equilibria. International Journal of Game Theory 2:65–67.
+doi:10.1007/BF01737559</p>
+<p>7. Monderer D, Shapley LS (1996) Potential games. Games and Economic
+Behavior 14(1):124–143. doi:10.1006/game.1996.0044</p>
+<p>8. Roughgarden T, Tardos É (2002) How bad is selfish routing? Journal
+of the ACM 49(2):236–259. doi:10.1145/506147.506153</p>
+<p>9. Hart PE, Nilsson NJ, Raphael B (1968) A formal basis for the
+heuristic determination of minimum cost paths. IEEE Transactions on
+Systems Science and Cybernetics 4(2):100–107.
+doi:10.1109/TSSC.1968.300136</p>
+<p>10. Sharon G, Stern R, Felner A, Sturtevant NR (2015) Conflict-based
+search for optimal multi-agent pathfinding. Artificial Intelligence
+219:40–66. doi:10.1016/j.artint.2014.11.006</p>
+<p>11. Lewis P, Perez E, Piktus A et al (2020) Retrieval-augmented
+generation for knowledge-intensive NLP tasks. Advances in Neural
+Information Processing Systems 33:9459–9474</p>
+<p>12. Wei J, Wang X, Schuurmans D et al (2022) Chain-of-thought
+prompting elicits reasoning in large language models. Advances in Neural
+Information Processing Systems 35:24824–24837</p>
+<p>13. Yao S, Zhao J, Yu D et al (2023) ReAct: synergizing reasoning and
+acting in language models. International Conference on Learning
+Representations</p>
+<p>14. Ahn M, Brohan A, Brown N et al (2022) Do as I can, not as I say:
+grounding language in robotic affordances. arXiv:2204.01691.
+doi:10.48550/arXiv.2204.01691</p>
+<p>15. Liang J, Huang W, Xia F et al (2022) Code as policies: language
+model programs for embodied control. arXiv:2209.07753.
+doi:10.48550/arXiv.2209.07753</p>
+<p>16. Driess D, Xia F, Sajjadi MSM et al (2023) PaLM-E: an embodied
+multimodal language model. arXiv:2303.03378.
+doi:10.48550/arXiv.2303.03378</p>
+<p>17. Wang J, Wu Z, Li Y et al (2024) Large language models for
+robotics: opportunities, challenges, and perspectives. arXiv:2401.04334.
+doi:10.48550/arXiv.2401.04334</p>
+<p>18. Li P, An Z, Abrar S, Zhou L (2025) Large language models for
+multi-robot systems: a survey. arXiv:2502.03814.
+doi:10.48550/arXiv.2502.03814</p>
+<p>19. Sarker MK, Zhou L, Eberhart A, Hitzler P (2021) Neuro-symbolic
+artificial intelligence: current trends. AI Communications
+34(3):197–209. doi:10.3233/AIC-210084</p>
+<p>20. Engel C, Elshan E, Ebel P, Leimeister JM (2024) Stairway to
+heaven or highway to hell: a model for assessing cognitive automation
+use cases. Journal of Information Technology 39(1):53–78.
+doi:10.1177/02683962231185599</p>
+<p>21. Dong Y, Mu R, Jin G et al (2024) Building guardrails for large
+language models. Proceedings of Machine Learning Research
+235:11765–11787</p>
+<p>22. Michel O (2004) Cyberbotics Ltd. Webots: professional mobile
+robot simulation. International Journal of Advanced Robotic Systems
+1(1):39–42. doi:10.5772/5618</p>
+</body>
+</html>

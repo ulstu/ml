@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="420" viewBox="0 0 900 420">
+<rect width="100%" height="100%" fill="white"/>
+<text x="70" y="30" font-family="Arial" font-size="18" font-weight="bold">makespan by baseline</text>
+<line x1="70" y1="330" x2="870" y2="330" stroke="#333"/>
+<line x1="70" y1="55" x2="70" y2="330" stroke="#333"/>
+<line x1="125" y1="259.1" x2="125" y2="70.0" stroke="#555"/>
+<rect x="102" y="109.5" width="46" height="87.4" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="100" y1="139.0" x2="150" y2="139.0" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(105,365) rotate(35)" font-family="Arial" font-size="11">cnp_only</text>
+<line x1="220" y1="300.0" x2="220" y2="70.0" stroke="#555"/>
+<rect x="197" y="212.4" width="46" height="30.0" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="195" y1="229.5" x2="245" y2="229.5" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(200,365) rotate(35)" font-family="Arial" font-size="11">embedding_rule</text>
+<line x1="315" y1="309.7" x2="315" y2="70.0" stroke="#555"/>
+<rect x="292" y="217.5" width="46" height="55.8" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="290" y1="257.5" x2="340" y2="257.5" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(295,365) rotate(35)" font-family="Arial" font-size="11">hand_tuned</text>
+<line x1="410" y1="221.5" x2="410" y2="70.0" stroke="#555"/>
+<rect x="387" y="70.0" width="46" height="96.5" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="385" y1="98.9" x2="435" y2="98.9" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(390,365) rotate(35)" font-family="Arial" font-size="11">keyword_parser</text>
+<line x1="505" y1="234.8" x2="505" y2="70.0" stroke="#555"/>
+<rect x="482" y="93.1" width="46" height="97.1" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="480" y1="122.7" x2="530" y2="122.7" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(485,365) rotate(35)" font-family="Arial" font-size="11">llm_no_rag</text>
+<line x1="600" y1="242.3" x2="600" y2="79.3" stroke="#555"/>
+<rect x="577" y="115.8" width="46" height="101.4" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="575" y1="182.8" x2="625" y2="182.8" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(580,365) rotate(35)" font-family="Arial" font-size="11">prioritized_planning</text>
+<line x1="695" y1="320.7" x2="695" y2="222.9" stroke="#555"/>
+<rect x="672" y="236.1" width="46" height="64.1" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="670" y1="252.0" x2="720" y2="252.0" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(675,365) rotate(35)" font-family="Arial" font-size="11">rag_llm</text>
+<line x1="790" y1="330.0" x2="790" y2="154.6" stroke="#555"/>
+<rect x="767" y="266.7" width="46" height="38.8" fill="#dbeafe" stroke="#1d4ed8"/>
+<line x1="765" y1="277.5" x2="815" y2="277.5" stroke="#b91c1c" stroke-width="2"/>
+<text transform="translate(770,365) rotate(35)" font-family="Arial" font-size="11">static_rule</text>
+<text x="10" y="60" font-family="Arial" font-size="11">2201.0</text>
+<text x="10" y="330" font-family="Arial" font-size="11">1024.0</text>
+</svg>

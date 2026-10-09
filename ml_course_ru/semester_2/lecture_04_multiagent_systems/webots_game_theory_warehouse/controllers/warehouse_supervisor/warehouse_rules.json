@@ -17,6 +17,10 @@
       "text": "The three-level control model separates strategic policy, tactical coordination and operational execution. The LLM sets strategic weights, game-theoretic models assign tasks and routes, and local planners execute collision-free motion."
     },
     {
+      "id": "contract_net",
+      "text": "Contract Net Protocol assigns open transport orders by bids. A bid combines reward, deadline urgency, travel distance to pickup and battery penalty. The protocol chooses winners, while the congestion game chooses routes."
+    },
+    {
       "id": "congestion_policy",
       "text": "The central crossing is short but shared. When several assigned routes use the same center edges, the congestion-game penalty should increase so some robots choose north, south or east bypasses."
     },
@@ -30,11 +34,47 @@
     },
     {
       "id": "dispatch_metering_policy",
-      "text": "When many orders are open at once, do not release all idle robots to pickup zones. The strategic dispatcher should return go_agents for robots that may receive a new task now, hold_agents for robots that should wait, max_active_tasks for the number of simultaneous deliveries, and max_new_assignments for the next Contract Net batch. This replaces artificial release waves with waiting for aisle, pickup and dropoff capacity."
+      "text": "When many orders are open at once, meter the fleet and do not release all idle robots to pickup zones or loading zones. The strategic dispatcher should return go_agents for robots that may receive a new task now, hold_agents for robots that should wait, max_active_tasks for the number of simultaneous deliveries, and max_new_assignments for the next Contract Net batch. This replaces artificial release waves with waiting for aisle, pickup and dropoff capacity."
     },
     {
       "id": "warehouse_axes",
       "text": "The Webots world uses ENU coordinates. East is positive X, north is positive Y, and height is positive Z. Do not describe movements with screen-left or screen-right unless the camera orientation is fixed."
+    },
+    {
+      "id": "inspection_synonyms_policy",
+      "text": "Maintenance, inspection, service cart, audit vehicle, audit traffic, temporary human check, occupied middle aisle and temporary crossing blockage are equivalent operational signals. The strategic layer should treat these signals as context for higher center congestion cost and outer loop or bypass preference rather than as direct wheel commands."
+    },
+    {
+      "id": "sop_c7_center_policy",
+      "text": "SOP-C7, amber middle aisle, audit cart near the central sorter, service trolley in an internal cross-aisle and human check in the middle aisle mean that the center crossing should be treated as capacity-reduced. The strategic layer should raise congestion_weight, keep travel_weight low, and prefer redundant outer corridors."
+    },
+    {
+      "id": "dock_amber_metering_policy",
+      "text": "Dock amber pressure, picker slot pressure and loading-zone telemetry warnings mean that pickup and dropoff slots are temporarily capacity-limited. The strategic dispatcher should meter robot release with go_agents, hold_agents, max_active_tasks and max_new_assignments instead of sending every idle robot to a cargo at once."
+    },
+    {
+      "id": "normal_operation_policy",
+      "text": "When no maintenance, inspection or service cart is reported and only a few orders are open, the central crossing may remain attractive. In normal light traffic, avoid unnecessary bypass routes because they increase distance without reducing waiting."
+    },
+    {
+      "id": "battery_aware_policy",
+      "text": "If several idle robots can serve the same task, low battery robots should be penalized unless their distance advantage is large. The LLM may increase battery_weight, but the Contract Net layer remains responsible for the final assignment."
+    },
+    {
+      "id": "priority_orders_policy",
+      "text": "Urgent customer order, high priority order, high reward order or near-deadline order should raise deadline_weight. This changes auction bids so priority dominates distance-only allocation when deadlines are tight, but it does not override safety, route feasibility, or collision avoidance."
+    },
+    {
+      "id": "retrieval_conflict_resolution",
+      "text": "If retrieved rules conflict, prefer rules matching the current scene profile and time state. A central shortcut may normally be short, but maintenance rules dominate normal-operation rules when an inspection window, inspection traffic or closed center edges are present."
+    },
+    {
+      "id": "llm_guardrails_policy",
+      "text": "The LLM may output only bounded strategy fields: numeric weights, go_agents, hold_agents, blocked_edges, max_active_tasks and max_new_assignments. Invalid robot ids, invalid edge ids, missing JSON and out-of-range values must be repaired or replaced by fallback."
+    },
+    {
+      "id": "llm_latency_policy",
+      "text": "The LLM is called on a strategic period, not at every Webots control step. If LLM latency is larger than the strategic period or if the request fails, robots continue with the last valid strategy or deterministic fallback."
     }
   ]
 }

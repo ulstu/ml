@@ -74,11 +74,14 @@ class TrafficRuleEngine:
                 other.position[1] - agent.position[1],
             )
 
-            # Менее срочный робот уступает более срочному.
-            if my_deadline > other_deadline + 1e-6:
+            # Пустой робот уступает загруженному: это быстрее освобождает dropoff-зону.
+            if other_loaded and not my_loaded:
                 return True
-            # При равном дедлайне пустой робот уступает загруженному.
-            if abs(my_deadline - other_deadline) <= 1e-6 and other_loaded and not my_loaded:
+            # Загруженный робот не уступает пустому только из-за более позднего дедлайна.
+            if my_loaded and not other_loaded:
+                continue
+            # Менее срочный робот уступает более срочному, когда статус загрузки одинаков.
+            if my_deadline > other_deadline + 1e-6:
                 return True
             # При равных условиях применяем правило правой стороны.
             if (

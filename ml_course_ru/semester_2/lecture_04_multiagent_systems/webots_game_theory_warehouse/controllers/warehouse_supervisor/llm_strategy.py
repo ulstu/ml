@@ -67,7 +67,12 @@ def _timeout_to_log(timeout: Optional[float]) -> str:
 LLM_TIMEOUT = _parse_timeout(LLM_TIMEOUT_ENV)
 
 
-def fallback_strategy(tasks: Sequence[Task], agents: Sequence[AgentSnapshot], now: float) -> Strategy:
+def fallback_strategy(
+    tasks: Sequence[Task],
+    agents: Sequence[AgentSnapshot],
+    now: float,
+    scene_profile: Optional[dict] = None,
+) -> Strategy:
     # open_tasks — задачи, которые еще можно назначить.
     open_tasks = [task for task in tasks if task.status == "open"]
     # late_tasks — открытые задачи с близким дедлайном.
@@ -82,8 +87,8 @@ def fallback_strategy(tasks: Sequence[Task], agents: Sequence[AgentSnapshot], no
     # note объясняет студентам, почему fallback выбрал такие веса.
     note = "fallback: late tasks=%d, busy agents=%d" % (len(late_tasks), len(busy_agents))
 
-    # Возвращаем Strategy в том же формате, что и LLM.
-    return Strategy(
+    # Собираем Strategy в том же формате, что и LLM.
+    strategy = Strategy(
         deadline_weight=min(deadline_weight, 3.5),
         travel_weight=1.0,
         congestion_weight=min(congestion_weight, 3.0),
@@ -98,6 +103,25 @@ def fallback_strategy(tasks: Sequence[Task], agents: Sequence[AgentSnapshot], no
         retrieved_rules=(),
         note=note,
     )
+    # Для большой maintenance-сцены fallback тоже должен быть scene-aware:
+    # иначе первые назначения могут уйти в центральный конфликт до ответа LLM.
+    if scene_profile and scene_profile.get("disrupted_edges"):
+        strategy.congestion_weight = max(strategy.congestion_weight, 3.8)
+        strategy.travel_weight = min(strategy.travel_weight, 0.55)
+        strategy.safety_margin = min(strategy.safety_margin, 0.72)
+        strategy.max_active_tasks = 3
+        strategy.max_new_assignments = 3
+        go_agents, hold_agents, _ = _dispatch_gate(
+            tasks,
+            agents,
+            strategy.max_active_tasks,
+            strategy.max_new_assignments,
+        )
+        strategy.go_agents = go_agents
+        strategy.hold_agents = hold_agents
+        strategy.note = strategy.note + " | maintenance fallback"
+    # Возвращаем нормализованную fallback-стратегию.
+    return strategy
 
 
 def _compact_state(
@@ -292,6 +316,8 @@ def ask_llm_strategy(
     now: float,
     timeout: Optional[float] = None,
     scene_profile: Optional[dict] = None,
+    policy_guardrails: bool = True,
+    rag_enabled: bool = True,
 ) -> Strategy:
     """Request strategic weights from a local Ollama model."""
 
@@ -299,16 +325,20 @@ def ask_llm_strategy(
     effective_timeout = LLM_TIMEOUT if timeout is None else timeout
     # Сначала строим компактное состояние склада.
     state = _compact_state(tasks, agents, now, scene_profile)
-    # Загружаем локальную векторную БД правил.
-    store = LocalVectorStore.default()
     # query_text — текстовый запрос для RAG, построенный из состояния склада.
     query_text = json.dumps(state, ensure_ascii=False)
-    # Достаем top-4 релевантных правила.
-    retrieved = store.query(query_text, top_k=4)
-    # По умолчанию печатаем статус базы и результаты поиска.
-    if VECTOR_DEBUG:
-        store.log_status()
-        store.log_query(query_text, retrieved)
+    if rag_enabled:
+        # Загружаем локальную векторную БД правил.
+        store = LocalVectorStore.default()
+        # Достаем top-4 релевантных правила.
+        retrieved = store.query(query_text, top_k=4)
+        # По умолчанию печатаем статус базы и результаты поиска.
+        if VECTOR_DEBUG:
+            store.log_status()
+            store.log_query(query_text, retrieved)
+    else:
+        # Ablation: LLM видит состояние и JSON-схему, но не получает документы RAG.
+        retrieved = []
     # Prompt явно запрещает LLM отдавать прямые команды моторам.
     prompt = (
         "You are a strategic dispatcher for a multi-agent warehouse. "
@@ -386,7 +416,7 @@ def ask_llm_strategy(
         # Извлекаем JSON-объект из ответа модели.
         decision = _extract_json(raw_response)
         # fallback нужен как источник безопасных значений по умолчанию.
-        fallback = fallback_strategy(tasks, agents, now)
+        fallback = fallback_strategy(tasks, agents, now, scene_profile)
         # LLM разрешено закрывать только известные ребра.
         allowed_edges = {
             "west_center",
@@ -424,7 +454,7 @@ def ask_llm_strategy(
             retrieved_rules=tuple(rule.rule_id for rule in retrieved),
             note=str(decision.get("note", "ollama strategy")),
         )
-        if scene_profile and scene_profile.get("disrupted_edges"):
+        if policy_guardrails and scene_profile and scene_profile.get("disrupted_edges"):
             # Maintenance-профиль основной сцены теперь мягкий: центр получает
             # высокий congestion_weight, но не закрывается полностью, чтобы
             # роботы могли ехать по видимым центральным линиям, если это выгодно.
@@ -443,7 +473,7 @@ def ask_llm_strategy(
             strategy.go_agents = go_agents
             strategy.hold_agents = hold_agents
             strategy.note = strategy.note + " | maintenance guardrail"
-        elif scene_profile is None and len(tasks) <= 3:
+        elif policy_guardrails and scene_profile is None and len(tasks) <= 3:
             # В базовой Webots-демонстрации два диагональных задания иначе
             # целятся в один центральный коридор. Закрываем одно входное ребро
             # как "metering" policy: это не команда роботу, а мягкое
@@ -470,7 +500,7 @@ def ask_llm_strategy(
         # Любая ошибка LLM переводит систему на deterministic fallback.
         _log("llm-fallback", "reason=%s: %s" % (error.__class__.__name__, error))
         # Строим fallback-стратегию из текущего состояния.
-        strategy = fallback_strategy(tasks, agents, now)
+        strategy = fallback_strategy(tasks, agents, now, scene_profile)
         # Даже без LLM сохраняем тот же тактический шлюз пропускной способности.
         go_agents, hold_agents, _ = _dispatch_gate(
             tasks,
